@@ -222,7 +222,24 @@
   /* ===== REPORT PREVIEW ===== */
   .report-preview{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
   @media(max-width:768px){.report-preview{grid-template-columns:1fr}}
-  .report-image{background:var(--z900);border:1px solid var(--z800);border-radius:var(--radius);padding:40px;text-align:center;color:var(--z600);font-size:14px;min-height:320px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
+  .report-image{background:var(--z900);border:1px solid var(--z800);border-radius:var(--radius);padding:28px;text-align:left;min-height:320px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.03),0 4px 24px rgba(0,0,0,.4);overflow:hidden}
+
+  .report-mock{width:100%;background:var(--z950);border:1px solid var(--z700);border-radius:10px;padding:22px 20px;font-size:12px;color:var(--z300)}
+  .rm-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .rm-logo{font-family:'Geist',sans-serif;font-size:15px;font-weight:500;color:var(--z400)}
+  .rm-logo strong{font-weight:700;color:var(--white)}
+  .rm-badge{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--emerald);border:1px solid rgba(16,185,129,.3);padding:3px 10px;border-radius:20px}
+  .rm-brand{font-size:11px;color:var(--z500);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--z800)}
+  .rm-table{display:flex;flex-direction:column;gap:0;margin-bottom:12px}
+  .rm-row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;padding:8px 0;border-bottom:1px solid rgba(39,39,42,.5);font-size:11px;align-items:center}
+  .rm-row.rm-head{font-weight:600;color:var(--z400);font-size:10px;text-transform:uppercase;letter-spacing:.04em;border-bottom-color:var(--z600)}
+  .rm-hit{color:var(--emerald);font-weight:600}
+  .rm-miss{color:var(--red);font-weight:500}
+  .rm-pos{color:var(--emerald)}
+  .rm-neu{color:var(--amber)}
+  .rm-comp{color:var(--z500)}
+  .rm-insight{background:var(--red-dim);color:var(--red);font-size:10px;font-weight:500;padding:8px 12px;border-radius:8px;margin-bottom:12px;text-align:center}
+  .rm-footer{font-size:9px;color:var(--z600);text-align:center;letter-spacing:.03em}
   .report-specs{list-style:none}
   .report-specs li{padding:14px 0;font-size:14px;color:var(--z300);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--z800)}
   .report-specs li:last-child{border-bottom:none}
@@ -435,8 +452,24 @@
   <h2 class="section-title anim a1">What you'll receive.</h2>
   <div class="report-preview anim a2">
     <div class="report-image">
-      [ 12-Section PDF Report Preview ]<br>
-      Citation Matrix · Engine Breakdown · Competitor Analysis · Sentiment Audit · Priority Action Plan
+      <div class="report-mock">
+        <div class="rm-header">
+          <div class="rm-logo"><strong>GEO</strong> Audit</div>
+          <div class="rm-badge">REPORT</div>
+        </div>
+        <div class="rm-brand">Acme SaaS — May 2026</div>
+        <div class="rm-table">
+          <div class="rm-row rm-head">
+            <span>Engine</span><span>Cited</span><span>Sentiment</span><span>Competitor</span>
+          </div>
+          <div class="rm-row"><span>豆包 Doubao</span><span class="rm-miss">Not cited</span><span>—</span><span class="rm-comp">Cited ✓</span></div>
+          <div class="rm-row"><span>DeepSeek</span><span class="rm-hit">3 mentions</span><span class="rm-pos">Positive</span><span class="rm-comp">Not cited</span></div>
+          <div class="rm-row"><span>通义 Qwen</span><span class="rm-hit">1 mention</span><span class="rm-neu">Neutral</span><span class="rm-comp">Cited ✓</span></div>
+          <div class="rm-row"><span>文心 Wenxin</span><span class="rm-miss">Not cited</span><span>—</span><span class="rm-comp">Cited ✓</span></div>
+        </div>
+        <div class="rm-insight">⚠ 2 of 4 engines cite your competitor but not you</div>
+        <div class="rm-footer">12 Sections · Citation Matrix · Competitor Gap · Sentiment Audit · Action Plan</div>
+      </div>
     </div>
     <div>
       <ul class="report-specs">
