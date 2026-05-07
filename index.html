@@ -53,10 +53,10 @@
   /* ===== NAV ===== */
   .nav{position:sticky;top:0;z-index:100;background:rgba(9,9,11,.82);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(39,39,42,.5)}
   .nav-inner{max-width:1200px;margin:0 auto;padding:14px 36px;display:flex;align-items:center;justify-content:space-between}
-  .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white);text-decoration:none}
-  .nav-logo svg{height:22px;width:auto}
-  .nav-logo .logo-mark{transition:var(--transition)}
-  .nav-logo:hover .logo-mark{filter:drop-shadow(0 0 8px rgba(16,185,129,0.4))}
+  .nav-logo{display:flex;align-items:center;gap:0;text-decoration:none;color:var(--white);text-decoration:none}
+  .logo-text{font-family:'Geist',sans-serif;font-size:18px;font-weight:500;color:var(--z400);letter-spacing:-0.01em}
+  .logo-text strong{font-weight:700;color:var(--white);letter-spacing:-0.02em}
+  .nav-logo:hover .logo-text strong{color:var(--emerald-bright)}
   @keyframes pulse-dot{0%,100%{box-shadow:0 0 8px var(--emerald)}50%{box-shadow:0 0 18px var(--emerald)}}
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{color:var(--z400);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
@@ -243,13 +243,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <svg class="logo-mark" viewBox="0 0 150 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0.5" y="0.5" width="27" height="27" rx="8" stroke="#10b981" stroke-width="1.5" opacity="0.6"/>
-        <circle cx="17" cy="11" r="5.5" stroke="#fafafa" stroke-width="1.8"/>
-        <line x1="21" y1="14.5" x2="25.5" y2="19" stroke="#fafafa" stroke-width="2" stroke-linecap="round"/>
-        <text x="37" y="21" fill="#fafafa" font-family="Geist, sans-serif" font-weight="700" font-size="17" letter-spacing="-0.02em">GEO</text>
-        <text x="72" y="21" fill="#a1a1aa" font-family="Geist, sans-serif" font-weight="500" font-size="17" letter-spacing="-0.01em">Audit</text>
-      </svg>
+      <span class="logo-text"><strong>GEO</strong> Audit</span>
     </a>
     <div class="nav-links">
       <a href="#features">Features</a>
