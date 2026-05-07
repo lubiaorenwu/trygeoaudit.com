@@ -203,7 +203,14 @@
   .urgency h2{font-size:28px;font-weight:700;color:var(--white);margin-bottom:12px;letter-spacing:-.02em}
   .urgency p{font-size:16px;color:var(--z400);margin-bottom:28px}
 
-  /* ===== FOOTER ===== */
+  /* ===== LIVE SOCIAL PROOF ===== */
+  .live-toast{position:fixed;bottom:24px;right:24px;z-index:9998;background:var(--z900);border:1px solid var(--z700);border-radius:var(--radius-sm);padding:14px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.6),0 0 0 1px rgba(16,185,129,.08);max-width:340px;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .4s ease,transform .4s ease}
+  .live-toast.show{opacity:1;transform:translateY(0)}
+  .live-toast .lt-dot{width:8px;height:8px;border-radius:50%;background:var(--emerald);flex-shrink:0;animation:pulse-dot 2s ease infinite}
+  .live-toast .lt-text{font-size:13px;color:var(--z300);line-height:1.5}
+  .live-toast .lt-text strong{color:var(--white);font-weight:600}
+  .live-toast .lt-time{font-size:11px;color:var(--z500);white-space:nowrap}
+  @media(max-width:768px){.live-toast{bottom:16px;right:16px;left:16px;max-width:none}}
   .footer{padding:40px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;font-size:13px;color:var(--z500)}
   .footer-links{display:flex;gap:24px;flex-wrap:wrap}
   .footer a{color:var(--z400);text-decoration:none;transition:color .2s}
@@ -542,6 +549,41 @@
     <a href="#terms">Terms</a>
   </div>
 </footer>
+
+<!-- Live social proof toast -->
+<div class="live-toast" id="liveToast">
+  <div class="lt-dot"></div>
+  <span class="lt-text" id="ltMsg"></span>
+  <span class="lt-time" id="ltTime"></span>
+</div>
+
+<script>
+(function(){
+  const names = ['James','Sophie','Lucas','Emma','Oliver','Mia','Ethan','Isabella','Noah','Charlotte','William','Amelia','Henry','Harper','Jack','Evelyn','Daniel','Abigail','Matthew','Emily'];
+  const cities = ['Shanghai','Beijing','Shenzhen','Guangzhou','Hangzhou','Singapore','Hong Kong','Tokyo','Seoul','Taipei','Bangkok','London','New York','San Francisco','Berlin','Sydney'];
+  const brands = ['SaaS','E-commerce','Consumer brand','Tech startup','Agency','Enterprise','DTC brand','B2B company','Fintech','Healthtech'];
+
+  const toast = document.getElementById('liveToast');
+  const msgEl = document.getElementById('ltMsg');
+  const timeEl = document.getElementById('ltTime');
+
+  function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
+  function ago(){const m=Math.floor(Math.random()*9)+1;return m+' min ago'}
+
+  function show(){
+    const name = pick(names);
+    const city = pick(cities);
+    const type = pick(brands);
+    msgEl.innerHTML = '<strong>'+name+'</strong> from '+city+' just audited their '+type;
+    timeEl.textContent = ago();
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'), 5000);
+  }
+
+  show();
+  setInterval(show, 12000);
+})();
+</script>
 
 </body>
 </html>
