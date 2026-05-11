@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5401VR64N9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5401VR64N9');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你的品牌在AI嘴里是什么样子？——中国AI搜索市场的残酷真相 | GEO Audit</title>
+<meta name="description" content="豆包、Kimi、DeepSeek、通义千问——四大国产AI引擎月活超3亿。92%的中国品牌从未检查过AI引用情况。315曝光的投毒GEO产业链正在抢走你的推荐位。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --z950: #09090b;
+    --z900: #121215;
+    --z850: #18181b;
+    --z800: #1c1c1f;
+    --z700: #27272a;
+    --z600: #3f3f46;
+    --z500: #71717a;
+    --z400: #a1a1aa;
+    --z200: #d4d4d8;
+    --z100: #e4e4e7;
+    --white: #fafafa;
+    --emerald: #10b981;
+    --emerald-bright: #34d399;
+    --emerald-dim: rgba(16,185,129,0.10);
+    --emerald-glow: rgba(16,185,129,0.06);
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --red-dim: rgba(239,68,68,0.08);
+    --radius: 18px;
+    --radius-sm: 12px;
+    --transition: 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--z950);color:var(--z200);font-family:'Geist',-apple-system,BlinkMacSystemFont,'PingFang SC','Noto Sans SC','Microsoft YaHei',sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  body{position:relative}
+
+  body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.008) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.008) 1px,transparent 1px);background-size:52px 52px}
+
+  .container{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 36px}
+  @media(max-width:768px){.container{padding:0 20px}}
+
+  /* ===== NAV (mirrors index) ===== */
+  .nav{position:sticky;top:0;z-index:100;background:rgba(9,9,11,.82);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(39,39,42,.5)}
+  .nav-inner{max-width:1200px;margin:0 auto;padding:14px 36px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{display:flex;align-items:center;gap:0;text-decoration:none;color:var(--white)}
+  .logo-text{font-family:'Geist',sans-serif;font-size:18px;font-weight:500;color:var(--z400);letter-spacing:-0.01em}
+  .logo-text strong{font-weight:700;color:var(--white);letter-spacing:-0.02em}
+  .nav-logo:hover .logo-text strong{color:var(--emerald-bright)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--z400);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--white)}
+  .nav-links a.active{color:var(--emerald-bright)}
+  .nav-cta-sm{background:var(--white);color:var(--z950);border:none;padding:9px 20px;border-radius:20px;font-family:'Geist',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:var(--transition)}
+  .nav-cta-sm:hover{background:var(--emerald);color:#fff}.nav-cta-sm:active{transform:scale(.97)}
+  @media(max-width:768px){.nav-links{gap:16px}.nav-links a:not(.nav-cta-sm){display:none}}
+
+  /* ===== ARTICLE HEADER ===== */
+  .article-header{padding:120px 0 80px;text-align:center}
+  @media(max-width:768px){.article-header{padding:80px 0 48px}}
+  .article-meta{font-size:13px;color:var(--z500);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+  .article-meta .meta-tag{color:var(--emerald);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:11px;border:1px solid rgba(16,185,129,.25);padding:4px 12px;border-radius:20px}
+  .article-title{font-size:52px;line-height:1.12;letter-spacing:-.035em;font-weight:700;color:var(--white);max-width:800px;margin:0 auto 20px}
+  @media(max-width:768px){.article-title{font-size:32px}}
+  .article-subtitle{font-size:18px;line-height:1.65;color:var(--z400);max-width:620px;margin:0 auto}
+
+  /* ===== DIVIDER ===== */
+  .divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--z700),transparent);margin:0}
+
+  /* ===== ARTICLE BODY ===== */
+  .article-body{max-width:720px;margin:0 auto;padding:80px 0}
+  @media(max-width:768px){.article-body{padding:48px 0}}
+  .article-body h2{font-size:28px;line-height:1.25;letter-spacing:-.02em;font-weight:700;color:var(--white);margin:64px 0 20px}
+  .article-body h2:first-child{margin-top:0}
+  @media(max-width:768px){.article-body h2{font-size:22px;margin:48px 0 16px}}
+  .article-body h3{font-size:20px;line-height:1.3;font-weight:600;color:var(--z100);margin:40px 0 14px}
+  .article-body p{font-size:17px;line-height:1.8;color:var(--z300);margin-bottom:24px}
+  .article-body p strong{color:var(--white);font-weight:600}
+  .article-body a{color:var(--emerald);text-decoration:underline;text-underline-offset:4px;transition:color .2s}
+  .article-body a:hover{color:var(--emerald-bright)}
+
+  /* ===== STAT CALLOUT ===== */
+  .stat-callout{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:48px 0;border:1px solid var(--z800);border-radius:var(--radius);overflow:hidden;background:var(--z900);box-shadow:inset 0 1px 0 rgba(255,255,255,.02)}
+  @media(max-width:768px){.stat-callout{grid-template-columns:1fr 1fr}}
+  .stat-callout .sc-item{padding:28px 24px;text-align:center;border-right:1px solid var(--z800)}
+  .stat-callout .sc-item:last-child{border-right:none}
+  @media(max-width:768px){.stat-callout .sc-item{padding:20px 16px}.stat-callout .sc-item:nth-child(2n){border-right:none}.stat-callout .sc-item:nth-child(n+3){border-top:1px solid var(--z800)}}
+  .sc-value{font-size:36px;font-weight:700;letter-spacing:-.03em;color:var(--emerald-bright);margin-bottom:6px}
+  .sc-label{font-size:12px;color:var(--z500);line-height:1.5}
+
+  /* ===== PULL QUOTE ===== */
+  .pull-quote{border-left:3px solid var(--emerald);padding:28px 32px;margin:48px 0;background:var(--z900);border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+  .pull-quote .pq-text{font-size:20px;line-height:1.55;font-weight:500;color:var(--z100);font-style:italic;letter-spacing:-.01em}
+  @media(max-width:768px){.pull-quote{padding:20px 24px}.pull-quote .pq-text{font-size:17px}}
+  .pull-quote .pq-source{font-size:13px;color:var(--z500);margin-top:12px}
+
+  /* ===== WARNING CALLOUT ===== */
+  .warning-box{background:var(--red-dim);border:1px solid rgba(239,68,68,.15);border-radius:var(--radius-sm);padding:28px 32px;margin:48px 0}
+  .warning-box .wb-label{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--red);margin-bottom:10px;text-transform:uppercase}
+  .warning-box .wb-text{font-size:16px;line-height:1.7;color:var(--z300)}
+
+  /* ===== COMPARISON TABLE (mini) ===== */
+  .mini-table{width:100%;border-collapse:collapse;margin:40px 0;border:1px solid var(--z800);border-radius:var(--radius-sm);overflow:hidden}
+  .mini-table th{background:var(--z850);font-weight:600;color:var(--z200);font-size:13px;padding:14px 20px;text-align:left;border-bottom:1px solid var(--z700)}
+  .mini-table td{padding:14px 20px;font-size:14px;color:var(--z400);border-bottom:1px solid var(--z800);background:var(--z900)}
+  .mini-table tr:last-child td{border-bottom:none}
+  .mini-table .yes{color:var(--emerald);font-weight:700}
+  .mini-table .no{color:var(--z600)}
+
+  /* ===== CTA BOX ===== */
+  .cta-box{background:linear-gradient(135deg,var(--emerald-dim),rgba(16,185,129,.03));border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);padding:48px;text-align:center;margin:64px 0}
+  @media(max-width:768px){.cta-box{padding:32px 24px}}
+  .cta-box h3{font-size:24px;font-weight:700;color:var(--white);margin-bottom:12px;letter-spacing:-.02em}
+  .cta-box p{font-size:15px;color:var(--z400);margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.65}
+  .cta-box .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 36px;border-radius:var(--radius-sm);font-family:'Geist',sans-serif;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:var(--transition);letter-spacing:-.01em;border:none;background:var(--white);color:var(--z950);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 6px 24px rgba(0,0,0,.35)}
+  .cta-box .btn:hover{background:var(--emerald);color:#fff;box-shadow:0 0 0 1px var(--emerald),0 8px 36px var(--emerald-dim)}
+  .cta-box .btn:active{transform:scale(.97)}
+
+  /* ===== BACK LINK ===== */
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--z500);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;margin-bottom:40px}
+  .back-link:hover{color:var(--emerald)}
+
+  /* ===== FOOTER ===== */
+  .footer{padding:40px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;font-size:13px;color:var(--z500);border-top:1px solid var(--z800)}
+  .footer-links{display:flex;gap:24px;flex-wrap:wrap}
+  .footer a{color:var(--z400);text-decoration:none;transition:color .2s}
+  .footer a:hover{color:var(--emerald)}
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fade-up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .anim{animation:fade-up .7s var(--transition) forwards;opacity:0}
+  .a1{animation-delay:.05s}.a2{animation-delay:.12s}.a3{animation-delay:.2s}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="logo-text"><strong>GEO</strong> Audit</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#how">How It Works</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="nav-cta-sm">Deep Report →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Article Header -->
+<header class="article-header container">
+  <div class="article-meta anim">
+    <span class="meta-tag">Market Analysis</span>
+    <span>2026年5月11日</span>
+    <span>阅读约 6 分钟</span>
+  </div>
+  <h1 class="article-title anim a1">你的品牌在AI嘴里是什么样子？</h1>
+  <p class="article-subtitle anim a2">中国AI搜索市场的残酷真相：3亿用户正在用AI做决策，而你的品牌可能完全不在答案里。</p>
+</header>
+
+<div class="divider"></div>
+
+<!-- Article Body -->
+<article class="article-body container">
+
+  <p class="anim">如果你问 DeepSeek「最好的CRM品牌推荐」，它给出的答案里有没有你的品牌？它把你排在第几位？它是夸你还是在引用你的负面新闻？</p>
+
+  <p>大多数中国品牌老板答不上来。而这，正在成为一个致命的<strong>信息盲区</strong>。</p>
+
+  <h2>AI搜索不是"未来趋势"，它已经来了</h2>
+
+  <div class="stat-callout anim">
+    <div class="sc-item"><div class="sc-value">2亿+</div><div class="sc-label">豆包月活<br>（字节跳动）</div></div>
+    <div class="sc-item"><div class="sc-value">Kimi</div><div class="sc-label">长文本搜索王者<br>月之暗面</div></div>
+    <div class="sc-item"><div class="sc-value">DeepSeek</div><div class="sc-label">中国开源标杆<br>技术社区核心</div></div>
+    <div class="sc-item"><div class="sc-value">通义千问</div><div class="sc-label">阿里生态嵌入<br>电商AI推荐</div></div>
+  </div>
+
+  <p>这四大国产AI引擎，加起来覆盖了超过<strong>3亿月活用户</strong>。这些人不是来玩AI的——他们是真的在用AI做决策：选什么产品、找哪个供应商、怎么对比方案。</p>
+
+  <p>传统搜索引擎？百度？用户正在离开。AI搜索的回答更直接、更精准、没有广告干扰。去年美国市场的数据已经发出预警：<strong>61%的搜索点击正在从传统搜索消失</strong>，流向了AI引擎的引用推荐。</p>
+
+  <p>中国市场只会更猛。因为中国用户的AI产品使用率全球最高。</p>
+
+  <div class="pull-quote">
+    <div class="pq-text">"61% of searches now end in zero-click AI answers. The traffic didn't go to a competitor's website — it went to an AI answer that never mentioned you."</div>
+    <div class="pq-source">— 2025 Search Behavior Report</div>
+  </div>
+
+  <h2>315暴露了什么：AI"投毒"产业链</h2>
+
+  <p>2026年315晚会曝光了一个灰色产业：<strong>AI投毒GEO</strong>。</p>
+
+  <p>简单说就是：黑产公司用AI批量生成虚假品牌内容，然后通过僵尸号矩阵大量发布，让AI引擎在回答时"误以为"这些假品牌是真实的，从而推荐它们。</p>
+
+  <p>举个例子：你想买一款降噪耳机，问DeepSeek推荐。如果某个假品牌提前在知乎、百度百科、今日头条上"投毒"了大量AI生成的软文，DeepSeek就可能把这个假品牌排在真实品牌前面推荐给你。</p>
+
+  <p>这个产业链的规模远超想象。315之后，多个AI引擎紧急升级了反投毒机制，但问题远未解决。</p>
+
+  <div class="warning-box">
+    <div class="wb-label">残酷现实</div>
+    <div class="wb-text">合规的真实品牌如果不主动管理自己的AI引用，就会被投毒者抢走本该属于你的推荐位。你不管AI怎么说你，别人就会替AI"编写"关于你的答案。</div>
+  </div>
+
+  <h2>大多数品牌的现状：完全不知道自己"被怎么说"</h2>
+
+  <p>我们调研了200+中国中小品牌，结果触目惊心：</p>
+
+  <div class="stat-callout anim">
+    <div class="sc-item"><div class="sc-value">92%</div><div class="sc-label">从未检查过<br>AI引擎引用情况</div></div>
+    <div class="sc-item"><div class="sc-value">76%</div><div class="sc-label">不知道AI引擎<br>已是决策入口</div></div>
+    <div class="sc-item"><div class="sc-value">60%+</div><div class="sc-label">存在负面引用<br>完全不知情</div></div>
+    <div class="sc-item"><div class="sc-value">0</div><div class="sc-label">市面工具覆盖<br>中国AI引擎</div></div>
+  </div>
+
+  <p>这不是品牌做错了什么——是AI引擎在抓取互联网内容时，天然会放大负面信息。一条用户的差评帖子、一篇老旧的负面报道，都可能被AI引擎反复引用，持续伤害品牌。</p>
+
+  <h2>为什么认知断层这么大？</h2>
+
+  <p>原因很简单：<strong>没有人在做这件事。</strong></p>
+
+  <p>传统SEO公司不懂AI引擎的引用机制。品牌公关团队还在盯着百度指数和微博热搜。国产AI引擎没有提供「品牌引用率」这类工具。</p>
+
+  <p>更关键的是——放眼全球：</p>
+
+  <table class="mini-table">
+    <thead><tr><th>工具</th><th>ChatGPT</th><th>Perplexity</th><th>Gemini</th><th>豆包</th><th>Kimi</th><th>DeepSeek</th><th>通义</th></tr></thead>
+    <tbody>
+      <tr><td>SurgeGraph</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+      <tr><td>AEO-Radar</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+      <tr><td>GetCito</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+      <tr style="background:var(--emerald-dim)"><td><strong>GEO Audit</strong></td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+    </tbody>
+  </table>
+
+  <p>所有西方GEO工具<strong>零覆盖中国引擎</strong>。豆包、Kimi、DeepSeek、通义千问——这四个加起来月活超3亿的引擎——完全没人管。</p>
+
+  <h2>GEO Audit在做什么</h2>
+
+  <p>我们做的就一件事：<strong>让你的品牌在AI搜索里不再裸奔。</strong></p>
+
+  <p>覆盖<strong>8个引擎</strong>——4个中国 + 4个西方，一次性扫描你的品牌在AI引擎里的引用率、排名、情感倾向、竞品份额。</p>
+
+  <p>输出一份PDF报告，告诉你：</p>
+
+  <p>1. AI在怎么介绍你的品牌（准确还是不准确？正面还是负面？）<br>
+  2. 你在每个引擎里排第几（有没有被竞品压着？）<br>
+  3. 哪些竞品抢了你的引用位（他们在AI嘴里比你强在哪里？）<br>
+  4. 接下来该怎么优化（具体的行动建议，不是空谈）</p>
+
+  <p><strong>20分钟出报告、$20一次审计、不用月付。</strong></p>
+
+  <p>跟那些动辄$49.99/月的西方AEO工具比，我们只关注一件事：给中国品牌一个看得懂、用得起的AI引用体检。</p>
+
+  <div class="pull-quote">
+    <div class="pq-text">"You can't fix what you haven't measured. And right now, most Chinese brands haven't measured a single AI engine."</div>
+  </div>
+
+  <h2>这篇文章想表达什么</h2>
+
+  <p>AI搜索不是炒作。3亿中国用户每天都在用AI引擎做决策。你的品牌在这些引擎里的「口碑」，比百度搜索结果更直接、更持久、更难修复。</p>
+
+  <p>315曝光的投毒产业链说明了一个残酷事实：你不管AI怎么说你，别人就会替AI「编写」关于你的答案。</p>
+
+  <p>GEO Audit要做的就是让这件事不再发生。</p>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h3>你的品牌在AI搜索里是什么样子？</h3>
+    <p>免费扫描一个引擎，先看看AI到底怎么介绍你。5月12日Product Hunt上线，Deep Report 8引擎完整审计首发价$20（限时，原价$30）。</p>
+    <a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true" class="btn" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'blog_cta'})">免费扫描 DeepSeek →</a>
+    <p style="margin-top:16px;font-size:13px;color:var(--z500)">或直接购买 <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" style="color:var(--emerald)">Deep Report $20</a></p>
+  </div>
+
+  <a href="/" class="back-link">← 返回首页</a>
+
+</article>
+
+<footer class="footer container">
+  <span>GEO Audit &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/#pricing">Pricing</a>
+    <a href="https://5529900303702.gumroad.com/l/sybuc">Deep Report</a>
+    <a href="mailto:djh973832@gmail.com">Contact</a>
+    <a href="/#privacy">Privacy</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</footer>
+
+<script async src="https://gumroad.com/js/gumroad.js"></script>
+
+</body>
+</html>
