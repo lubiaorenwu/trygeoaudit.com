@@ -4,23 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog | GEO Audit</title>
-<meta name="description" content="GEO Audit blog — insights on AI search visibility, Chinese AI engines, and brand citation strategy.">
+<meta name="description" content="GEO Audit blog — exposés, market analysis, and insights on AI search visibility across Chinese and Western engines.">
 <style>
   body{background:#09090b;color:#a1a1aa;font-family:'Geist',-apple-system,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
-  .choice{text-align:center}
-  .choice h2{color:#fafafa;font-size:20px;font-weight:600;margin-bottom:28px}
-  .choice a{display:inline-block;margin:0 12px;padding:14px 36px;border-radius:12px;text-decoration:none;font-size:15px;font-weight:600;transition:all .3s}
-  .en{background:#fafafa;color:#09090b}
-  .en:hover{background:#10b981;color:#fff}
-  .zh{border:1px solid #27272a;color:#a1a1aa}
-  .zh:hover{border-color:#10b981;color:#34d399}
+  .blog-list{max-width:640px;width:100%;padding:40px 24px}
+  .blog-list h1{color:#fafafa;font-size:28px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+  .blog-list .subtitle{color:#71717a;font-size:14px;margin-bottom:48px}
+  .post-card{display:block;text-decoration:none;padding:24px 0;border-bottom:1px solid #1c1c1f;transition:all .2s}
+  .post-card:hover .post-title{color:#34d399}
+  .post-card:hover{border-color:#27272a}
+  .post-meta{display:flex;gap:16px;align-items:center;margin-bottom:8px;font-size:12px}
+  .post-tag{color:#10b981;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:10px;border:1px solid rgba(16,185,129,.25);padding:2px 10px;border-radius:12px}
+  .post-date{color:#71717a}
+  .post-langs{margin-left:auto;display:flex;gap:8px}
+  .post-lang{padding:2px 10px;border-radius:12px;font-size:11px;font-weight:500;text-decoration:none;transition:all .2s}
+  .post-lang.en{border:1px solid #27272a;color:#a1a1aa}
+  .post-lang.en:hover{border-color:#10b981;color:#34d399}
+  .post-lang.zh{border:1px solid #27272a;color:#a1a1aa}
+  .post-lang.zh:hover{border-color:#10b981;color:#34d399}
+  .post-title{color:#fafafa;font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px;transition:color .2s}
+  .post-excerpt{color:#71717a;font-size:14px;line-height:1.6}
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:#71717a;text-decoration:none;font-size:13px;font-weight:500;margin-bottom:32px;transition:color .2s}
+  .back-link:hover{color:#10b981}
 </style>
 </head>
 <body>
-<div class="choice">
-  <h2>GEO Audit Blog</h2>
-  <a class="en" href="/blog/ai-search-china-market-en.html">English</a>
-  <a class="zh" href="/blog/ai-search-china-market.html">中文</a>
+<div class="blog-list">
+  <a href="/" class="back-link">← GEO Audit</a>
+  <h1>Blog</h1>
+  <p class="subtitle">What AI search doesn't want you to know.</p>
+
+  <a href="/blog/doubao-geo-exposed.html" class="post-card">
+    <div class="post-meta">
+      <span class="post-tag">Exposé</span>
+      <span class="post-date">May 12, 2026</span>
+      <div class="post-langs">
+        <span class="post-lang zh">中文</span>
+        <a href="/blog/doubao-geo-exposed-en.html" class="post-lang en">EN</a>
+      </div>
+    </div>
+    <div class="post-title">我实测了"豆包GEO TOP3服务商"，发现引用率是0%</div>
+    <div class="post-excerpt">三家公司被51CTO评为豆包GEO优化TOP3，但它们在豆包、Kimi、DeepSeek、通义里的品牌引用率全部为零。98.5分的"测评"实为付费发稿。</div>
+  </a>
+
+  <a href="/blog/ai-search-china-market.html" class="post-card">
+    <div class="post-meta">
+      <span class="post-tag">Market Analysis</span>
+      <span class="post-date">May 11, 2026</span>
+      <div class="post-langs">
+        <span class="post-lang zh">中文</span>
+        <a href="/blog/ai-search-china-market-en.html" class="post-lang en">EN</a>
+      </div>
+    </div>
+    <div class="post-title">你的品牌在AI嘴里是什么样子？</div>
+    <div class="post-excerpt">中国AI搜索市场的残酷真相：3亿用户正在用AI做决策，92%的中国品牌从未检查过AI引用情况。315曝光的投毒GEO产业链正在抢走你的推荐位。</div>
+  </a>
+
 </div>
 </body>
 </html>
