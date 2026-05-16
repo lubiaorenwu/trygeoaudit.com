@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5401VR64N9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5401VR64N9');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Coding Tools Red Ocean: Is Your Tool Visible to AI Search Engines? | GEO Audit</title>
+<meta name="description" content="Blitzy $1.4B, Microsoft cancels Claude Code, Grok Build enters — the AI coding tools space is exploding. We tested Grok Build's visibility across 4 Chinese AI engines: 0 out of 4. Is your AI tool being recommended by Doubao and Kimi?">
+<link rel="alternate" hreflang="zh-CN" href="/blog/ai-coding-geo.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --z950: #09090b;
+    --z900: #121215;
+    --z850: #18181b;
+    --z800: #1c1c1f;
+    --z700: #27272a;
+    --z600: #3f3f46;
+    --z500: #71717a;
+    --z400: #a1a1aa;
+    --z200: #d4d4d8;
+    --z100: #e4e4e7;
+    --white: #fafafa;
+    --emerald: #10b981;
+    --emerald-bright: #34d399;
+    --emerald-dim: rgba(16,185,129,0.10);
+    --emerald-glow: rgba(16,185,129,0.06);
+    --red: #ef4444;
+    --red-dim: rgba(239,68,68,0.08);
+    --radius: 18px;
+    --radius-sm: 12px;
+    --transition: 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--z950);color:var(--z200);font-family:'Geist',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  body{position:relative}
+
+  body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.008) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.008) 1px,transparent 1px);background-size:52px 52px}
+
+  .container{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 36px}
+  @media(max-width:768px){.container{padding:0 20px}}
+
+  .nav{position:sticky;top:0;z-index:100;background:rgba(9,9,11,.82);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(39,39,42,.5)}
+  .nav-inner{max-width:1200px;margin:0 auto;padding:14px 36px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{display:flex;align-items:center;gap:0;text-decoration:none;color:var(--white)}
+  .logo-text{font-family:'Geist',sans-serif;font-size:18px;font-weight:500;color:var(--z400);letter-spacing:-0.01em}
+  .logo-text strong{font-weight:700;color:var(--white);letter-spacing:-0.02em}
+  .nav-logo:hover .logo-text strong{color:var(--emerald-bright)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--z400);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--white)}
+  .nav-links a.active{color:var(--emerald-bright)}
+  .nav-cta-sm{background:var(--white);color:var(--z950);border:none;padding:9px 20px;border-radius:20px;font-family:'Geist',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:var(--transition)}
+  .nav-cta-sm:hover{background:var(--emerald);color:#fff}.nav-cta-sm:active{transform:scale(.97)}
+  @media(max-width:768px){.nav-links{gap:16px}.nav-links a:not(.nav-cta-sm){display:none}}
+
+  .article-header{padding:120px 0 80px;text-align:center}
+  @media(max-width:768px){.article-header{padding:80px 0 48px}}
+  .article-meta{font-size:13px;color:var(--z500);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+  .article-meta .meta-tag{color:var(--emerald);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:11px;border:1px solid rgba(16,185,129,.25);padding:4px 12px;border-radius:20px}
+  .lang-switch{font-size:13px;color:var(--z400);text-decoration:none;border:1px solid var(--z700);padding:4px 14px;border-radius:20px;transition:var(--transition)}
+  .lang-switch:hover{color:var(--emerald-bright);border-color:var(--emerald)}
+  .article-title{font-size:52px;line-height:1.12;letter-spacing:-.035em;font-weight:700;color:var(--white);max-width:800px;margin:0 auto 20px}
+  @media(max-width:768px){.article-title{font-size:32px}}
+  .article-subtitle{font-size:18px;line-height:1.65;color:var(--z400);max-width:620px;margin:0 auto}
+
+  .divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--z700),transparent);margin:0}
+
+  .article-body{max-width:720px;margin:0 auto;padding:80px 0}
+  @media(max-width:768px){.article-body{padding:48px 0}}
+  .article-body h2{font-size:28px;line-height:1.25;letter-spacing:-.02em;font-weight:700;color:var(--white);margin:64px 0 20px}
+  .article-body h2:first-child{margin-top:0}
+  @media(max-width:768px){.article-body h2{font-size:22px;margin:48px 0 16px}}
+  .article-body p{font-size:17px;line-height:1.8;color:var(--z300);margin-bottom:24px}
+  .article-body p strong{color:var(--white);font-weight:600}
+  .article-body a{color:var(--emerald);text-decoration:underline;text-underline-offset:4px;transition:color .2s}
+  .article-body a:hover{color:var(--emerald-bright)}
+
+  .data-table{width:100%;border-collapse:collapse;margin:40px 0;border:1px solid var(--z800);border-radius:var(--radius-sm);overflow:hidden}
+  .data-table th,.data-table td{padding:14px 20px;text-align:center;font-size:14px;border-bottom:1px solid var(--z800)}
+  .data-table th{background:var(--z850);color:var(--z200);font-weight:600;font-size:13px;text-align:center}
+  .data-table td{background:var(--z900);color:var(--z400)}
+  .data-table .engine-name{text-align:left;color:var(--z200);font-weight:500}
+  .data-table .status-fail{color:var(--red);font-weight:600}
+
+  .pull-quote{border-left:3px solid var(--emerald);padding:28px 32px;margin:48px 0;background:var(--z900);border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+  .pull-quote .pq-text{font-size:20px;line-height:1.55;font-weight:500;color:var(--z100);font-style:italic;letter-spacing:-.01em}
+  @media(max-width:768px){.pull-quote{padding:20px 24px}.pull-quote .pq-text{font-size:17px}}
+
+  .warning-box{background:var(--red-dim);border:1px solid rgba(239,68,68,0.15);border-radius:var(--radius);padding:36px 40px;margin:48px 0;text-align:center}
+  @media(max-width:768px){.warning-box{padding:28px 24px}}
+  .warning-box .wb-label{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--red);font-weight:700;margin-bottom:12px}
+  .warning-box .wb-value{font-size:48px;font-weight:700;color:var(--red);letter-spacing:-.03em;line-height:1}
+  .warning-box .wb-desc{font-size:15px;color:var(--z400);margin-top:12px;line-height:1.6}
+
+  .cta-box{background:linear-gradient(135deg,var(--emerald-dim),rgba(16,185,129,.03));border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);padding:48px;text-align:center;margin:64px 0}
+  @media(max-width:768px){.cta-box{padding:32px 24px}}
+  .cta-box h3{font-size:24px;font-weight:700;color:var(--white);margin-bottom:12px;letter-spacing:-.02em}
+  .cta-box p{font-size:15px;color:var(--z400);margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.65}
+  .cta-box .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 36px;border-radius:var(--radius-sm);font-family:'Geist',sans-serif;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:var(--transition);letter-spacing:-.01em;border:none;background:var(--white);color:var(--z950);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 6px 24px rgba(0,0,0,.35)}
+  .cta-box .btn:hover{background:var(--emerald);color:#fff;box-shadow:0 0 0 1px var(--emerald),0 8px 36px var(--emerald-dim)}
+  .cta-box .btn:active{transform:scale(.97)}
+  .cta-box .cta-sub{font-size:14px;color:var(--z400);margin-top:16px}
+  .cta-box .cta-sub a{color:var(--emerald);font-weight:500}
+
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--z500);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;margin-bottom:40px}
+  .back-link:hover{color:var(--emerald)}
+
+  .footer{padding:40px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;font-size:13px;color:var(--z500);border-top:1px solid var(--z800)}
+  .footer-links{display:flex;gap:24px;flex-wrap:wrap}
+  .footer a{color:var(--z400);text-decoration:none;transition:color .2s}
+  .footer a:hover{color:var(--emerald)}
+
+  .stat-callout{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:48px 0}
+  @media(max-width:768px){.stat-callout{grid-template-columns:repeat(2,1fr)}}
+  .stat-callout .sc-item{background:var(--z900);border:1px solid var(--z800);border-radius:var(--radius-sm);padding:24px 20px;text-align:center}
+  .stat-callout .sc-num{font-size:32px;font-weight:700;color:var(--emerald);letter-spacing:-.02em}
+  .stat-callout .sc-label{font-size:12px;color:var(--z500);margin-top:4px}
+
+  @keyframes fade-up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .anim{animation:fade-up .7s var(--transition) forwards;opacity:0}
+  .a1{animation-delay:.05s}.a2{animation-delay:.12s}.a3{animation-delay:.2s}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="logo-text"><strong>GEO</strong> Audit</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#how">How It Works</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="nav-cta-sm">Deep Report →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="article-header container">
+  <div class="article-meta anim">
+    <span class="meta-tag">Market Signal</span>
+    <span>May 16, 2026</span>
+    <span>~4 min read</span>
+    <a href="/blog/ai-coding-geo.html" class="lang-switch">中文</a>
+  </div>
+  <h1 class="article-title anim a1">The AI Coding Tools Red Ocean: Is Your Tool Visible to AI Search Engines?</h1>
+  <p class="article-subtitle anim a2">Blitzy $1.4B valuation, Microsoft cancels Claude Code, Grok Build launches — three signals in 10 days. The AI coding tools space has officially entered a red ocean. We tested Grok Build's visibility across Chinese AI search engines. Result: 0 out of 4.</p>
+</header>
+
+<div class="divider"></div>
+
+<article class="article-body container">
+
+  <p class="anim">Three signals in 10 days. One conclusion: the AI coding tools market is getting explosively crowded.</p>
+
+  <h2>Three Signals, Same Conclusion</h2>
+
+  <p><strong>May 5:</strong> Blitzy closed a $200M round at a $1.4B valuation. Founded in 2023, the company builds an "autonomous enterprise software development platform" — coordinating thousands of AI agents across codebases in parallel. Northzone led the round, with PSG and Battery Ventures participating. Investors are betting real money on the next wave: AI that doesn't just help you write code — it writes software for you.</p>
+
+  <p><strong>May 14:</strong> Microsoft internally cancelled most Claude Code licenses, mandating the E+D division (Windows, M365, Outlook, and other core product lines) migrate to Copilot CLI by June 30. The Verge obtained the internal email — EVP Rajesh Jha's exact words were "converge on Copilot CLI as the primary agentic CLI tool." Translation: Claude Code got so popular inside Microsoft that Copilot CLI was being ignored, forcing an executive mandate to kill the competitor.</p>
+
+  <p><strong>May 15:</strong> xAI launched Grok Build, officially entering the AI coding agent arena. A terminal/CLI-based AI coding agent with Plan-Review-Approve workflow, parallel sub-agents, and MCP Server support. Musk isn't sitting out the coding tools war.</p>
+
+  <div class="pull-quote">
+    <div class="pq-text">"10 days. One new entrant. One new unicorn. One giant forced to play defense. This is not a coincidence."</div>
+  </div>
+
+  <h2>When Everyone Is Competing on Features, Where's the Next Battlefield?</h2>
+
+  <p>Every AI coding tool is racing on: faster code generation, better context understanding, more agent collaboration. Feature differentiation is getting harder by the day.</p>
+
+  <p>But there's one question almost nobody is asking:</p>
+
+  <p><strong>Is your AI tool being correctly cited by Doubao, Kimi, DeepSeek, and Tongyi Qwen?</strong></p>
+
+  <p>We ran an experiment. Immediately after Grok Build launched on May 15, we ran it through our GEO audit tool across 4 major Chinese AI search engines. Here's what we found:</p>
+
+  <table class="data-table">
+    <thead><tr><th>AI Engine</th><th>Grok Build Citation</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="engine-name">Doubao</td><td class="status-fail">Not cited</td><td class="status-fail">Failed</td></tr>
+      <tr><td class="engine-name">Kimi</td><td class="status-fail">Not cited</td><td class="status-fail">Failed</td></tr>
+      <tr><td class="engine-name">DeepSeek</td><td class="status-fail">Not cited</td><td class="status-fail">Failed</td></tr>
+      <tr><td class="engine-name">Tongyi Qwen</td><td class="status-fail">Not cited</td><td class="status-fail">Failed</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning-box">
+    <div class="wb-label">Overall Visibility Score</div>
+    <div class="wb-value">0/100</div>
+    <div class="wb-desc">An xAI product, widely discussed across the internet, 24 hours after launch — and not a single Chinese AI engine knew it existed.</div>
+  </div>
+
+  <p>This isn't a Grok Build problem — it's <strong>the collective blind spot of every AI tool developer</strong>.</p>
+
+  <h2>Getting Recommended by AI Search Engines = The New SEO</h2>
+
+  <p>Picture this scenario:</p>
+
+  <p>A developer asks Tongyi Qwen: "What are some good AI coding tools?"</p>
+
+  <p>Tongyi's response mentions Cursor, GitHub Copilot, Claude Code... but your tool is nowhere in the answer.</p>
+
+  <p>That's lost business — not because your product is bad, but because the AI engine doesn't know you exist.</p>
+
+  <p>Traditional SEO helps users find you through search. <strong>GEO (Generative Engine Optimization) gets AI to recommend you in its answers.</strong> These are two entirely different battlegrounds.</p>
+
+  <h2>Chinese AI Engines Have Different Appetites</h2>
+
+  <p>For a tool to get recommended by Western AI engines, a hot Hacker News thread or a Product Hunt feature is often enough — ChatGPT and Perplexity pick it up organically.</p>
+
+  <p>But in China, each engine has its own diet:</p>
+  <p><strong>Doubao</strong> feeds on Toutiao, Douyin Encyclopedia, and Baidu Baike</p>
+  <p><strong>Kimi</strong> feeds on Zhihu long-form articles, CSDN, and 36Kr</p>
+  <p><strong>DeepSeek</strong> feeds on GitHub READMEs, academic papers, and technical communities</p>
+  <p><strong>Tongyi Qwen</strong> feeds on Alibaba Cloud docs, open-source communities, and Tongyi knowledge base</p>
+
+  <p>Each engine's "diet" is completely different. Your website that works for ChatGPT may be completely invisible to Doubao.</p>
+
+  <p>That's exactly what GEO Audit does: <strong>tells you, across 8 major AI search engines, which ones recommend your brand, in what position, and whether your competitors are there instead.</strong></p>
+
+  <h2>This Isn't Optional — It's Infrastructure</h2>
+
+  <p>Let's revisit those three signals:</p>
+
+  <p><strong>Blitzy at $1.4B</strong> — investors are betting on "AI replaces developers," not "AI assists developers." When AI tools start writing software autonomously, being recommended by AI engines — and who does the recommending — becomes a trust signal.</p>
+
+  <p><strong>Microsoft killing Claude Code</strong> — even Microsoft has to use executive mandates to protect its own product. The AI coding tools competition is no longer about "who's better" — it's about "who gets discovered first."</p>
+
+  <p><strong>Grok Build enters the fray</strong> — Musk brings xAI's brand and reach. What do independent developers and small-team AI tools have to compete on for discovery?</p>
+
+  <div class="pull-quote">
+    <div class="pq-text">"Being recommended by AI is the new 'ranking on page one of Google.'"</div>
+  </div>
+
+  <div class="cta-box">
+    <h3>What do AI search engines say about your brand?</h3>
+    <p>8-engine citation audit across Doubao, Kimi, DeepSeek, Tongyi, ChatGPT, Perplexity, Gemini, and Claude. Full report delivered in ~20 minutes.</p>
+    <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="btn" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'blog_ai_coding_geo_en'})">Get Deep Report $20 →</a>
+    <p class="cta-sub">Or <a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true">scan your brand for free</a> first</p>
+  </div>
+
+  <p style="font-size:13px;color:var(--z500);margin-top:48px"><em>Sources: Blitzy funding announcement (May 5, 2026) · The Verge (May 14, 2026) · xAI Grok Build launch (May 15, 2026) · GEO Audit test data (May 16, 2026)</em></p>
+
+  <a href="/blog/" class="back-link">← Back to Blog</a>
+
+</article>
+
+<footer class="footer container">
+  <span>GEO Audit &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/#pricing">Pricing</a>
+    <a href="https://5529900303702.gumroad.com/l/sybuc">Deep Report</a>
+    <a href="mailto:djh973832@gmail.com">Contact</a>
+    <a href="/#privacy">Privacy</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</footer>
+
+<script async src="https://gumroad.com/js/gumroad.js"></script>
+
+</body>
+</html>
