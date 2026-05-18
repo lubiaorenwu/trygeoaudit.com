@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5401VR64N9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5401VR64N9');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepSeek V4首发实测：引用率为0？V3 vs V4对比报告 | GEO Audit</title>
+<meta name="description" content="DeepSeek V4预览版发布当天，我们实测了V3和V4在品牌查询中的引用表现。结果震惊：两个模型引用率均为0。V4比V3短47%，但都不引用外部链接。">
+<link rel="alternate" hreflang="en" href="/blog/deepseek-v4-vs-v3-en.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --z950: #09090b; --z900: #121215; --z850: #18181b; --z800: #1c1c1f; --z700: #27272a;
+    --z600: #3f3f46; --z500: #71717a; --z400: #a1a1aa; --z200: #d4d4d8; --z100: #e4e4e7;
+    --white: #fafafa; --emerald: #10b981; --emerald-bright: #34d399;
+    --emerald-dim: rgba(16,185,129,0.10); --emerald-glow: rgba(16,185,129,0.06);
+    --red: #ef4444; --red-dim: rgba(239,68,68,0.08); --radius: 18px; --radius-sm: 12px;
+    --transition: 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--z950);color:var(--z200);font-family:'Geist',-apple-system,BlinkMacSystemFont,'PingFang SC','Noto Sans SC','Microsoft YaHei',sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  body{position:relative}
+  body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.008) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.008) 1px,transparent 1px);background-size:52px 52px}
+
+  .container{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 36px}
+  @media(max-width:768px){.container{padding:0 20px}}
+
+  .nav{position:sticky;top:0;z-index:100;background:rgba(9,9,11,.82);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(39,39,42,.5)}
+  .nav-inner{max-width:1200px;margin:0 auto;padding:14px 36px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{display:flex;align-items:center;gap:0;text-decoration:none;color:var(--white)}
+  .logo-text{font-family:'Geist',sans-serif;font-size:18px;font-weight:500;color:var(--z400);letter-spacing:-0.01em}
+  .logo-text strong{font-weight:700;color:var(--white);letter-spacing:-0.02em}
+  .nav-logo:hover .logo-text strong{color:var(--emerald-bright)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--z400);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--white)}
+  .nav-links a.active{color:var(--emerald-bright)}
+  .nav-cta-sm{background:var(--white);color:var(--z950);border:none;padding:9px 20px;border-radius:20px;font-family:'Geist',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:var(--transition)}
+  .nav-cta-sm:hover{background:var(--emerald);color:#fff}.nav-cta-sm:active{transform:scale(.97)}
+  @media(max-width:768px){.nav-links{gap:16px}.nav-links a:not(.nav-cta-sm){display:none}}
+
+  .article-header{padding:120px 0 80px;text-align:center}
+  @media(max-width:768px){.article-header{padding:80px 0 48px}}
+  .article-meta{font-size:13px;color:var(--z500);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+  .article-meta .meta-tag{color:var(--emerald);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:11px;border:1px solid rgba(16,185,129,.25);padding:4px 12px;border-radius:20px}
+  .lang-switch{font-size:13px;color:var(--z400);text-decoration:none;border:1px solid var(--z700);padding:4px 14px;border-radius:20px;transition:var(--transition)}
+  .lang-switch:hover{color:var(--emerald-bright);border-color:var(--emerald)}
+  .article-title{font-size:52px;line-height:1.12;letter-spacing:-.035em;font-weight:700;color:var(--white);max-width:800px;margin:0 auto 20px}
+  @media(max-width:768px){.article-title{font-size:32px}}
+  .article-subtitle{font-size:18px;line-height:1.65;color:var(--z400);max-width:620px;margin:0 auto}
+
+  .divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--z700),transparent);margin:0}
+
+  .article-body{max-width:720px;margin:0 auto;padding:80px 0}
+  @media(max-width:768px){.article-body{padding:48px 0}}
+  .article-body h2{font-size:28px;line-height:1.25;letter-spacing:-.02em;font-weight:700;color:var(--white);margin:64px 0 20px}
+  .article-body h2:first-child{margin-top:0}
+  @media(max-width:768px){.article-body h2{font-size:22px;margin:48px 0 16px}}
+  .article-body p{font-size:17px;line-height:1.8;color:var(--z300);margin-bottom:24px}
+  .article-body p strong{color:var(--white);font-weight:600}
+  .article-body a{color:var(--emerald);text-decoration:underline;text-underline-offset:4px;transition:color .2s}
+  .article-body a:hover{color:var(--emerald-bright)}
+
+  .data-table{width:100%;border-collapse:collapse;margin:40px 0;border:1px solid var(--z800);border-radius:var(--radius-sm);overflow:hidden}
+  .data-table th,.data-table td{padding:14px 20px;text-align:center;font-size:14px;border-bottom:1px solid var(--z800)}
+  .data-table th{background:var(--z850);color:var(--z200);font-weight:600;font-size:13px;text-align:center}
+  .data-table td{background:var(--z900);color:var(--z400)}
+  .data-table .metric{text-align:left;color:var(--z200);font-weight:500}
+  .data-table .v4-up{color:var(--emerald);font-weight:600}
+  .data-table .v4-down{color:var(--red);font-weight:600}
+
+  .pull-quote{border-left:3px solid var(--emerald);padding:28px 32px;margin:48px 0;background:var(--z900);border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+  .pull-quote .pq-text{font-size:20px;line-height:1.55;font-weight:500;color:var(--z100);font-style:italic;letter-spacing:-.01em}
+  @media(max-width:768px){.pull-quote{padding:20px 24px}.pull-quote .pq-text{font-size:17px}}
+
+  .warning-box{border:1px solid rgba(239,68,68,.2);background:rgba(239,68,68,.06);padding:24px 28px;margin:48px 0;border-radius:var(--radius-sm)}
+  .warning-box .wb-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+  .warning-box .wb-text{font-size:15px;line-height:1.65;color:var(--z200)}
+
+  .cta-box{background:linear-gradient(135deg,var(--emerald-dim),rgba(16,185,129,.03));border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);padding:48px;text-align:center;margin:64px 0}
+  @media(max-width:768px){.cta-box{padding:32px 24px}}
+  .cta-box h3{font-size:24px;font-weight:700;color:var(--white);margin-bottom:12px;letter-spacing:-.02em}
+  .cta-box p{font-size:15px;color:var(--z400);margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.65}
+  .cta-box .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 36px;border-radius:var(--radius-sm);font-family:'Geist',sans-serif;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:var(--transition);letter-spacing:-.01em;border:none;background:var(--white);color:var(--z950);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 6px 24px rgba(0,0,0,.35)}
+  .cta-box .btn:hover{background:var(--emerald);color:#fff;box-shadow:0 0 0 1px var(--emerald),0 8px 36px var(--emerald-dim)}
+  .cta-box .btn:active{transform:scale(.97)}
+  .cta-box .cta-sub{font-size:14px;color:var(--z400);margin-top:16px}
+  .cta-box .cta-sub a{color:var(--emerald);font-weight:500}
+
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--z500);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;margin-bottom:40px}
+  .back-link:hover{color:var(--emerald)}
+
+  .footer{padding:40px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;font-size:13px;color:var(--z500);border-top:1px solid var(--z800)}
+  .footer-links{display:flex;gap:24px;flex-wrap:wrap}
+  .footer a{color:var(--z400);text-decoration:none;transition:color .2s}
+  .footer a:hover{color:var(--emerald)}
+
+  .stat-callout{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:48px 0}
+  @media(max-width:768px){.stat-callout{grid-template-columns:repeat(2,1fr)}}
+  .stat-callout .sc-item{background:var(--z900);border:1px solid var(--z800);border-radius:var(--radius-sm);padding:24px 20px;text-align:center}
+  .stat-callout .sc-num{font-size:32px;font-weight:700;color:var(--emerald);letter-spacing:-.02em}
+  .stat-callout .sc-label{font-size:12px;color:var(--z500);margin-top:4px}
+
+  @keyframes fade-up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .anim{animation:fade-up .7s var(--transition) forwards;opacity:0}
+  .a1{animation-delay:.05s}.a2{animation-delay:.12s}.a3{animation-delay:.2s}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="logo-text"><strong>GEO</strong> Audit</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#features">功能</a>
+      <a href="/#how">原理</a>
+      <a href="/#pricing">价格</a>
+      <a href="/blog/" class="active">博客</a>
+      <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="nav-cta-sm">Deep Report →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="article-header container">
+  <div class="article-meta anim">
+    <span class="meta-tag">独家实测</span>
+    <span>2026年5月18日</span>
+    <span>阅读约 4 分钟</span>
+    <a href="/blog/deepseek-v4-vs-v3-en.html" class="lang-switch">English</a>
+  </div>
+  <h1 class="article-title anim a1">DeepSeek V4首发实测：引用率为0？</h1>
+  <p class="article-subtitle anim a2">V4预览版发布当天，我们跑了一遍V3 vs V4的引用率对比。答案让你重新思考"GEO覆盖率"这个词。</p>
+</header>
+
+<div class="divider"></div>
+
+<article class="article-body container">
+
+  <p class="anim">2026年5月，DeepSeek发布了V4预览版。两个模型——<strong>deepseek-v4-flash</strong> 和 <strong>deepseek-v4-pro</strong>——在API上立即可用。我们花了30分钟跑了一组对比测试：同样的品牌查询发给V3和V4，看引用行为有什么变化。</p>
+
+  <p>结果比预期更有料。</p>
+
+  <h2>对比数据：V3 vs V4-Pro</h2>
+
+  <p>测试方法：3个查询（2英文+1中文），覆盖"AI搜索优化工具推荐"相关品牌查询，对比回复长度、结构化程度、外部链接引用数。</p>
+
+  <table class="data-table">
+    <thead><tr><th>指标</th><th>V3</th><th>V4-Pro</th><th>变化</th></tr></thead>
+    <tbody>
+      <tr><td class="metric">总回复字符</td><td>10,435</td><td>5,475</td><td class="v4-down">-47%</td></tr>
+      <tr><td class="metric">结构化条目</td><td>49</td><td>20</td><td class="v4-down">-59%</td></tr>
+      <tr><td class="metric">URL引用数</td><td>0</td><td>0</td><td class="v4-down">0</td></tr>
+      <tr><td class="metric">有引用的查询</td><td>0/3</td><td>0/3</td><td class="v4-down">0/3</td></tr>
+      <tr><td class="metric">中文查询成功率</td><td>3/3</td><td>1/3*</td><td class="v4-down">不稳定</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:13px;color:var(--z500)">*V4-Pro的第二条中文查询返回空内容，重新测试后恢复正常——但首次调用失败本身就是信号。</p>
+
+  <div class="pull-quote">
+    <div class="pq-text">"V4比V3精炼了将近一半，但两个模型在默认模式下都不引用任何外部链接。对品牌方来说，这个发现比字数差异重要100倍。"</div>
+  </div>
+
+  <h2>三个关键发现</h2>
+
+  <h2 style="font-size:20px;margin-bottom:12px">发现一：V4更"喜欢总结"，V3更"喜欢列举"</h2>
+
+  <p>同样的"推荐AI搜索优化工具"查询：</p>
+
+  <p><strong>V3</strong>：回复4,284字符，列出11个结构化分区（综合型SEO平台、内容优化工具、AI可见性监控、技术SEO等），每个分区下列出具体品牌名（Semrush、Jasper、MarketMuse、Brand24等）。</p>
+
+  <p><strong>V4-Pro</strong>：回复2,324字符，13个结构化条目，同样覆盖这些品牌，但描述更简洁，"executive summary"风格。</p>
+
+  <p>两者的内容质量都不错，但<strong>V4明显在为"快速消费"优化</strong>——更短、更直接、更少铺垫。这跟ChatGPT Plus的演变方向一致：从"论文模式"到"速览模式"。</p>
+
+  <h2 style="font-size:20px;margin-bottom:12px">发现二：引用率为零——这不是Bug，是Feature</h2>
+
+  <p>这是最关键的发现。无论V3还是V4，<strong>在默认API调用中都不返回任何URL引用</strong>。</p>
+
+  <p>这意味着什么？</p>
+
+  <p>ChatGPT和Perplexity会在回答中附带来源链接（"根据XXX报道""参考YYY文章"）。DeepSeek不一样——它给你知识，但不给你出处。</p>
+
+  <p>这对品牌方的GEO策略有直接影响：</p>
+
+  <div class="warning-box">
+    <div class="wb-label">策略影响</div>
+    <div class="wb-text">DeepSeek不引用URL ≠ 你的品牌不会被DeepSeek推荐。<br><br>DeepSeek的回答仍然是基于训练数据和搜索结果的——它只是不在回答里贴链接。<br><br>真正的问题变成了：<strong>你的品牌在DeepSeek的训练数据和实时搜索结果里，到底在不在？</strong><br><br>这才是GEO审计需要回答的核心问题。</div>
+  </div>
+
+  <h2 style="font-size:20px;margin-bottom:12px">发现三：V4的中文稳定性有坑</h2>
+
+  <p>我们的第一条中文查询V4返回空内容。重试后正常。虽然不是百分之百复现，但在生产环境中，这个级别的API不稳定就是个问题。</p>
+
+  <p>对比：V3在所有查询中都稳定返回内容，包括中文。</p>
+
+  <h2>品牌方应该怎么理解这个结果</h2>
+
+  <p>一句话：<strong>不要因为V4"没链接"就觉得DeepSeek不重要。</strong></p>
+
+  <p>DeepSeek有2亿+用户（2026年Q1数据），在中国AI搜索市场的份额跟豆包不相上下。它不贴链接不代表它不"知道"你的品牌——它只是不说出来是哪儿知道的。</p>
+
+  <p>所以你需要的不是"让DeepSeek引用我的URL"，而是<strong>"让DeepSeek在回答相关问题时提到我的品牌"</strong>。</p>
+
+  <p>这两个目标的优化策略完全不同：</p>
+
+  <table class="data-table">
+    <thead><tr><th>目标</th><th>策略</th></tr></thead>
+    <tbody>
+      <tr><td class="metric">让DeepSeek引用URL</td><td>（DeepSeek默认不引用URL，这个目标不成立）</td></tr>
+      <tr><td class="metric">让DeepSeek提到品牌</td><td>GitHub README、技术文档、学术引用、中文技术社区——DeepSeek爱吃这些源</td></tr>
+      <tr><td class="metric">让DeepSeek优先推荐</td><td>持续的权威内容投喂 + 竞品差距审计</td></tr>
+    </tbody>
+  </table>
+
+  <div class="stat-callout">
+    <div class="sc-item">
+      <div class="sc-num">2亿+</div>
+      <div class="sc-label">DeepSeek用户</div>
+    </div>
+    <div class="sc-item">
+      <div class="sc-num">0</div>
+      <div class="sc-label">默认URL引用</div>
+    </div>
+    <div class="sc-item">
+      <div class="sc-num">-47%</div>
+      <div class="sc-label">V4比V3更短</div>
+    </div>
+    <div class="sc-item">
+      <div class="sc-num">8引擎</div>
+      <div class="sc-label">审计覆盖</div>
+    </div>
+  </div>
+
+  <h2>结论：V4不会改变GEO的基本逻辑，但会改变你验证GEO的方法</h2>
+
+  <p>DeepSeek V4比V3更简洁，但不引用URL。这不会减少DeepSeek作为AI搜索引擎的重要性——反而凸显了一个事实：</p>
+
+  <p><strong>在DeepSeek上验证GEO效果，你需要的不是"看链接"，而是"看品牌名是否出现在回答中"。</strong></p>
+
+  <p>这个验证方法同样适用于豆包、Kimi等其他不贴链接的中国AI引擎。</p>
+
+  <p>这正是GEO Audit的8引擎审计在做的事——不是数URL，而是看品牌被提到了没有、在哪被提到、情感是正还是负、竞品占比多少。</p>
+
+  <div class="cta-box">
+    <h3>你的品牌在DeepSeek V4里被提到了吗？</h3>
+    <p>8大AI引擎引用率审计，覆盖豆包·Kimi·DeepSeek·通义·ChatGPT·Perplexity·Gemini·Claude。20分钟出完整报告——不只看链接，更看品牌出现率。</p>
+    <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="btn" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'blog_deepseek_v4'})">购买 Deep Report $20 →</a>
+    <p class="cta-sub">或先 <a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true">免费扫描你的品牌</a></p>
+  </div>
+
+  <p style="font-size:13px;color:var(--z500);margin-top:48px"><em>测试环境：DeepSeek API (api.deepseek.com)，模型版本 deepseek-chat (V3) 和 deepseek-v4-pro (V4-Pro)，测试时间 2026-05-18 08:12 CST。所有数据来自GEO Audit实测。</em></p>
+
+  <a href="/blog/" class="back-link">← 返回博客</a>
+
+</article>
+
+<footer class="footer container">
+  <span>GEO Audit &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/#pricing">Pricing</a>
+    <a href="https://5529900303702.gumroad.com/l/sybuc">Deep Report</a>
+    <a href="mailto:djh973832@gmail.com">Contact</a>
+    <a href="/#privacy">Privacy</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</footer>
+
+<script async src="https://gumroad.com/js/gumroad.js"></script>
+
+</body>
+</html>

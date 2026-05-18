@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5401VR64N9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5401VR64N9');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepSeek V4 First Look: Zero Citations, 47% Shorter — V3 vs V4 Benchmark | GEO Audit</title>
+<meta name="description" content="We tested DeepSeek V4-Pro against V3 on brand citation queries. The result: both models cite zero URLs, and V4 is 47% more concise. Here's what it means for your GEO strategy.">
+<link rel="alternate" hreflang="zh-CN" href="/blog/deepseek-v4-vs-v3.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --z950: #09090b; --z900: #121215; --z850: #18181b; --z800: #1c1c1f; --z700: #27272a;
+    --z600: #3f3f46; --z500: #71717a; --z400: #a1a1aa; --z200: #d4d4d8; --z100: #e4e4e7;
+    --white: #fafafa; --emerald: #10b981; --emerald-bright: #34d399;
+    --emerald-dim: rgba(16,185,129,0.10); --emerald-glow: rgba(16,185,129,0.06);
+    --red: #ef4444; --red-dim: rgba(239,68,68,0.08); --radius: 18px; --radius-sm: 12px;
+    --transition: 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--z950);color:var(--z200);font-family:'Geist',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  body{position:relative}
+  body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.008) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.008) 1px,transparent 1px);background-size:52px 52px}
+
+  .container{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 36px}
+  @media(max-width:768px){.container{padding:0 20px}}
+
+  .nav{position:sticky;top:0;z-index:100;background:rgba(9,9,11,.82);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(39,39,42,.5)}
+  .nav-inner{max-width:1200px;margin:0 auto;padding:14px 36px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{display:flex;align-items:center;gap:0;text-decoration:none;color:var(--white)}
+  .logo-text{font-family:'Geist',sans-serif;font-size:18px;font-weight:500;color:var(--z400);letter-spacing:-0.01em}
+  .logo-text strong{font-weight:700;color:var(--white);letter-spacing:-0.02em}
+  .nav-logo:hover .logo-text strong{color:var(--emerald-bright)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--z400);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--white)}
+  .nav-links a.active{color:var(--emerald-bright)}
+  .nav-cta-sm{background:var(--white);color:var(--z950);border:none;padding:9px 20px;border-radius:20px;font-family:'Geist',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:var(--transition)}
+  .nav-cta-sm:hover{background:var(--emerald);color:#fff}.nav-cta-sm:active{transform:scale(.97)}
+  @media(max-width:768px){.nav-links{gap:16px}.nav-links a:not(.nav-cta-sm){display:none}}
+
+  .article-header{padding:120px 0 80px;text-align:center}
+  @media(max-width:768px){.article-header{padding:80px 0 48px}}
+  .article-meta{font-size:13px;color:var(--z500);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+  .article-meta .meta-tag{color:var(--emerald);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:11px;border:1px solid rgba(16,185,129,.25);padding:4px 12px;border-radius:20px}
+  .lang-switch{font-size:13px;color:var(--z400);text-decoration:none;border:1px solid var(--z700);padding:4px 14px;border-radius:20px;transition:var(--transition)}
+  .lang-switch:hover{color:var(--emerald-bright);border-color:var(--emerald)}
+  .article-title{font-size:52px;line-height:1.12;letter-spacing:-.035em;font-weight:700;color:var(--white);max-width:800px;margin:0 auto 20px}
+  @media(max-width:768px){.article-title{font-size:32px}}
+  .article-subtitle{font-size:18px;line-height:1.65;color:var(--z400);max-width:620px;margin:0 auto}
+
+  .divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--z700),transparent);margin:0}
+
+  .article-body{max-width:720px;margin:0 auto;padding:80px 0}
+  @media(max-width:768px){.article-body{padding:48px 0}}
+  .article-body h2{font-size:28px;line-height:1.25;letter-spacing:-.02em;font-weight:700;color:var(--white);margin:64px 0 20px}
+  .article-body h2:first-child{margin-top:0}
+  @media(max-width:768px){.article-body h2{font-size:22px;margin:48px 0 16px}}
+  .article-body p{font-size:17px;line-height:1.8;color:var(--z300);margin-bottom:24px}
+  .article-body p strong{color:var(--white);font-weight:600}
+  .article-body a{color:var(--emerald);text-decoration:underline;text-underline-offset:4px;transition:color .2s}
+  .article-body a:hover{color:var(--emerald-bright)}
+
+  .data-table{width:100%;border-collapse:collapse;margin:40px 0;border:1px solid var(--z800);border-radius:var(--radius-sm);overflow:hidden}
+  .data-table th,.data-table td{padding:14px 20px;text-align:center;font-size:14px;border-bottom:1px solid var(--z800)}
+  .data-table th{background:var(--z850);color:var(--z200);font-weight:600;font-size:13px}
+  .data-table td{background:var(--z900);color:var(--z400)}
+  .data-table .metric{text-align:left;color:var(--z200);font-weight:500}
+  .data-table .v4-down{color:var(--red);font-weight:600}
+
+  .pull-quote{border-left:3px solid var(--emerald);padding:28px 32px;margin:48px 0;background:var(--z900);border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+  .pull-quote .pq-text{font-size:20px;line-height:1.55;font-weight:500;color:var(--z100);font-style:italic;letter-spacing:-.01em}
+  @media(max-width:768px){.pull-quote{padding:20px 24px}.pull-quote .pq-text{font-size:17px}}
+
+  .warning-box{border:1px solid rgba(239,68,68,.2);background:rgba(239,68,68,.06);padding:24px 28px;margin:48px 0;border-radius:var(--radius-sm)}
+  .warning-box .wb-label{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+  .warning-box .wb-text{font-size:15px;line-height:1.65;color:var(--z200)}
+
+  .cta-box{background:linear-gradient(135deg,var(--emerald-dim),rgba(16,185,129,.03));border:1px solid rgba(16,185,129,.15);border-radius:var(--radius);padding:48px;text-align:center;margin:64px 0}
+  @media(max-width:768px){.cta-box{padding:32px 24px}}
+  .cta-box h3{font-size:24px;font-weight:700;color:var(--white);margin-bottom:12px}
+  .cta-box p{font-size:15px;color:var(--z400);margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.65}
+  .cta-box .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 36px;border-radius:var(--radius-sm);font-family:'Geist',sans-serif;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:var(--transition);border:none;background:var(--white);color:var(--z950);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 6px 24px rgba(0,0,0,.35)}
+  .cta-box .btn:hover{background:var(--emerald);color:#fff}
+  .cta-box .btn:active{transform:scale(.97)}
+  .cta-box .cta-sub{font-size:14px;color:var(--z400);margin-top:16px}
+  .cta-box .cta-sub a{color:var(--emerald);font-weight:500}
+
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--z500);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;margin-bottom:40px}
+  .back-link:hover{color:var(--emerald)}
+
+  .footer{padding:40px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;font-size:13px;color:var(--z500);border-top:1px solid var(--z800)}
+  .footer-links{display:flex;gap:24px;flex-wrap:wrap}
+  .footer a{color:var(--z400);text-decoration:none;transition:color .2s}
+  .footer a:hover{color:var(--emerald)}
+
+  .stat-callout{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:48px 0}
+  @media(max-width:768px){.stat-callout{grid-template-columns:repeat(2,1fr)}}
+  .stat-callout .sc-item{background:var(--z900);border:1px solid var(--z800);border-radius:var(--radius-sm);padding:24px 20px;text-align:center}
+  .stat-callout .sc-num{font-size:32px;font-weight:700;color:var(--emerald)}
+  .stat-callout .sc-label{font-size:12px;color:var(--z500);margin-top:4px}
+
+  @keyframes fade-up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .anim{animation:fade-up .7s var(--transition) forwards;opacity:0}
+  .a1{animation-delay:.05s}.a2{animation-delay:.12s}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="logo-text"><strong>GEO</strong> Audit</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#how">How It Works</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="nav-cta-sm">Deep Report →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="article-header container">
+  <div class="article-meta anim">
+    <span class="meta-tag">Exclusive Benchmark</span>
+    <span>May 18, 2026</span>
+    <span>4 min read</span>
+    <a href="/blog/deepseek-v4-vs-v3.html" class="lang-switch">中文</a>
+  </div>
+  <h1 class="article-title anim a1">DeepSeek V4: Zero Citations, 47% Shorter</h1>
+  <p class="article-subtitle anim a2">On the day DeepSeek drops V4 preview, we benchmarked it against V3. The citation rate is zero on both. That changes how you measure GEO coverage.</p>
+</header>
+
+<div class="divider"></div>
+
+<article class="article-body container">
+
+  <p class="anim">May 2026 — DeepSeek releases V4 preview. Two models — <strong>deepseek-v4-flash</strong> and <strong>deepseek-v4-pro</strong> — are immediately available via API. We ran a head-to-head comparison: same brand-related queries, same parameters, V3 vs V4-Pro. Here's what we found.</p>
+
+  <h2>The Numbers: V3 vs V4-Pro</h2>
+
+  <p>Methodology: 3 queries (2 English + 1 Chinese) covering "best AI search optimization tools" and brand recommendation prompts. Measured response length, structured items, and external URL citations.</p>
+
+  <table class="data-table">
+    <thead><tr><th>Metric</th><th>V3</th><th>V4-Pro</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td class="metric">Total Response Chars</td><td>10,435</td><td>5,475</td><td class="v4-down">-47%</td></tr>
+      <tr><td class="metric">Structured Items</td><td>49</td><td>20</td><td class="v4-down">-59%</td></tr>
+      <tr><td class="metric">URL Citations</td><td>0</td><td>0</td><td class="v4-down">0</td></tr>
+      <tr><td class="metric">Queries w/ Citations</td><td>0/3</td><td>0/3</td><td class="v4-down">0/3</td></tr>
+      <tr><td class="metric">CN Query Success Rate</td><td>3/3</td><td>1/3*</td><td class="v4-down">Unstable</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:13px;color:var(--z500)">*V4-Pro returned empty content on the second Chinese query. Retry worked, but first-call failure on launch day is a data point in itself.</p>
+
+  <div class="pull-quote">
+    <div class="pq-text">"V4 is half the length of V3, but both models cite zero external URLs in default mode. For brand owners, this second finding matters 100x more than the word count difference."</div>
+  </div>
+
+  <h2>Three Key Findings</h2>
+
+  <h2 style="font-size:20px;margin-bottom:12px">Finding 1: V4 summarizes. V3 enumerates.</h2>
+
+  <p>Same "best AI search optimization tools" query, vastly different delivery:</p>
+
+  <p><strong>V3</strong>: 4,284 characters, 11 structured sections (full-stack SEO platforms, content optimization, AI visibility monitoring, technical SEO, etc.), each with specific brand names and descriptions.</p>
+
+  <p><strong>V4-Pro</strong>: 2,324 characters, 13 items, covers the same brands (Semrush, Jasper, MarketMuse, Brand24) but delivers them in "executive summary" mode. Less context, more bullet points.</p>
+
+  <p>Both are high-quality. But V4 is <strong>clearly optimized for quick consumption</strong> — the same direction ChatGPT Plus took: from "essay mode" to "scan mode."</p>
+
+  <h2 style="font-size:20px;margin-bottom:12px">Finding 2: Zero citations is not a bug — it's the design</h2>
+
+  <p>Here's the headline. Neither V3 nor V4-Pro returns <strong>any</strong> URL citations in default API mode.</p>
+
+  <p>What does this mean?</p>
+
+  <p>ChatGPT and Perplexity attach source links to their answers. DeepSeek doesn't. It gives you knowledge, not provenance.</p>
+
+  <div class="warning-box">
+    <div class="wb-label">Strategy Impact</div>
+    <div class="wb-text">DeepSeek not citing URLs &ne; DeepSeek not knowing your brand.<br><br>DeepSeek's answers are still based on training data and search results. It just doesn't show you where it got them.<br><br>The real question becomes: <strong>Is your brand present in DeepSeek's training data and real-time search results?</strong><br><br>That's what a GEO audit needs to answer — not "did I get a link," but "did I get mentioned at all."</div>
+  </div>
+
+  <h2 style="font-size:20px;margin-bottom:12px">Finding 3: V4's Chinese stability is shaky</h2>
+
+  <p>Our first Chinese query returned empty content from V4-Pro. A retry worked. Not 100% reproducible, but at production scale, this level of API instability matters.</p>
+
+  <p>V3, by contrast, delivered consistently across all queries.</p>
+
+  <h2>What This Means for Your GEO Strategy</h2>
+
+  <p>One sentence: <strong>Don't dismiss DeepSeek just because it doesn't show links.</strong></p>
+
+  <p>DeepSeek has 200M+ users (Q1 2026). Its market share in Chinese AI search rivals Doubao. The absence of visible citations does not mean absence of brand knowledge — it just means you can't verify it by looking for URLs.</p>
+
+  <p>Your goal isn't "get DeepSeek to cite my URL." It's <strong>"get DeepSeek to mention my brand when answering relevant questions."</strong></p>
+
+  <p>These are different optimization targets:</p>
+
+  <table class="data-table">
+    <thead><tr><th>Goal</th><th>Strategy</th></tr></thead>
+    <tbody>
+      <tr><td class="metric">Get cited by URL</td><td>Not applicable — DeepSeek defaults to no citations</td></tr>
+      <tr><td class="metric">Get brand mentioned</td><td>GitHub README, technical docs, academic citations, Chinese tech communities — DeepSeek's preferred sources</td></tr>
+      <tr><td class="metric">Get recommended first</td><td>Continuous authoritative content + competitor gap auditing</td></tr>
+    </tbody>
+  </table>
+
+  <div class="stat-callout">
+    <div class="sc-item">
+      <div class="sc-num">200M+</div>
+      <div class="sc-label">DeepSeek Users</div>
+    </div>
+    <div class="sc-item">
+      <div class="sc-num">0</div>
+      <div class="sc-label">Default URL Citations</div>
+    </div>
+    <div class="sc-item">
+      <div class="sc-num">-47%</div>
+      <div class="sc-label">V4 Shorter Than V3</div>
+    </div>
+    <div class="sc-item">
+      <div class="sc-num">8 Engines</div>
+      <div class="sc-label">Audit Coverage</div>
+    </div>
+  </div>
+
+  <h2>Bottom Line</h2>
+
+  <p>DeepSeek V4 is more concise but doesn't cite URLs. This doesn't reduce DeepSeek's importance as an AI search engine — it just changes how you verify GEO performance.</p>
+
+  <p><strong>On DeepSeek, you measure brand mentions, not backlinks.</strong></p>
+
+  <p>Same approach applies to Doubao, Kimi, and other Chinese AI engines that operate without visible citations.</p>
+
+  <p>This is exactly what GEO Audit's 8-engine scan does — count brand appearances, not just URLs. Positive mentions, negative mentions, competitor share, position ranking.</p>
+
+  <div class="cta-box">
+    <h3>Is your brand mentioned in DeepSeek V4?</h3>
+    <p>8-engine AI citation audit covering Doubao, Kimi, DeepSeek, Qwen, ChatGPT, Perplexity, Gemini, and Claude. Full report in ~20 minutes — brand mentions, not just links.</p>
+    <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="btn" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'blog_deepseek_v4_en'})">Get Deep Report $20 →</a>
+    <p class="cta-sub">Or try the <a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true">Free Scan first</a></p>
+  </div>
+
+  <p style="font-size:13px;color:var(--z500);margin-top:48px"><em>Test environment: DeepSeek API (api.deepseek.com), models deepseek-chat (V3) and deepseek-v4-pro (V4-Pro), tested 2026-05-18 08:12 CST. All data from GEO Audit benchmark.</em></p>
+
+  <a href="/blog/" class="back-link">← Back to Blog</a>
+
+</article>
+
+<footer class="footer container">
+  <span>GEO Audit &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/#pricing">Pricing</a>
+    <a href="https://5529900303702.gumroad.com/l/sybuc">Deep Report</a>
+    <a href="mailto:djh973832@gmail.com">Contact</a>
+    <a href="/#privacy">Privacy</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</footer>
+
+<script async src="https://gumroad.com/js/gumroad.js"></script>
+
+</body>
+</html>
