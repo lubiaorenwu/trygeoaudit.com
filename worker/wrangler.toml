@@ -1,0 +1,7 @@
+name = "geo-audit-free-scan"
+main = "worker.js"
+compatibility_date = "2026-05-20"
+
+[[kv_namespaces]]
+binding = "SUBMISSIONS"
+id = "PLACEHOLDER"  # Replace after `npx wrangler kv:namespace create SUBMISSIONS`
