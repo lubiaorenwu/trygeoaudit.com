@@ -1,8 +1,19 @@
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Content-Type': 'application/json'
+    };
 
-    // POST /api/free-scan → handle form submission
+    // Handle CORS preflight
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { status: 204, headers });
+    }
+
+    // POST /api/free-scan
     if (request.method === 'POST' && url.pathname === '/api/free-scan') {
       try {
         const data = await request.json();
@@ -10,7 +21,7 @@ export default {
         const email = (data.email || '').trim();
 
         if (!brand || !email || !email.includes('@')) {
-          return Response.json({ success: false, error: 'Brand and valid email required' }, { status: 400 });
+          return new Response(JSON.stringify({ success: false, error: 'Brand and valid email required' }), { status: 400, headers });
         }
 
         const submission = {
@@ -20,28 +31,31 @@ export default {
           ip: request.headers.get('cf-connecting-ip') || ''
         };
 
-        // Store in KV with timestamp key
-        const key = `scan:${Date.now()}:${brand.slice(0, 20).replace(/\s/g, '-')}`;
+        const key = 'scan:' + Date.now() + ':' + brand.slice(0, 20).replace(/\s/g, '-');
         await env.SUBMISSIONS.put(key, JSON.stringify(submission));
 
-        return Response.json({ success: true });
+        return new Response(JSON.stringify({ success: true }), { status: 200, headers });
       } catch (e) {
-        return Response.json({ success: false, error: 'Invalid request' }, { status: 400 });
+        return new Response(JSON.stringify({ success: false, error: 'Invalid request' }), { status: 400, headers });
       }
     }
 
-    // GET /api/submissions → list recent (for polling)
+    // GET /api/submissions
     if (request.method === 'GET' && url.pathname === '/api/submissions') {
-      const list = await env.SUBMISSIONS.list({ prefix: 'scan:', limit: 20 });
-      const items = [];
-      for (const k of list.keys) {
-        const val = await env.SUBMISSIONS.get(k.name);
-        if (val) items.push(JSON.parse(val));
+      try {
+        const list = await env.SUBMISSIONS.list({ prefix: 'scan:', limit: 20 });
+        const items = [];
+        for (const k of list.keys) {
+          const val = await env.SUBMISSIONS.get(k.name);
+          if (val) items.push(JSON.parse(val));
+        }
+        return new Response(JSON.stringify(items), { status: 200, headers });
+      } catch (e) {
+        return new Response(JSON.stringify([]), { status: 200, headers });
       }
-      return Response.json(items);
     }
 
-    // Everything else → pass through to GitHub Pages
-    return fetch(request);
+    // Health check
+    return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
   }
 };
