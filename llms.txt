@@ -7,8 +7,8 @@ A tool that checks brand visibility across AI search engines. Covers 8 engines: 
 ## What it does
 
 - Free scan: quick check on one engine
-- Deep Report ($20 → $30 after launch): full audit across all 8 engines with competitor comparison and sentiment analysis
-- Monitor ($200/mo): weekly automated re-audits with change alerts
+- Deep Report ($20): full audit across all 8 engines with competitor comparison and sentiment analysis
+- Monitor ($99/mo): weekly automated re-audits with change alerts
 
 ## How it works
 
