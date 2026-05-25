@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEO — What AI Says About Your Brand · 8 Engines · Free Scan</title>
+<title>GEO Audit — What AI Knows About You · 8 Engines · 30s · $20</title>
 <meta name="description" content="Find out what AI engines say about you. 8 engines. 30 seconds. Free scan first. Deep Report $20. For freelancers, indie hackers, and creators.">
 <script type="application/ld+json">
 {
@@ -12,7 +12,7 @@
   "name": "GEO Audit",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
-  "description": "Brand visibility analysis across 8 generative AI search engines. Checks whether AI platforms like ChatGPT, DeepSeek, and Perplexity mention your brand in their responses.",
+  "description": "Brand visibility audit across 8 generative AI search engines. Checks whether AI platforms like ChatGPT, DeepSeek, and Perplexity mention your brand in their responses.",
   "url": "https://trygeoaudit.com",
   "offers": [
     {"@type": "Offer", "name": "Free Scan", "price": "0", "priceCurrency": "USD"},
@@ -163,6 +163,7 @@ section.block{padding:100px 0;position:relative}
 
 /* ===== BENTO ===== */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.qa-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .b-card{padding:8px;border-radius:var(--shell-radius);background:rgba(255,255,255,0.5);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline),0 24px 48px -28px rgba(10,10,10,0.16);transition:transform 600ms var(--ease),box-shadow 600ms var(--ease)}
 .b-card:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline),0 28px 60px -22px rgba(10,10,10,0.2)}
 .b-card .core{border-radius:var(--core-radius);background:#FCFCFA;box-shadow:inset 0 1px 0 rgba(255,255,255,0.85),inset 0 0 0 1px var(--hairline);padding:28px;height:100%;display:flex;flex-direction:column}
@@ -361,26 +362,6 @@ footer a:hover{color:var(--ink)}
   .stat-cell{border-right:none;border-top:1px solid var(--hairline)}
   .stat-cell:first-child{border-top:none}
 }
-/* ===== FORM INPUTS ===== */
-.fscan-form{display:flex;flex-direction:column;gap:12px;margin:24px 0;max-width:400px;margin-left:auto;margin-right:auto;width:100%}
-.fscan-form input{width:100%;padding:14px 18px;border-radius:14px;border:1px solid var(--hairline-strong);background:rgba(255,255,255,0.7);font-family:var(--sans);font-size:15px;color:var(--ink);outline:none;transition:border-color 300ms var(--ease),box-shadow 300ms var(--ease)}
-.fscan-form input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
-.fscan-form input::placeholder{color:var(--muted);opacity:0.6}
-.fscan-form .fs-error{color:var(--red);font-size:12px;margin-top:-4px;display:none}
-.fscan-form .fs-error.show{display:block}
-.fscan-form .fs-btn{width:100%;padding:14px;border-radius:999px;background:var(--accent);color:#fff;font:600 15px/1 var(--sans);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.18),0 2px 12px var(--accent-dim);transition:transform 300ms var(--ease),box-shadow 300ms var(--ease),opacity 300ms var(--ease)}
-.fscan-form .fs-btn:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.22),0 4px 20px rgba(16,185,129,0.2)}
-.fscan-form .fs-btn:active{transform:scale(0.98)}
-.fscan-form .fs-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none}
-.fs-spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;display:none}
-.fscan-form.loading .fs-spinner{display:inline-block}
-.fscan-form.loading .fs-btn-text{display:none}
-@keyframes spin{to{transform:rotate(360deg)}}
-.fs-success{display:none;text-align:center;padding:24px 0}
-.fs-success.show{display:block}
-.fs-success .fs-check{width:56px;height:56px;border-radius:50%;background:var(--accent-dim);display:inline-flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
-.fs-success h4{font-size:19px;font-weight:700;color:var(--ink);margin-bottom:8px}
-.fs-success p{font-size:13px;color:var(--muted);line-height:1.6}
 </style>
 </head>
 <body>
@@ -395,7 +376,7 @@ footer a:hover{color:var(--ink)}
 <div class="nav-shell">
   <div class="nav-inner">
     <a href="#" class="nav-brand">
-      <span class="nav-brand-mark"></span>GEO
+      <span class="nav-brand-mark"></span>GEO Audit
     </a>
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
@@ -445,11 +426,11 @@ footer a:hover{color:var(--ink)}
 
 <!-- ===== STATS STRIP ===== -->
 <div class="stats-strip reveal">
-  <div class="stat-cell"><div class="sv">8<span class="su">engines</span></div><div class="sl">Chinese + Western AI engines scanned</div></div>
+  <div class="stat-cell"><div class="sv">8<span class="su">engines</span></div><div class="sl">Chinese + Western AI engines audited</div></div>
   <div class="stat-cell"><div class="sv">2.5<span class="su">B</span></div><div class="sl">Combined users across all eight engines</div></div>
   <div class="stat-cell"><div class="sv">82<span class="su">%</span></div><div class="sl">Of brands unaware of their AI citation status</div></div>
   <div class="stat-cell"><div class="sv">~20<span class="su">min</span></div><div class="sl">Average turnaround from order to report</div></div>
-  <div class="stat-cell"><div class="sv">Free<span class="su">→$20</span></div><div class="sl">Start with a free scan. Upgrade to full report.</div></div>
+  <div class="stat-cell"><div class="sv">Free<span class="su">→$20</span></div><div class="sl">Start with a free scan. Upgrade to deep audit.</div></div>
   <div class="stat-cell"><div class="sv">94<span class="su">%</span></div><div class="sl">Of CMOs increasing AEO spending in 2026</div></div>
 </div>
 
@@ -478,7 +459,7 @@ footer a:hover{color:var(--ink)}
       <div class="pain-card"><div class="core">
         <div class="pain-num">03</div>
         <div class="pain-quote">"We're spending $10K/month on content. Is any of it being cited?"</div>
-        <div class="pain-body">You have hundreds of pages. Some of them might be feeding AI answers — or none of them. Without scanning, you're writing content for an audience that already moved to AI search.</div>
+        <div class="pain-body">You have hundreds of pages. Some of them might be feeding AI answers — or none of them. Without an audit, you're writing content for an audience that already moved to AI search.</div>
       </div></div>
       <div class="pain-card"><div class="core">
         <div class="pain-num">04</div>
@@ -509,18 +490,18 @@ footer a:hover{color:var(--ink)}
 <section class="block reveal" id="how">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow"><span class="dot"></span>02 · HOW IT WORKS</span>
-      <p>Freelancers, indie hackers, creators. One scan shows you which AI engines mention you. If they don't, your next client won't find you either.</p>
+      <span class="eyebrow"><span class="dot"></span>02 · THE 4-STAGE SYSTEM</span>
+      <p>Inspired by the same workflow that generated 830K impressions in 3 months. Four stages — from visibility check to continuous monitoring.</p>
     </div>
     <div class="section-head" style="margin-bottom:44px">
-      <h2>You tell us your brand. We scan the engines. You get a PDF.</h2>
+      <h2>Diagnosis → Strategy → QA → Delivery. One system, four stages.</h2>
       <span></span>
     </div>
     <div class="steps">
-      <div class="step"><div class="step-num">01</div><h3>Enter your brand</h3><p>Your name or brand. That's it. No signup, no integration, no credit card.</p></div>
-      <div class="step"><div class="step-num">02</div><h3>We scan 5 engines</h3><p>DeepSeek, ChatGPT, Perplexity, Gemini, Claude — queried in parallel. Real AI responses, real brand mentions.</p></div>
-      <div class="step"><div class="step-num">03</div><h3>Get your radar chart</h3><p>Visual report: which engines mention your brand, which don't. Deep Report adds competitor comparison and sentiment analysis.</p></div>
-      <div class="step"><div class="step-num">04</div><h3>Act on insights</h3><p>Fix what matters. Upload a better bio, post on GitHub, update your site — small moves that change how AI sees you.</p></div>
+      <div class="step"><div class="step-num">STAGE 1</div><h3>诊断 Diagnosis</h3><p>Scan 8 AI engines. Find out which ones know your brand and which don't. Health score in 30 seconds. Free.</p></div>
+      <div class="step"><div class="step-num">STAGE 2</div><h3>策略 Strategy</h3><p>12-week content roadmap. Competitor gap analysis. Keyword opportunity map. Know exactly where to fight.</p></div>
+      <div class="step"><div class="step-num">STAGE 3</div><h3>质检 QA</h3><p>4-layer content scoring: search intent → ranking rules → language framework → AI detection. Score ≥ 80 before publish.</p></div>
+      <div class="step"><div class="step-num">STAGE 4</div><h3>交付 Delivery</h3><p>Interactive dashboard. PDF report. Weekly monitoring. Implementation guides. Everything your team needs to act.</p></div>
     </div>
   </div>
 </section>
@@ -530,7 +511,7 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow"><span class="dot"></span>03 · WHAT'S IN THE REPORT</span>
-      <p>Each report is a 12-section PDF covering every dimension of your brand's AI visibility. No fluff. Just the data you need.</p>
+      <p>Each GEO Audit report is a 12-section PDF covering every dimension of your brand's AI visibility. No fluff. Just the data you need.</p>
     </div>
     <div class="section-head" style="margin-bottom:44px">
       <h2>Everything you need to know about your AI search presence.</h2>
@@ -562,7 +543,7 @@ footer a:hover{color:var(--ink)}
       <div class="b-card span-2">
         <div class="core">
           <div class="meta">Sentiment</div>
-          <h3>Sentiment Analysis</h3>
+          <h3>Sentiment Audit</h3>
           <p>Not all mentions are equal. We classify every citation as positive, neutral, or negative — so you know if AI is helping or hurting.</p>
           <ul class="f-detail"><li>Per-engine sentiment breakdown</li><li>Keyword-level sentiment tags</li><li>Risk flagging for negative mentions</li></ul>
         </div>
@@ -588,6 +569,58 @@ footer a:hover{color:var(--ink)}
           <p>5 engines queried in parallel. Results ready before you finish your coffee. Instant radar chart. No waiting.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STAGE 3: CONTENT QA ===== -->
+<section class="block reveal" id="qa">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>STAGE 3 · CONTENT QUALITY ASSURANCE</span>
+      <p>Before you publish anything, run it through the same 4-layer QA system that catches AI hallucinations before users do.</p>
+    </div>
+    <div class="section-head" style="margin-bottom:44px">
+      <h2>Your content passes 4 layers of defense. Or it doesn't ship.</h2>
+    </div>
+    <div class="qa-grid">
+      <div class="b-card span-3">
+        <div class="core" style="border-left:3px solid var(--accent);padding-left:25px">
+          <div class="meta">LAYER 1</div>
+          <h3 style="font-size:20px;margin-bottom:6px">Search Intent Match</h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.5">Does your content actually answer what users are asking AI? We test against real query patterns from 8 engines, not keyword tools.</p>
+          <div style="margin-top:12px;font-family:var(--mono);font-size:24px;font-weight:700;color:var(--accent)">✓ MATCH</div>
+        </div>
+      </div>
+      <div class="b-card span-3">
+        <div class="core" style="border-left:3px solid #f59e0b;padding-left:25px">
+          <div class="meta">LAYER 2</div>
+          <h3 style="font-size:20px;margin-bottom:6px">Platform Ranking Rules</h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.5">Each AI engine ranks differently. DeepSeek values technical depth. ChatGPT rewards clarity. Your content must satisfy the platform's specific ranking logic.</p>
+          <div style="margin-top:12px;font-family:var(--mono);font-size:24px;font-weight:700;color:#f59e0b">⚡ OPTIMIZE</div>
+        </div>
+      </div>
+      <div class="b-card span-3">
+        <div class="core" style="border-left:3px solid #7c3aed;padding-left:25px">
+          <div class="meta">LAYER 3</div>
+          <h3 style="font-size:20px;margin-bottom:6px">Natural Language Framework</h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.5">AI-written content gets flagged. We score for human readability: sentence variety, logical flow, authentic voice. >80% natural language density required.</p>
+          <div style="margin-top:12px;font-family:var(--mono);font-size:24px;font-weight:700;color:#7c3aed">83/100</div>
+        </div>
+      </div>
+      <div class="b-card span-3">
+        <div class="core" style="border-left:3px solid var(--red);padding-left:25px">
+          <div class="meta">LAYER 4</div>
+          <h3 style="font-size:20px;margin-bottom:6px">AI Word Detection</h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.5">"Delve", "tapestry", "moreover" — AI fingerprints. We scan for 200+ AI markers across English and Chinese. Pass threshold: <15% AI word density.</p>
+          <div style="margin-top:12px;font-family:var(--mono);font-size:24px;font-weight:700;color:var(--red)">11% AI → PASS</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;padding:28px;background:linear-gradient(135deg,var(--accent-dim),rgba(16,185,129,0.03));border-radius:var(--shell-radius);border:1px solid rgba(16,185,129,0.12)">
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:0.18em;color:var(--accent);margin-bottom:8px">COMPOSITE SCORE</div>
+      <div style="font-size:48px;font-weight:800;color:var(--accent);letter-spacing:-0.03em;line-height:1">82<span style="font-size:20px;color:var(--muted);font-weight:500">/100</span></div>
+      <div style="font-size:14px;color:var(--muted);margin-top:6px">≥ 80 = Ready to publish. Included in Deep Report & Monitor tiers.</div>
     </div>
   </div>
 </section>
@@ -620,11 +653,11 @@ footer a:hover{color:var(--ink)}
 <section class="block reveal" id="compare">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow"><span class="dot"></span>05 · WHY GEO</span>
-      <p>Compare how GEO stacks up against the alternatives.</p>
+      <span class="eyebrow"><span class="dot"></span>05 · WHY GEO AUDIT</span>
+      <p>Compare how GEO Audit stacks up against the alternatives.</p>
     </div>
     <div class="section-head" style="margin-bottom:44px">
-      <h2>One report. All eight engines. No subscription.</h2>
+      <h2>One audit. All eight engines. No subscription.</h2>
       <span></span>
     </div>
     <div class="compare-wrap">
@@ -640,7 +673,7 @@ footer a:hover{color:var(--ink)}
       <tr class="compare-highlight"><td>Competitor tracking</td><td><span class="check">✓</span> Up to 5</td><td>✗ or enterprise-only</td><td>Double the manual work</td></tr>
       <tr class="compare-highlight"><td>Sentiment analysis</td><td><span class="check">✓</span> Per-engine</td><td>✗</td><td>Subjective</td></tr>
       <tr class="compare-highlight"><td>Delivered in</td><td>~20 minutes</td><td>3-7 days setup</td><td>8+ hours</td></tr>
-      <tr class="compare-highlight"><td>Price</td><td><strong style="color:var(--accent)">$20</strong></td><td>$300-500/month</td><td>Your hourly rate</td></tr>
+      <tr class="compare-highlight"><td>Price</td><td><strong style="color:var(--accent)">$20 (launch)</strong></td><td>$300-500/month</td><td>Your hourly rate</td></tr>
       <tr class="compare-highlight"><td>Subscription</td><td><strong>Optional</strong> (Monitor tier)</td><td>Required</td><td>N/A</td></tr>
     </table>
     </div>
@@ -660,7 +693,7 @@ footer a:hover{color:var(--ink)}
       <div class="shell">
         <div class="core" style="background:linear-gradient(180deg,#1A1A1A 0%,#0F0F0F 100%);padding:18px;border-radius:18px">
           <div class="report-mock" style="background:transparent;padding:8px;border-radius:0;box-shadow:none">
-            <div class="rm-header"><div class="rm-logo"><strong>GEO</strong> Report</div><div class="rm-badge">REPORT</div></div>
+            <div class="rm-header"><div class="rm-logo"><strong>GEO</strong> Audit</div><div class="rm-badge">REPORT</div></div>
             <div class="rm-brand">Acme SaaS — May 2026</div>
             <div class="rm-row rm-head"><span>Engine</span><span>Cited</span><span>Sentiment</span><span>Competitor</span></div>
             <div class="rm-row"><span>DeepSeek</span><span class="rm-hit">3 mentions</span><span class="rm-pos">Positive</span><span class="rm-comp">Not cited</span></div>
@@ -668,7 +701,7 @@ footer a:hover{color:var(--ink)}
             <div class="rm-row"><span>Perplexity</span><span class="rm-hit">1 mention</span><span class="rm-neu">Neutral</span><span class="rm-comp">Not cited</span></div>
             <div class="rm-row"><span>Gemini</span><span class="rm-miss">Not cited</span><span>—</span><span class="rm-comp">Cited ✓</span></div>
             <div class="rm-insight">⚠ 2 of 5 engines cite your competitor but not you</div>
-            <div class="rm-footer">5 Engines · Citation Matrix · Radar Chart · Competitor Gap · Sentiment Analysis · Action Plan</div>
+            <div class="rm-footer">5 Engines · Citation Matrix · Radar Chart · Competitor Gap · Sentiment Audit · Action Plan</div>
           </div>
         </div>
       </div>
@@ -693,7 +726,7 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow"><span class="dot"></span>07 · START HERE</span>
-      <p>Enter your brand and email. We'll ask 5 AI engines who you are. Instant results.</p>
+      <p>Enter your name and email. We'll ask 5 AI engines who you are. Instant results.</p>
     </div>
     <div class="section-head" style="margin-bottom:44px">
       <h2>Free scan. No credit card. 30 seconds.</h2>
@@ -701,28 +734,17 @@ footer a:hover{color:var(--ink)}
     <div class="fscan-shell">
       <div class="shell accent">
         <div class="core fscan-core">
-
-          <!-- Success state -->
-          <div class="fs-success" id="fsSuccess">
-            <div class="fs-check">✓</div>
-            <h4>Scan queued!</h4>
-            <p>We're asking 5 AI engines about <strong id="fsBrandName"></strong>.<br>Results land in <strong id="fsEmailAddr"></strong> within a few minutes.</p>
-            <p class="fscan-note" style="margin-top:16px">Want the full picture? <a href="#pricing" style="color:var(--accent);text-decoration:underline">Upgrade to Deep Report ($20)</a></p>
+          <div class="meta">HOW IT WORKS</div>
+          <div class="fscan-steps">
+            <div class="fs-step"><div class="fs-num">1</div><div class="fs-txt">Enter brand + email</div></div>
+            <div class="fs-step"><div class="fs-num">2</div><div class="fs-txt">We scan DeepSeek</div></div>
+            <div class="fs-step"><div class="fs-num">3</div><div class="fs-txt">Result in your inbox</div></div>
           </div>
-
-          <!-- Form -->
-          <form class="fscan-form" id="fsForm" onsubmit="return handleFreeScan(event)">
-            <input type="text" id="fsBrand" placeholder="Your brand or product name" required autocomplete="organization">
-            <input type="email" id="fsEmail" placeholder="your@email.com" required autocomplete="email">
-            <div class="fs-error" id="fsError"></div>
-            <button type="submit" class="fs-btn" id="fsBtn">
-              <span class="fs-spinner"></span>
-              <span class="fs-btn-text">Get Free Scan</span>
-            </button>
-          </form>
-
-          <p class="fscan-note" style="margin-top:12px">No credit card. No spam. Just a yes/no answer.<br>Want the full picture? <a href="#pricing" style="color:var(--accent);text-decoration:underline">Upgrade to Deep Report ($20)</a></p>
-
+          <a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true" class="pill" style="justify-content:center" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'free_scan'})">
+            Get Free Scan
+            <span class="icon-wrap"><svg viewBox="0 0 12 12" stroke-width="1.6"><path d="M2.5 6h7M6 2.5L9.5 6 6 9.5"/></svg></span>
+          </a>
+          <p class="fscan-note">No credit card. No spam. Just a yes/no answer.<br>Want the full picture? <a href="#pricing" style="color:var(--accent);text-decoration:underline">Upgrade to Deep Report ($20)</a></p>
         </div>
       </div>
     </div>
@@ -740,7 +762,7 @@ footer a:hover{color:var(--ink)}
           <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 12px">This is what a real scan looks like. 5 AI engines. 30 seconds. Your results might look very different — that's the point.</p>
           <div class="demo-stat">5/5</div>
           <div class="demo-stat-label">Engines Talking About Nike</div>
-          <a href="#free-scan" class="pill pill-outline">Run on YOUR Brand →</a>
+          <a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true" class="pill pill-outline">Run on YOUR Brand →</a>
         </div>
         <div style="flex:0 0 280px">
           <canvas id="demoRadar" style="max-height:180px"></canvas>
@@ -776,39 +798,41 @@ footer a:hover{color:var(--ink)}
 <section class="block reveal" id="pricing">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow"><span class="dot"></span>08 · PRICING</span>
-      <p>Three levels. No forced subscription. No "contact sales." Pay for exactly what you need.</p>
+      <span class="eyebrow"><span class="dot"></span>PRICING · MATCHED TO THE 4 STAGES</span>
+      <p>Each tier maps to a stage. Start at Stage 1 for free. Progress through the system as your needs grow.</p>
     </div>
     <div class="section-head" style="margin-bottom:44px">
-      <h2>Start free. Go deep when you're ready. Monitor if it matters.</h2>
+      <h2>Free diagnosis. Deep strategy. Quality assurance. Continuous delivery.</h2>
     </div>
     <div class="pricing-grid">
       <div class="b-card"><div class="core" style="position:relative">
+        <div class="meta">STAGE 1</div>
         <div class="pt-name">Free Scan</div>
-        <div class="pt-sub">See if AI knows you exist</div>
+        <div class="pt-sub">诊断 · See if AI knows you exist</div>
         <div class="pt-price">$0</div>
-        <div class="pt-desc">Quick pulse check. One engine. One question: does AI mention your brand at all?</div>
+        <div class="pt-desc">Quick visibility check. One engine. One question: does AI mention your brand at all? Health score included.</div>
         <ul class="pt-feat">
           <li><span class="pf-check">✓</span>1 engine scan (DeepSeek)</li>
-          <li><span class="pf-check">✓</span>Brand mention: Yes / No</li>
-          <li><span class="pf-check">✓</span>Basic result to inbox</li>
+          <li><span class="pf-check">✓</span>Health score: Red/Yellow/Green</li>
+          <li><span class="pf-check">✓</span>Instant result to inbox</li>
           <li><span class="pf-check">✓</span>No credit card required</li>
         </ul>
-        <a href="#free-scan" class="pt-btn pt-btn-outline">Get Free Scan</a>
+        <a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true" class="pt-btn pt-btn-outline" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'pricing_free'})">Get Free Scan</a>
       </div></div>
 
       <div class="b-card pricing-feat" style="position:relative"><div class="core">
+        <div class="meta">STAGE 1+2</div>
         <div class="pt-name">Deep Report</div>
-        <div class="pt-sub">Full report. All engines. Actionable.</div>
+        <div class="pt-sub">诊断+策略 · Full audit + roadmap</div>
         <div class="pt-price">$20<span class="pt-unit"> one-time</span></div>
-        <div class="pt-desc">The complete picture. Eight engines, competitors, sentiment — everything you need to act.</div>
+        <div class="pt-desc">Complete picture. 5 engines, competitors, sentiment, 12-week content strategy. Everything you need to act.</div>
         <ul class="pt-feat">
           <li><span class="pf-check">✓</span>All 5 engines (DeepSeek + ChatGPT + Perplexity + Gemini + Claude)</li>
-          <li><span class="pf-check">✓</span>Citation detection with status per query</li>
-          <li><span class="pf-check">✓</span>Up to 5 competitor brands tracked</li>
+          <li><span class="pf-check">✓</span>Competitor gap analysis (up to 5)</li>
+          <li><span class="pf-check">✓</span>12-week content roadmap</li>
           <li><span class="pf-check">✓</span>Sentiment analysis per engine</li>
           <li><span class="pf-check">✓</span>Priority-ranked action plan</li>
-          <li><span class="pf-check">✓</span>12-section PDF to your inbox</li>
+          <li><span class="pf-check">✓</span>12-section PDF delivery</li>
           <li><span class="pf-check">✓</span>~20 minute turnaround</li>
         </ul>
         <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="pt-btn pt-btn-primary" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'pricing_pro'})">Get Deep Report — $20</a>
@@ -816,23 +840,25 @@ footer a:hover{color:var(--ink)}
       </div></div>
 
       <div class="b-card"><div class="core">
+        <div class="meta">STAGE 3+4</div>
         <div class="pt-name">Monitor</div>
-        <div class="pt-sub">Track changes. Catch threats early.</div>
-        <div class="pt-price">$99<span class="pt-unit"> /month</span></div>
-        <div class="pt-desc">AI knowledge shifts. Track your mention rate weekly. Know the moment you appear — or disappear.</div>
+        <div class="pt-sub">质检+交付 · QA + continuous delivery</div>
+        <div class="pt-price">$200<span class="pt-unit"> /month</span></div>
+        <div class="pt-desc">AI knowledge shifts. Track your visibility weekly. 4-layer QA on all content. Interactive dashboard + PDF delivery.</div>
         <ul class="pt-feat">
-          <li><span class="pf-check">✓</span>Weekly re-scans across 5 engines</li>
+          <li><span class="pf-check">✓</span>Weekly 5-engine re-audits</li>
+          <li><span class="pf-check">✓</span>4-layer content QA scoring</li>
+          <li><span class="pf-check">✓</span>Interactive dashboard access</li>
           <li><span class="pf-check">✓</span>Change detection alerts</li>
           <li><span class="pf-check">✓</span>Competitor movement tracking</li>
           <li><span class="pf-check">✓</span>Monthly trend report with charts</li>
-          <li><span class="pf-check">✓</span>Dashboard access</li>
-          <li><span class="pf-check">✓</span>Priority support</li>
-          <li><span class="pf-check">✓</span>Cancel anytime</li>
+          <li><span class="pf-check">✓</span>Implementation guides</li>
+          <li><span class="pf-check">✓</span>Priority support · Cancel anytime</li>
         </ul>
         <a href="https://5529900303702.gumroad.com/l/hcamls" data-gumroad-overlay="true" class="pt-btn pt-btn-outline" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'pricing_monitor'})">Start Monitoring</a>
       </div></div>
     </div>
-    <p class="pricing-note">Not sure which tier fits? <a href="#free-scan">Start with the free scan</a> — upgrade anytime. Deep Report customers get $50 off their first month of Monitor.</p>
+    <p class="pricing-note">Not sure where to start? <a href="#free-scan">Stage 1 is free</a> — get your health score first. Deep Report customers get $50 off their first month of Monitor (Stage 3+4).</p>
   </div>
 </section>
 
@@ -864,7 +890,7 @@ footer a:hover{color:var(--ink)}
           <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="tool-card" style="text-decoration:none;color:inherit">
             <span style="font-size:28px;flex-shrink:0">🔍</span>
             <div>
-              <h4 style="font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px">GEO</h4>
+              <h4 style="font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px">GEO Audit</h4>
               <p class="tool-desc">8 大中外 AI 引擎品牌提及检测 · 竞品对比 · PDF 报告。豆包/DeepSeek/千问/文心 + ChatGPT/Perplexity/Gemini/Claude</p>
               <span class="tool-price">$20 · ~20 分钟出报告 · 一次付费</span>
             </div>
@@ -887,7 +913,7 @@ footer a:hover{color:var(--ink)}
     <div class="testimonials-grid">
       <div class="b-card"><div class="core">
         <div class="t-stars">★★★★★</div>
-        <div class="t-text">"We're expanding to China and had zero visibility into whether Chinese AI engines knew our brand existed. The scan showed us DeepSeek and Qwen both cited us — but Doubao didn't. That one finding changed our China content strategy."</div>
+        <div class="t-text">"We're expanding to China and had zero visibility into whether Chinese AI engines knew our brand existed. GEO Audit showed us DeepSeek and Qwen both cited us — but Doubao didn't. That one finding changed our China content strategy."</div>
         <div class="t-author">Anonymous</div>
         <div class="t-role">SaaS company, expanding to APAC</div>
       </div></div>
@@ -899,7 +925,7 @@ footer a:hover{color:var(--ink)}
       </div></div>
       <div class="b-card"><div class="core">
         <div class="t-stars">★★★★★</div>
-        <div class="t-text">"I pitched a client on AEO services. They asked 'prove we have a problem first.' One report later — they were cited on zero engines and their top competitor was cited on three. Deal closed."</div>
+        <div class="t-text">"I pitched a client on AEO services. They asked 'prove we have a problem first.' One GEO Audit later — they were cited on zero engines and their top competitor was cited on three. Deal closed."</div>
         <div class="t-author">SEO Consultant</div>
         <div class="t-role">Agency owner, Singapore</div>
       </div></div>
@@ -918,34 +944,34 @@ footer a:hover{color:var(--ink)}
     </div>
     <div class="faq-list">
       <div class="faq-q">What's the difference between Free Scan, Deep Report, and Monitor?</div>
-      <div class="faq-a"><strong>Free Scan</strong> checks 1 engine (DeepSeek) — tells you if your brand is mentioned at all. No credit card. <strong>Deep Report ($20)</strong> covers all 8 engines with full citation matrix, competitor analysis, sentiment analysis, and action plan — 12-section PDF. <strong>Monitor ($99/mo)</strong> re-scans weekly, alerts you when citations appear or disappear, and tracks competitor movement over time.</div>
+      <div class="faq-a"><strong>Free Scan</strong> checks 1 engine (DeepSeek) — tells you if your brand is mentioned at all. No credit card. <strong>Deep Report ($20)</strong> covers all 8 engines with full citation matrix, competitor analysis, sentiment audit, and action plan — 12-section PDF. <strong>Monitor ($200/mo)</strong> re-audits weekly, alerts you when citations appear or disappear, and tracks competitor movement over time.</div>
 
       <div class="faq-q">What is GEO and why does it matter?</div>
       <div class="faq-a">Generative Engine Optimization (GEO) is the practice of ensuring your brand appears in AI-generated answers. When a user asks Doubao "best CRM for small business" and your brand isn't mentioned — that's a GEO gap. With 2.5 billion users across Chinese and Western AI engines, being invisible in AI answers is the new equivalent of not ranking on Google.</div>
 
       <div class="faq-q">Why $20 and not $500/month?</div>
-      <div class="faq-a">Most AEO platforms charge agency retainers because they're built for agencies. We built GEO for <strong>brands that just need to know</strong>. Start with the free scan. When you need the full picture, Deep Report is $20 one-time. If AI visibility is critical to your business, Monitor keeps you continuously informed at $99/mo.</div>
+      <div class="faq-a">Most AEO platforms charge agency retainers because they're built for agencies. We built GEO Audit for <strong>brands that just need to know</strong>. Start with the free scan. When you need the full picture, Deep Report is $20 one-time. If AI visibility is critical to your business, Monitor keeps you continuously informed at $200/mo.</div>
 
       <div class="faq-q">Why both Chinese and Western engines?</div>
-      <div class="faq-a">Because your brand needs to be visible everywhere AI users are. Chinese engines (Doubao, DeepSeek, Qwen, Wenxin) serve 1.4B+ users. Western engines (ChatGPT, Perplexity, Gemini, Claude) serve another 1B+. Most tools cover one or the other. GEO covers all eight — one report, complete coverage.</div>
+      <div class="faq-a">Because your brand needs to be visible everywhere AI users are. Chinese engines (Doubao, DeepSeek, Qwen, Wenxin) serve 1.4B+ users. Western engines (ChatGPT, Perplexity, Gemini, Claude) serve another 1B+. Most tools cover one or the other. GEO Audit covers all eight — one report, complete coverage.</div>
 
       <div class="faq-q">How do you actually query the engines?</div>
       <div class="faq-a">We query each engine with your brand name and a standardized set of industry-relevant prompts. Every query is executed fresh — we don't cache results. We capture the full response, extract citation data, classify sentiment, and compare against competitor brands in the same query set.</div>
 
       <div class="faq-q">Is this different from SEO?</div>
-      <div class="faq-a">SEO optimizes for traditional search engine rankings (Baidu, Google). GEO optimizes for AI-generated answers. A page can rank #1 on Google and still never be cited by an AI engine. Our reports bridge that gap by showing you what AI engines actually say about your brand.</div>
+      <div class="faq-a">Yes. SEO optimizes for traditional search engine rankings (Baidu, Google). GEO optimizes for AI-generated answers. A page can rank #1 on Google and still never be cited by an AI engine. GEO Audit bridges that gap by showing you what AI engines actually say about your brand.</div>
 
-      <div class="faq-q">Can I re-run the scan later?</div>
+      <div class="faq-q">Can I re-run the audit later?</div>
       <div class="faq-a">Yes. Buy Deep Report again whenever you want a fresh snapshot — many customers run it quarterly. If you need ongoing monitoring (weekly), Monitor does it automatically with change alerts and trend reports.</div>
 
       <div class="faq-q">What if my brand isn't mentioned at all?</div>
-      <div class="faq-a">That's the most common result — and the most valuable one. 82% of brands we scan have zero citations on at least 2 engines. The report gives you a baseline and a prioritized action plan to change that. You can't fix what you haven't measured.</div>
+      <div class="faq-a">That's the most common result — and the most valuable one. 82% of brands we audit have zero citations on at least 2 engines. The report gives you a baseline and a prioritized action plan to change that. You can't fix what you haven't measured.</div>
 
       <div class="faq-q">Do you support non-Chinese brands?</div>
       <div class="faq-a">Yes. Many international brands need visibility in Chinese AI engines — for China market entry, for APAC strategy, or because their competitors are already cited. The report is bilingual so your global team can act on it.</div>
 
       <div class="faq-q">How do I pay?</div>
-      <div class="faq-a">Gumroad handles payment — credit card, PayPal, Apple Pay, Google Pay. Free Scan requires no payment. Deep Report is one-time $20. Monitor is $99/month, cancel anytime.</div>
+      <div class="faq-a">Gumroad handles payment — credit card, PayPal, Apple Pay, Google Pay. Free Scan requires no payment. Deep Report is one-time $20. Monitor is $200/month, cancel anytime.</div>
     </div>
   </div>
 </section>
@@ -955,7 +981,7 @@ footer a:hover{color:var(--ink)}
 <div class="closing reveal">
   <div class="closing-inner">
     <h2>40-60% of AI citations rotate monthly.</h2>
-    <p>Every month you wait, a competitor locks in another month of citation history. The engines learn to trust them by default. Get your scan now — know where you stand before the next rotation.</p>
+    <p>Every month you wait, a competitor locks in another month of citation history. The engines learn to trust them by default. Get your audit now — know where you stand before the next rotation.</p>
     <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="pill" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'urgency'})">
       Get Deep Report — $20
       <span class="icon-wrap"><svg viewBox="0 0 12 12" stroke-width="1.6"><path d="M2.5 6h7M6 2.5L9.5 6 6 9.5"/></svg></span>
@@ -965,7 +991,7 @@ footer a:hover{color:var(--ink)}
 
 <footer>
   <div class="f-row">
-    <span>GEO &copy; 2026</span>
+    <span>GEO Audit &copy; 2026</span>
     <div style="display:flex;gap:24px">
       <a href="#pricing">Pricing</a>
       <a href="https://5529900303702.gumroad.com/l/sybuc">Deep Report</a>
@@ -1015,7 +1041,7 @@ footer a:hover{color:var(--ink)}
   function pick(a){return a[Math.floor(Math.random()*a.length)]}
   function ago(){return Math.floor(Math.random()*9)+1+' min ago'}
   function show(){
-    msgEl.innerHTML='<strong>'+pick(names)+'</strong> from '+pick(cities)+' just scanned their '+pick(brands);
+    msgEl.innerHTML='<strong>'+pick(names)+'</strong> from '+pick(cities)+' just audited their '+pick(brands);
     timeEl.textContent=ago();
     toast.classList.add('show');
     setTimeout(function(){toast.classList.remove('show')},5000);
@@ -1032,55 +1058,5 @@ footer a:hover{color:var(--ink)}
   document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
 })();
 </script>
-
-<script>
-// Free scan form handler
-function handleFreeScan(e){
-  e.preventDefault();
-  var form=document.getElementById('fsForm');
-  var btn=document.getElementById('fsBtn');
-  var err=document.getElementById('fsError');
-  var brand=document.getElementById('fsBrand').value.trim();
-  var email=document.getElementById('fsEmail').value.trim();
-
-  err.classList.remove('show');
-  if(!brand){err.textContent='Please enter your brand name';err.classList.add('show');return false}
-  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Please enter a valid email';err.classList.add('show');return false}
-
-  gtag('event','click_purchase',{event_category:'CTA',event_label:'free_scan'});
-
-  form.classList.add('loading');
-  btn.disabled=true;
-
-  fetch('/api/free-scan',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({brand:brand,email:email})
-  })
-  .then(function(r){return r.json()})
-  .then(function(data){
-    form.classList.remove('loading');
-    if(data.success){
-      document.getElementById('fsBrandName').textContent=brand;
-      document.getElementById('fsEmailAddr').textContent=email;
-      form.style.display='none';
-      document.getElementById('fsSuccess').classList.add('show');
-    }else{
-      err.textContent=data.error||'Something went wrong. Try again.';
-      err.classList.add('show');
-      btn.disabled=false;
-    }
-  })
-  .catch(function(){
-    form.classList.remove('loading');
-    btn.disabled=false;
-    err.textContent='Network error. Please try again.';
-    err.classList.add('show');
-  });
-  return false;
-}
-</script>
 </body>
 </html>
-<!-- ssl refresh 2026-05-24T22:30:07+08:00 -->
-Mon May 25 08:22:14 CST 2026
