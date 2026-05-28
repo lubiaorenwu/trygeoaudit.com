@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5401VR64N9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5401VR64N9');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Do AI Search Engines Find Information to Cite? | GEO Audit</title>
+<meta name="description" content="AI search engines use RAG (Retrieval Augmented Generation) to find, rank, and cite sources. Here's exactly how the pipeline works and what it means for your brand visibility.">
+<link rel="canonical" href="https://trygeoaudit.com/blog/how-ai-search-cites-sources.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Do AI Search Engines Find Information to Cite?",
+  "description": "AI search engines use RAG (Retrieval Augmented Generation) to find, rank, and cite sources. Here's exactly how the pipeline works and what it means for your brand visibility.",
+  "author": {"@type": "Organization", "name": "GEO Audit"},
+  "publisher": {"@type": "Organization", "name": "GEO Audit"},
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://trygeoaudit.com/blog/how-ai-search-cites-sources.html"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How AI Search Engines Find and Cite Sources",
+  "description": "The 4-step RAG pipeline that AI search engines use to retrieve and cite content.",
+  "step": [
+    {"@type": "HowToStep", "position": 1, "name": "Query Embedding", "text": "When a user asks a question, the AI converts it into a mathematical vector representation using an embedding model."},
+    {"@type": "HowToStep", "position": 2, "name": "Vector Search", "text": "The AI searches a massive index of content chunks, finding the ones whose vector embeddings are most similar to the query."},
+    {"@type": "HowToStep", "position": 3, "name": "Ranking & Context Assembly", "text": "The top-ranking chunks are scored by relevance, deduplicated, and assembled into context for the language model."},
+    {"@type": "HowToStep", "position": 4, "name": "Generation & Citation", "text": "The LLM reads the context and generates an answer, citing sources that contributed to its response."}
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --z950: #09090b;
+    --z900: #121215;
+    --z850: #18181b;
+    --z800: #1c1c1f;
+    --z700: #27272a;
+    --z600: #3f3f46;
+    --z500: #71717a;
+    --z400: #a1a1aa;
+    --z200: #d4d4d8;
+    --z100: #e4e4e7;
+    --white: #fafafa;
+    --emerald: #10b981;
+    --emerald-bright: #34d399;
+    --emerald-dim: rgba(16,185,129,0.10);
+    --emerald-glow: rgba(16,185,129,0.06);
+    --red: #ef4444;
+    --red-dim: rgba(239,68,68,0.08);
+    --radius: 18px;
+    --radius-sm: 12px;
+    --transition: 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--z950);color:var(--z200);font-family:'Geist',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  body{position:relative}
+  .container{max-width:720px;margin:0 auto;padding:0 24px}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--z800)}
+  nav a{color:var(--z400);text-decoration:none;font-size:14px;font-weight:500;transition:var(--transition)}
+  nav a:hover{color:var(--emerald)}
+  .logo{font-weight:700;font-size:18px;color:var(--white);text-decoration:none}
+  .logo span{color:var(--emerald)}
+  article{padding:48px 24px 64px}
+  .question-badge{display:inline-block;background:var(--emerald-dim);color:var(--emerald);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.5px}
+  h1{font-size:32px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:16px}
+  .answer-lead{font-size:18px;line-height:1.6;color:var(--z100);background:var(--z850);padding:24px;border-radius:var(--radius-sm);border-left:3px solid var(--emerald);margin-bottom:32px}
+  h2{font-size:22px;font-weight:600;color:var(--white);margin-top:40px;margin-bottom:16px}
+  h3{font-size:17px;font-weight:600;color:var(--z100);margin-top:28px;margin-bottom:10px}
+  p{font-size:15px;line-height:1.7;color:var(--z400);margin-bottom:16px}
+  ul,ol{padding-left:20px;margin-bottom:16px}
+  li{font-size:15px;line-height:1.7;color:var(--z400);margin-bottom:8px}
+  strong{color:var(--z200)}
+  .pipeline{display:flex;flex-direction:column;gap:16px;margin:24px 0}
+  .pipe-step{background:var(--z850);border-radius:var(--radius-sm);padding:20px;border-left:3px solid var(--emerald);position:relative}
+  .pipe-step .step-num{font-size:12px;font-weight:600;color:var(--emerald);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+  .pipe-step .step-title{font-size:16px;font-weight:600;color:var(--white);margin-bottom:6px}
+  .pipe-step .step-desc{font-size:14px;color:var(--z400);line-height:1.6}
+  .pipe-arrow{text-align:center;color:var(--z600);font-size:20px}
+  .cta-box{background:linear-gradient(135deg,var(--z850),var(--z800));border:1px solid var(--z700);border-radius:var(--radius);padding:32px;margin:40px 0;text-align:center}
+  .cta-box h3{color:var(--white);margin-top:0;font-size:20px}
+  .cta-box p{font-size:14px;margin-bottom:20px}
+  .btn{display:inline-block;background:var(--emerald);color:var(--z950);font-weight:600;font-size:15px;padding:12px 28px;border-radius:999px;text-decoration:none;transition:var(--transition)}
+  .btn:hover{background:var(--emerald-bright);transform:translateY(-1px)}
+  .cta-sub{font-size:13px;color:var(--z500);margin-top:12px}
+  .cta-sub a{color:var(--emerald);text-decoration:none}
+  .cta-sub a:hover{text-decoration:underline}
+  .back-link{display:inline-block;margin-top:32px;color:var(--z500);text-decoration:none;font-size:14px;transition:var(--transition)}
+  .back-link:hover{color:var(--emerald)}
+  .footer{display:flex;align-items:center;justify-content:space-between;padding:24px;border-top:1px solid var(--z800);font-size:13px;color:var(--z500)}
+  .footer-links{display:flex;gap:16px}
+  .footer-links a{color:var(--z500);text-decoration:none;transition:var(--transition)}
+  .footer-links a:hover{color:var(--emerald)}
+  @media(max-width:600px){h1{font-size:26px}.answer-lead{font-size:16px;padding:16px}.cta-box{padding:24px 16px}}
+</style>
+</head>
+<body>
+<nav class="container">
+  <a href="/" class="logo">GEO <span>Audit</span></a>
+  <div>
+    <a href="/blog/">Blog</a>
+  </div>
+</nav>
+
+<article class="container">
+  <div class="question-badge">How it works</div>
+  <h1>How Do AI Search Engines Find Information to Cite?</h1>
+
+  <div class="answer-lead">
+    <strong>Short answer:</strong> AI search engines use a technique called Retrieval-Augmented Generation (RAG). When you ask a question, the AI converts it into a numeric fingerprint (embedding), searches billions of content chunks to find the best matches, then uses those chunks as context to generate an answer — citing sources along the way.
+  </div>
+
+  <p>Understanding how AI search engines find and cite information is the key to making your brand show up in their answers. Here's the exact pipeline, broken down step by step.</p>
+
+  <h2>The 4-Step RAG Pipeline</h2>
+
+  <div class="pipeline">
+    <div class="pipe-step">
+      <div class="step-num">Step 1</div>
+      <div class="step-title">Query Embedding</div>
+      <div class="step-desc">When a user types a question into ChatGPT, Perplexity, or Gemini, the AI converts it into a mathematical vector — a set of numbers that represents the semantic meaning of the query. This happens in milliseconds.</div>
+    </div>
+    <div class="pipe-arrow">↓</div>
+    <div class="pipe-step">
+      <div class="step-num">Step 2</div>
+      <div class="step-title">Vector Search</div>
+      <div class="step-desc">The AI searches a pre-built index containing billions of content chunks from across the web. It finds the chunks whose vectors are most similar to the question's vector. Your content competes here with everything else on the internet.</div>
+    </div>
+    <div class="pipe-arrow">↓</div>
+    <div class="pipe-step">
+      <div class="step-num">Step 3</div>
+      <div class="step-title">Ranking & Context Assembly</div>
+      <div class="step-desc">The top-matching chunks are scored by relevance, checked for quality signals (freshness, domain authority, structured data), deduplicated, and assembled into a context window — typically the top 5-20 chunks that best answer the question.</div>
+    </div>
+    <div class="pipe-arrow">↓</div>
+    <div class="pipe-step">
+      <div class="step-num">Step 4</div>
+      <div class="step-title">Generation & Citation</div>
+      <div class="step-desc">The LLM reads the selected context and generates a natural language answer. Sources that contributed are cited as links. If your content isn't in that context window, you don't get cited — even if your site is authoritative.</div>
+    </div>
+  </div>
+
+  <h2>What This Means for Your Brand</h2>
+
+  <p>The RAG pipeline reveals a critical insight: <strong>it's not enough to rank #1 on Google</strong>. AI search engines don't use Google rankings. They use vector similarity — which means the format and structure of your content matters as much as its quality.</p>
+
+  <h3>Content that wins in RAG:</h3>
+  <ul>
+    <li><strong>Direct answers first</strong> — Put the answer in the first 200 words, clearly and concisely. Don't bury it under introductions and fluff.</li>
+    <li><strong>Structured formatting</strong> — AI loves bullet points, tables, numbered steps, and clear headings. These chunk well and score higher in vector search.</li>
+    <li><strong>Schema.org markup</strong> — JSON-LD tells AI models exactly what your content is (FAQ, HowTo, Article). This boosts retrieval accuracy.</li>
+    <li><strong>Chunk-friendly writing</strong> — Each section should make sense on its own, because RAG extracts chunks, not entire articles.</li>
+  </ul>
+
+  <h2>Different AI Engines, Different Indexes</h2>
+
+  <p>Not all AI search engines use the same index. ChatGPT has its own web crawl. Gemini uses Google's index. Perplexity has a real-time crawl layer. DeepSeek and Kimi crawl Chinese web content with different priorities. <strong>Being cited in one doesn't guarantee being cited in another.</strong></p>
+
+  <div class="cta-box">
+    <h3>Which AI engines are citing your brand?</h3>
+    <p>We check your brand across 8 major AI search engines — including ChatGPT, Gemini, Perplexity, Claude, DeepSeek, and China's Doubao, Kimi, and Qwen. 30-second free scan.</p>
+    <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="btn" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'blog_how_ai_cites'})">Get Deep Report $20 →</a>
+    <p class="cta-sub">or <a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true">run a free scan first</a></p>
+  </div>
+
+  <p style="font-size:13px;color:var(--z500);margin-top:32px"><em>Published May 28, 2026</em></p>
+
+  <a href="/blog/" class="back-link">← Back to Blog</a>
+</article>
+
+<footer class="container">
+  <span>GEO Audit &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/#pricing">Pricing</a>
+    <a href="https://5529900303702.gumroad.com/l/sybuc">Deep Report</a>
+    <a href="mailto:djh973832@gmail.com">Contact</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</footer>
+
+<script async src="https://gumroad.com/js/gumroad.js"></script>
+</body>
+</html>
