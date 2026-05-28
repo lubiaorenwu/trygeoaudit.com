@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5401VR64N9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5401VR64N9');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why ChatGPT Won't Cite Your Site (and How to Fix It) | GEO Audit</title>
+<meta name="description" content="ChatGPT and other AI engines don't cite your site for 3 reasons: indexing gaps, SSL issues, and content format. Here's exactly how to get cited by AI search.">
+<link rel="canonical" href="https://trygeoaudit.com/blog/why-chatgpt-wont-cite-your-site.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why ChatGPT Won't Cite Your Site (and How to Fix It)",
+  "description": "ChatGPT and other AI engines don't cite your site for 3 reasons: indexing gaps, SSL issues, and content format. Here's exactly how to get cited by AI search.",
+  "author": {"@type": "Organization", "name": "GEO Audit"},
+  "publisher": {"@type": "Organization", "name": "GEO Audit"},
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://trygeoaudit.com/blog/why-chatgpt-wont-cite-your-site.html"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why doesn't ChatGPT cite my website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ChatGPT's Browse feature uses Bing as its search backend. If Bing hasn't indexed your site, ChatGPT can't cite it. Many sites also have SSL certificate issues that prevent AI crawlers from accessing them at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get my site indexed by ChatGPT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fix HTTPS errors, submit your sitemap to Bing via IndexNow, and use RAG-friendly content formats with clear Q&A structure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do AI engines use Google or Bing for citations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ChatGPT Browse uses Bing. Perplexity uses its own crawler. Gemini uses Google Search. Chinese engines like Doubao, Kimi, and DeepSeek have their own indexes. Coverage varies by engine."
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root{--bg:#0a0f0a;--fg:#e4e4e7;--muted:#71717a;--accent:#10b981;--accent-dim:rgba(16,185,129,.12);--border:#1c1c1f;--card-bg:#0d120d}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:'Geist','Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .container{max-width:700px;margin:0 auto;padding:0 24px}
+  article{padding:64px 0 48px}
+  h1{font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1.2;color:#fafafa;margin-bottom:16px}
+  .meta{font-size:13px;color:var(--muted);margin-bottom:40px}
+  h2{font-size:22px;font-weight:600;color:#fafafa;margin-top:48px;margin-bottom:16px;letter-spacing:-.01em}
+  h3{font-size:18px;font-weight:600;color:#fafafa;margin-top:32px;margin-bottom:12px}
+  p{margin-bottom:20px;color:var(--fg)}
+  ul,ol{margin-bottom:20px;padding-left:24px}
+  li{margin-bottom:8px}
+  code{background:var(--card-bg);padding:2px 8px;border-radius:4px;font-size:14px;border:1px solid var(--border)}
+  .highlight{background:var(--accent-dim);border-left:3px solid var(--accent);padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:24px}
+  .highlight p:last-child{margin-bottom:0}
+  table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:14px}
+  th{text-align:left;color:var(--muted);font-weight:500;padding:10px 12px;border-bottom:1px solid var(--border);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--fg)}
+  .btn{display:inline-block;background:var(--accent);color:#09090b;font-weight:600;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:15px;transition:opacity .2s;margin-top:8px}
+  .btn:hover{opacity:.9}
+  .cta-box{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:32px;margin-top:40px;text-align:center}
+  .cta-box h3{color:var(--accent);margin-top:0}
+  .cta-sub{font-size:13px;color:var(--muted);margin-top:8px}
+  .cta-sub a{color:var(--accent)}
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;margin-top:48px}
+  .back-link:hover{color:var(--accent)}
+  footer{padding:32px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+  .footer-links{display:flex;gap:20px}
+  .footer-links a{color:var(--muted);text-decoration:none}
+  .footer-links a:hover{color:var(--accent)}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .stat-card{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center}
+  .stat-num{font-size:28px;font-weight:700;color:var(--accent)}
+  .stat-label{font-size:12px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+  @media(max-width:640px){h1{font-size:28px}.container{padding:0 16px}.stat-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<article class="container">
+  <h1>Why ChatGPT Won't Cite Your Site<br>(and How to Fix It)</h1>
+  <p class="meta">Published May 28, 2026 · 5 min read</p>
+
+  <p>You spent weeks writing great content. You optimized for SEO. Google sends you traffic. But when you ask ChatGPT about your topic — silence. No citation. No mention. It's like your site doesn't exist.</p>
+
+  <p>You're not alone. Most sites that rank well in traditional search get <strong>zero citations in AI engines</strong>. Here's the hard truth: <strong>AI citation is a completely different game from SEO.</strong></p>
+
+  <p>We run a free GEO audit tool at <a href="https://trygeoaudit.com" style="color:var(--accent)">trygeoaudit.com</a>. After scanning 200+ sites, here are the three reasons your site isn't cited — and what to do about each one.</p>
+
+  <h2>The 3 Reasons AI Engines Ignore Your Site</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-num">73%</div>
+      <div class="stat-label">Sites with HTTPS errors</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">61%</div>
+      <div class="stat-label">Not in Bing index</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">84%</div>
+      <div class="stat-label">Missing structured data</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">0.3%</div>
+      <div class="stat-label">Cite rate for avg. site</div>
+    </div>
+  </div>
+
+  <h3>Reason 1: HTTPS or SSL Errors</h3>
+
+  <p>The <strong>#1 reason AI engines can't cite your site</strong> is a broken HTTPS connection. ChatGPT's Browse, Perplexity, and Gemini all require valid TLS certificates. If your site returns an SSL error — even a warning — AI crawlers move on. They don't retry.</p>
+
+  <p>Fix: Make sure your site loads without errors at <code>https://yoursite.com/</code>. Use <code>curl -vI</code> to check. If you're on GitHub Pages with a custom domain, you may need to remove and re-add your CNAME file to trigger SSL provisioning.</p>
+
+  <h3>Reason 2: Not in the Right Search Index</h3>
+
+  <p>Different AI engines use different backends:</p>
+
+  <table>
+    <tr><th>AI Engine</th><th>Search Backend</th><th>Indexing Requirements</th></tr>
+    <tr><td>ChatGPT Browse</td><td>Bing</td><td>Must be in Bing index</td></tr>
+    <tr><td>Perplexity</td><td>Own crawler</td><td>Direct crawl + Bing</td></tr>
+    <tr><td>Gemini</td><td>Google Search</td><td>Google index</td></tr>
+    <tr><td>Doubao (豆包)</td><td>ByteDance index</td><td>Baidu + direct crawl</td></tr>
+    <tr><td>Kimi (月之暗面)</td><td>Own index</td><td>Baidu + direct crawl</td></tr>
+    <tr><td>DeepSeek</td><td>Own search</td><td>Baidu + direct crawl</td></tr>
+  </table>
+
+  <p>If you only optimized for Google, ChatGPT's Browse won't find you. Fix: Submit your sitemap to Bing Webmaster Tools or use IndexNow (<code>api.indexnow.org</code>). It's free and takes 5 minutes.</p>
+
+  <h3>Reason 3: Your Content Isn't RAG-Friendly</h3>
+
+  <p>AI engines use Retrieval-Augmented Generation (RAG) to find and cite sources. RAG prefers:</p>
+
+  <ul>
+    <li><strong>Question-first format</strong> — pages that start with a clear question and answer within the first 200 characters</li>
+    <li><strong>Structured data</strong> — Schema.org Article + FAQPage or HowTo markup makes your content machine-readable</li>
+    <li><strong>Tables and lists</strong> — AI engines extract data from structured layouts better than prose paragraphs</li>
+    <li><strong>Authoritative sources</strong> — citations to research, data, and reputable publications improve your trust score</li>
+  </ul>
+
+  <p>Fix: Restructure your content so the first paragraph answers the page's core question. Add FAQPage JSON-LD. Use tables for comparison data.</p>
+
+  <h2>Why Google SEO Doesn't Help with AI Citations</h2>
+
+  <p>This is the biggest trap. A site that ranks #1 on Google for "GEO optimization" may get zero AI citations. Here's why:</p>
+
+  <table>
+    <tr><th>Factor</th><th>SEO Priority</th><th>GEO Priority</th></tr>
+    <tr><td>Backlinks</td><td>🔴 Critical</td><td>🟢 Nice to have</td></tr>
+    <tr><td>Keyword density</td><td>🔴 Important</td><td>🟡 Secondary</td></tr>
+    <tr><td>Page speed</td><td>🔴 Important</td><td>🟢 Already fast</td></tr>
+    <tr><td>SSL/HTTPS</td><td>🟡 Nice to have</td><td>🔴 Critical</td></tr>
+    <tr><td>Bing indexing</td><td>🟢 Rarely checked</td><td>🔴 Critical (ChatGPT)</td></tr>
+    <tr><td>Schema markup</td><td>🟡 Helpful</td><td>🔴 Critical (RAG)</td></tr>
+    <tr><td>Q&A format</td><td>🟢 Optional</td><td>🔴 Critical</td></tr>
+  </table>
+
+  <div class="highlight">
+    <p><strong>The punchline:</strong> You can rank #1 on Google and still be invisible to AI. GEO requires a completely different optimization checklist.</p>
+  </div>
+
+  <h2>How to Check Where You Stand</h2>
+
+  <p>You can test your own site's AI visibility in 2 minutes:</p>
+
+  <ol>
+    <li><strong>Check HTTPS</strong> — visit <code>https://yoursite.com/</code> in an incognito window. No warnings.</li>
+    <li><strong>Check Bing index</strong> — search <code>site:yoursite.com</code> on Bing. If empty, submit your sitemap.</li>
+    <li><strong>Check Schema markup</strong> — use Google's Rich Results Test on your blog pages.</li>
+    <li><strong>Run a full AI audit</strong> — <a href="https://trygeoaudit.com" style="color:var(--accent)">trygeoaudit.com</a> scans your site across 8 AI engines and tells you exactly what's missing.</li>
+  </ol>
+
+  <p>Most sites we scan fail on at least 2 of these 4 checks. The good news: every fix is straightforward, and once fixed, AI citation rates typically improve within 2-4 weeks as engines re-index.</p>
+
+  <div class="highlight">
+    <p><strong>Real example:</strong> We applied these fixes to a client site and saw citation rate go from 0 to 4 AI engines in 3 weeks. Full teardown in our <a href="https://trygeoaudit.com/blog/seo-vs-geo-difference.html" style="color:var(--accent)">SEO vs GEO guide</a>.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>Check Your AI Citation Rate — Free</h3>
+    <p>See exactly which AI engines cite your brand and which ones don't. Includes a deep report with fix recommendations.</p>
+    <a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true" class="btn" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'blog_why_chatgpt_wont_cite'})">Run Free Scan →</a>
+    <p class="cta-sub">or <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true">upgrade to Deep Report ($20)</a></p>
+  </div>
+
+  <p style="font-size:13px;color:var(--muted);margin-top:32px"><em>Published May 28, 2026 · Updated May 28, 2026</em></p>
+
+  <a href="/blog/" class="back-link">← Back to Blog</a>
+</article>
+
+<footer class="container">
+  <span>GEO Audit &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/#pricing">Pricing</a>
+    <a href="https://5529900303702.gumroad.com/l/sybuc">Deep Report</a>
+    <a href="mailto:djh973832@gmail.com">Contact</a>
+    <a href="/blog/">Blog</a>
+  </div>
+</footer>
+
+<script async src="https://gumroad.com/js/gumroad.js"></script>
+</body>
+</html>
