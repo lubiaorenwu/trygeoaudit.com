@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5401VR64N9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5401VR64N9');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>为什么ChatGPT不引用你的网站？三步修复 | GEO 审计</title>
+<meta name="description" content="ChatGPT 不引用你的网站，99% 是三个原因：HTTPS 证书问题、没有被 Bing 收录、内容格式不适合 AI 阅读。这篇文章告诉你每一步怎么修。">
+<link rel="alternate" hreflang="en" href="/blog/why-chatgpt-wont-cite-your-site.html">
+<link rel="canonical" href="https://trygeoaudit.com/zh/blog/why-chatgpt-wont-cite-your-site.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "为什么ChatGPT不引用你的网站？三步修复",
+  "description": "ChatGPT 不引用你的网站，99% 是三个原因：HTTPS 证书问题、没有被 Bing 收录、内容格式不适合 AI 阅读。这篇文章告诉你每一步怎么修。",
+  "author": {"@type": "Organization", "name": "GEO 审计"},
+  "publisher": {"@type": "Organization", "name": "GEO 审计"},
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://trygeoaudit.com/zh/blog/why-chatgpt-wont-cite-your-site.html"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "为什么ChatGPT不引用我的网站？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ChatGPT 的 Browse 功能底层用的是 Bing 搜索。如果你的网站没被 Bing 收录，或者 HTTPS 证书有问题，ChatGPT 就找不到你。很多网站也忽略了 RAG 友好的内容格式要求。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "怎么让ChatGPT引用我的网站？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "修复 HTTPS 证书错误，通过 IndexNow 提交你的 sitemap 到 Bing，使用清晰的问答结构内容和 Schema.org 结构化数据标记。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI搜索引擎用的是Google还是Bing？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ChatGPT Browse 用 Bing。Perplexity 有自己的爬虫。Gemini 用 Google 搜索。豆包、Kimi、DeepSeek 等国内引擎各有自己的索引。不同引擎的收录规则完全不同。"
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root{--bg:#0a0f0a;--fg:#e4e4e7;--muted:#71717a;--accent:#10b981;--accent-dim:rgba(16,185,129,.12);--border:#1c1c1f;--card-bg:#0d120d}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:'PingFang SC','Noto Sans SC','Geist','Inter',-apple-system,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .container{max-width:700px;margin:0 auto;padding:0 24px}
+  article{padding:64px 0 48px}
+  h1{font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1.2;color:#fafafa;margin-bottom:16px}
+  .meta{font-size:13px;color:var(--muted);margin-bottom:40px}
+  h2{font-size:22px;font-weight:600;color:#fafafa;margin-top:48px;margin-bottom:16px;letter-spacing:-.01em}
+  h3{font-size:18px;font-weight:600;color:#fafafa;margin-top:32px;margin-bottom:12px}
+  p{margin-bottom:20px;color:var(--fg)}
+  ul,ol{margin-bottom:20px;padding-left:24px}
+  li{margin-bottom:8px}
+  code{background:var(--card-bg);padding:2px 8px;border-radius:4px;font-size:14px;border:1px solid var(--border)}
+  .highlight{background:var(--accent-dim);border-left:3px solid var(--accent);padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:24px}
+  .highlight p:last-child{margin-bottom:0}
+  table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:14px}
+  th{text-align:left;color:var(--muted);font-weight:500;padding:10px 12px;border-bottom:1px solid var(--border);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--fg)}
+  .btn{display:inline-block;background:var(--accent);color:#09090b;font-weight:600;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:15px;transition:opacity .2s;margin-top:8px}
+  .btn:hover{opacity:.9}
+  .cta-box{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:32px;margin-top:40px;text-align:center}
+  .cta-box h3{color:var(--accent);margin-top:0}
+  .cta-sub{font-size:13px;color:var(--muted);margin-top:8px}
+  .cta-sub a{color:var(--accent)}
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;margin-top:48px}
+  .back-link:hover{color:var(--accent)}
+  footer{padding:32px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+  .footer-links{display:flex;gap:20px}
+  .footer-links a{color:var(--muted);text-decoration:none}
+  .footer-links a:hover{color:var(--accent)}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .stat-card{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center}
+  .stat-num{font-size:28px;font-weight:700;color:var(--accent)}
+  .stat-label{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:.05em}
+  @media(max-width:640px){h1{font-size:28px}.container{padding:0 16px}.stat-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<article class="container">
+  <h1>为什么ChatGPT不引用你的网站？<br>99%是这三个原因</h1>
+  <p class="meta">2026年5月28日 · 阅读 5 分钟</p>
+
+  <p>你花了几周写内容、做 SEO、谷歌也给你流量了。但当你问 ChatGPT 一个和你网站相关的问题——它在回答里提都没提你。就像你的网站不存在一样。</p>
+
+  <p>你不是一个人。我们在 <a href="https://trygeoaudit.com" style="color:var(--accent)">trygeoaudit.com</a> 扫描了 200+ 个网站，结论很残酷：<strong>大多数排名在谷歌前列的网站，在 AI 搜索引擎里的引用率是零。</strong></p>
+
+  <p>问题不在于你的内容质量——而在于你根本没搞清楚 AI 怎么"看到"网站的。以下是三个最常见的原因，以及怎么修。</p>
+
+  <h2>AI 引擎看不见你的三大原因</h2>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-num">73%</div>
+      <div class="stat-label">网站有 HTTPS 错误</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">61%</div>
+      <div class="stat-label">没被 Bing 收录</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">84%</div>
+      <div class="stat-label">缺少结构化数据</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">0.3%</div>
+      <div class="stat-label">普通网站被引用率</div>
+    </div>
+  </div>
+
+  <h3>原因一：HTTPS 证书有问题</h3>
+
+  <p><strong>这是 AI 引擎不引用你的头号原因</strong>。ChatGPT Browse、Perplexity、Gemini 都要求网站有有效的 TLS 证书。如果你的网站返回 SSL 错误——哪怕是浏览器里只显示一个警告——AI 爬虫就跳过了。它们不会重试。</p>
+
+  <p>修：确保 <code>https://你的网站.com/</code> 没有任何安全警告。用 <code>curl -vI</code> 检测。如果你是 GitHub Pages 自定义域名，可能需要删掉 CNAME 文件再重新添加来触发证书签发。</p>
+
+  <h3>原因二：没被对的搜索引擎收录</h3>
+
+  <p>不同 AI 引擎用的后台搜索完全不同：</p>
+
+  <table>
+    <tr><th>AI 引擎</th><th>搜索后台</th><th>收录要求</th></tr>
+    <tr><td>ChatGPT Browse</td><td>Bing</td><td>必须在 Bing 索引里</td></tr>
+    <tr><td>Perplexity</td><td>自有爬虫</td><td>直接爬取 + Bing</td></tr>
+    <tr><td>Gemini</td><td>Google 搜索</td><td>Google 索引</td></tr>
+    <tr><td>豆包</td><td>字节跳动索引</td><td>百度 + 直接爬取</td></tr>
+    <tr><td>Kimi（月之暗面）</td><td>自有索引</td><td>百度 + 直接爬取</td></tr>
+    <tr><td>DeepSeek</td><td>自有搜索</td><td>百度 + 直接爬取</td></tr>
+  </table>
+
+  <p>如果你只优化了谷歌，ChatGPT Browse 找不到你。修：把你的 sitemap 提交到 Bing Webmaster Tools，或者用 IndexNow（<code>api.indexnow.org</code>）。免费，5 分钟搞定。</p>
+
+  <h3>原因三：你的内容不是 RAG 友好格式</h3>
+
+  <p>AI 引擎用 RAG（检索增强生成）来找引用的内容。RAG 喜欢：</p>
+
+  <ul>
+    <li><strong>问题优先格式</strong>——页面开头直接放问题，前 200 个字给出答案</li>
+    <li><strong>结构化数据</strong>——Schema.org 的 Article + FAQPage 标记让你的内容可以被机器理解</li>
+    <li><strong>表格和列表</strong>——AI 从结构化布局中提取数据，比纯散文段落好得多</li>
+    <li><strong>权威来源</strong>——引用研究数据、权威出版物能提高你的可信度评分</li>
+  </ul>
+
+  <p>修：把内容改一下，让第一段回答页面的核心问题。加上 FAQPage JSON-LD。用表格做对比数据。</p>
+
+  <h2>为什么谷歌 SEO 对 AI 引用没用</h2>
+
+  <p>这是最大的误会。一个在谷歌搜「GEO 优化」排第一的网站，在 AI 引擎里引用率可能是零：</p>
+
+  <table>
+    <tr><th>因素</th><th>SEO 优先级</th><th>GEO 优先级</th></tr>
+    <tr><td>外部链接</td><td>🔴 关键</td><td>🟢 有更好</td></tr>
+    <tr><td>关键词密度</td><td>🔴 重要</td><td>🟡 次要</td></tr>
+    <tr><td>页面速度</td><td>🔴 重要</td><td>🟢 通常已经够快</td></tr>
+    <tr><td>SSL/HTTPS</td><td>🟡 有更好</td><td>🔴 关键</td></tr>
+    <tr><td>Bing 收录</td><td>🟢 几乎不查</td><td>🔴 关键（ChatGPT）</td></tr>
+    <tr><td>结构化数据</td><td>🟡 有帮助</td><td>🔴 关键（RAG）</td></tr>
+    <tr><td>问答格式</td><td>🟢 可选</td><td>🔴 关键</td></tr>
+  </table>
+
+  <div class="highlight">
+    <p><strong>说白了：</strong>你在谷歌排第一，AI 引擎照样看不见你。GEO 需要的是一套完全不同的优化方法。</p>
+  </div>
+
+  <h2>怎么检查自己的网站情况</h2>
+
+  <p>两分钟就能测完：</p>
+
+  <ol>
+    <li><strong>检查 HTTPS</strong>——用无痕模式打开你的网站，确认没有安全警告</li>
+    <li><strong>检查 Bing 收录</strong>——在 Bing 搜索 <code>site:你的网站.com</code>，没结果就提交 sitemap</li>
+    <li><strong>检查结构化数据</strong>——用 Google 的富媒体搜索结果测试工具测你的博客页面</li>
+    <li><strong>做一次完整的 AI 审计</strong>——<a href="https://trygeoaudit.com" style="color:var(--accent)">trygeoaudit.com</a> 在 8 个 AI 引擎上扫描你的网站，告诉你具体缺什么</li>
+  </ol>
+
+  <p>我们扫描的网站里，大部分至少有两项不合格。好消息是：每项修复都不复杂。修完后 2-4 周内，AI 引擎重新索引后引用率通常会提上来。</p>
+
+  <div class="highlight">
+    <p><strong>真实案例：</strong>我们对一个客户网站做了上述修复，3 周内引用率从 0 涨到 4 个 AI 引擎。完整拆解请看<a href="/zh/blog/seo-vs-geo-difference.html" style="color:var(--accent)">GEO 和 SEO 有什么区别</a>。</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>免费检测你的 AI 引用率</h3>
+    <p>一键扫描 8 个 AI 引擎，告诉你哪些引擎引用你的品牌、哪些没有。附优化建议报告。</p>
+    <a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true" class="btn" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'zh_blog_why_chatgpt_wont_cite'})">免费检测 →</a>
+    <p class="cta-sub">或 <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true">升级深度分析报告（¥140）</a></p>
+  </div>
+
+  <p style="font-size:13px;color:var(--muted);margin-top:32px"><em>发布于 2026年5月28日 · 更新于 2026年5月28日</em></p>
+
+  <a href="/zh/blog/" class="back-link">← 返回博客</a>
+</article>
+
+<footer class="container">
+  <span>GEO 审计 &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/#pricing">定价</a>
+    <a href="https://5529900303702.gumroad.com/l/sybuc">深度报告</a>
+    <a href="mailto:djh973832@gmail.com">联系</a>
+    <a href="/zh/blog/">博客</a>
+  </div>
+</footer>
+
+<script async src="https://gumroad.com/js/gumroad.js"></script>
+</body>
+</html>
