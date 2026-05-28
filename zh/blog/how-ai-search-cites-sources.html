@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5401VR64N9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5401VR64N9');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI搜索引擎怎么找到信息来引用的？| GEO 审计</title>
+<meta name="description" content="AI搜索用RAG（检索增强生成）来找到、排序并引用你的内容。理解这个4步流水线，你就知道为什么文章结构比内容本身更重要。">
+<link rel="canonical" href="https://trygeoaudit.com/zh/blog/how-ai-search-cites-sources.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI搜索引擎怎么找到信息来引用的？",
+  "description": "AI搜索用RAG（检索增强生成）来找到、排序并引用你的内容。理解这个4步流水线，你就知道为什么文章结构比内容本身更重要。",
+  "author": {"@type": "Organization", "name": "GEO 审计"},
+  "publisher": {"@type": "Organization", "name": "GEO 审计"},
+  "datePublished": "2026-05-28",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://trygeoaudit.com/zh/blog/how-ai-search-cites-sources.html"}
+}
+</script>
+<style>
+  :root {
+    --z950: #09090b; --z900: #121215; --z850: #18181b; --z800: #1c1c1f; --z700: #27272a; --z600: #3f3f46;
+    --z500: #71717a; --z400: #a1a1aa; --z200: #d4d4d8; --z100: #e4e4e7; --white: #fafafa;
+    --emerald: #10b981; --emerald-bright: #34d399; --emerald-dim: rgba(16,185,129,0.10);
+    --radius: 18px; --radius-sm: 12px; --transition: 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--z950);color:var(--z200);font-family:'Geist','PingFang SC','Noto Sans SC','Microsoft YaHei',-apple-system,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  .container{max-width:720px;margin:0 auto;padding:0 24px}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--z800)}
+  nav a{color:var(--z400);text-decoration:none;font-size:14px;font-weight:500;transition:var(--transition)}
+  nav a:hover{color:var(--emerald)}
+  .logo{font-weight:700;font-size:18px;color:var(--white);text-decoration:none}
+  .logo span{color:var(--emerald)}
+  article{padding:48px 24px 64px}
+  .question-badge{display:inline-block;background:var(--emerald-dim);color:var(--emerald);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.5px}
+  h1{font-size:32px;font-weight:700;color:var(--white);line-height:1.3;margin-bottom:16px}
+  .answer-lead{font-size:18px;line-height:1.6;color:var(--z100);background:var(--z850);padding:24px;border-radius:var(--radius-sm);border-left:3px solid var(--emerald);margin-bottom:32px}
+  h2{font-size:22px;font-weight:600;color:var(--white);margin-top:40px;margin-bottom:16px}
+  p{font-size:15px;line-height:1.7;color:var(--z400);margin-bottom:16px}
+  ul,ol{padding-left:20px;margin-bottom:16px}
+  li{font-size:15px;line-height:1.7;color:var(--z400);margin-bottom:8px}
+  strong{color:var(--z200)}
+  .pipeline{display:flex;flex-direction:column;gap:16px;margin:24px 0}
+  .pipe-step{background:var(--z850);border-radius:var(--radius-sm);padding:20px;border-left:3px solid var(--emerald)}
+  .pipe-step .step-num{font-size:12px;font-weight:600;color:var(--emerald);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+  .pipe-step .step-title{font-size:16px;font-weight:600;color:var(--white);margin-bottom:6px}
+  .pipe-step .step-desc{font-size:14px;color:var(--z400);line-height:1.6}
+  .pipe-arrow{text-align:center;color:var(--z600);font-size:20px}
+  .cta-box{background:linear-gradient(135deg,var(--z850),var(--z800));border:1px solid var(--z700);border-radius:var(--radius);padding:32px;margin:40px 0;text-align:center}
+  .cta-box h3{color:var(--white);margin-top:0;font-size:20px}
+  .cta-box p{font-size:14px;margin-bottom:20px}
+  .btn{display:inline-block;background:var(--emerald);color:var(--z950);font-weight:600;font-size:15px;padding:12px 28px;border-radius:999px;text-decoration:none;transition:var(--transition)}
+  .btn:hover{background:var(--emerald-bright);transform:translateY(-1px)}
+  .cta-sub{font-size:13px;color:var(--z500);margin-top:12px}
+  .cta-sub a{color:var(--emerald);text-decoration:none}
+  .back-link{display:inline-block;margin-top:32px;color:var(--z500);text-decoration:none;font-size:14px;transition:var(--transition)}
+  .back-link:hover{color:var(--emerald)}
+  .footer{display:flex;align-items:center;justify-content:space-between;padding:24px;border-top:1px solid var(--z800);font-size:13px;color:var(--z500)}
+  .footer-links{display:flex;gap:16px}
+  .footer-links a{color:var(--z500);text-decoration:none;transition:var(--transition)}
+  .footer-links a:hover{color:var(--emerald)}
+  @media(max-width:600px){h1{font-size:26px}.answer-lead{font-size:16px;padding:16px}}
+</style>
+</head>
+<body>
+<nav class="container">
+  <a href="/zh/" class="logo">GEO <span>审计</span></a>
+  <div><a href="/zh/blog/">博客</a></div>
+</nav>
+<article class="container">
+  <div class="question-badge">工作原理</div>
+  <h1>AI搜索引擎怎么找到信息来引用的？</h1>
+  <div class="answer-lead">
+    <strong>一句话回答：</strong>AI搜索用RAG（检索增强生成）技术。当你问问题时，AI把它转换成一个数字指纹（向量嵌入），然后检索数十亿内容块找到最佳匹配，再把这些块作为上下文生成答案——同时标注引用来源。
+  </div>
+  <p>理解AI搜索怎么找到并引用你的内容，是让品牌出现在AI回答里的关键。下面是完整的4步流水线。</p>
+
+  <h2>RAG 4步流水线</h2>
+  <div class="pipeline">
+    <div class="pipe-step">
+      <div class="step-num">第1步</div>
+      <div class="step-title">查询向量化（Query Embedding）</div>
+      <div class="step-desc">用户打字问一个问题进入ChatGPT、Perplexity或Gemini后，AI将问题转换成数学向量——一组代表语义的数字。这个过程只需要几毫秒。</div>
+    </div>
+    <div class="pipe-arrow">↓</div>
+    <div class="pipe-step">
+      <div class="step-num">第2步</div>
+      <div class="step-title">向量搜索（Vector Search）</div>
+      <div class="step-desc">AI搜索一个预构建的索引，里面包含数十亿个来自互联网的内容块。它找出与问题向量最相似的内容块。你的内容在这里跟整个互联网竞争。</div>
+    </div>
+    <div class="pipe-arrow">↓</div>
+    <div class="pipe-step">
+      <div class="step-num">第3步</div>
+      <div class="step-title">排序与上下文组装</div>
+      <div class="step-desc">最匹配的块按相关性打分，经过质量信号检查（时效性、域名权威、结构化数据），去重后组装成上下文窗口——通常是5-20个最能回答问题的块。</div>
+    </div>
+    <div class="pipe-arrow">↓</div>
+    <div class="pipe-step">
+      <div class="step-num">第4步</div>
+      <div class="step-title">生成与引用</div>
+      <div class="step-desc">大语言模型读取选中的上下文，生成自然语言答案。贡献了内容的来源会作为链接标注。如果你的内容不在那个上下文窗口里，再权威也没用。</div>
+    </div>
+  </div>
+
+  <h2>这对你意味着什么</h2>
+  <p>RAG流水线揭示了一个关键事实：<strong>在谷歌上排第1名没有用</strong>。AI搜索不用谷歌排名，它们用向量相似度——这意味着内容的格式和结构与内容本身的质量同样重要。</p>
+
+  <div class="cta-box">
+    <h3>你的品牌在AI搜索里被引用了吗？</h3>
+    <p>跨8大引擎检测你的品牌可见度。</p>
+    <a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="btn">购买 Deep Report $20 →</a>
+    <p class="cta-sub">或先<a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true">免费扫描</a></p>
+  </div>
+  <p style="font-size:13px;color:var(--z500);margin-top:32px"><em>发布于 2026年5月28日</em></p>
+  <a href="/zh/blog/" class="back-link">← 返回博客</a>
+</article>
+<footer class="container">
+  <span>GEO 审计 &copy; 2026</span>
+  <div class="footer-links">
+    <a href="/zh/#pricing">定价</a>
+    <a href="https://5529900303702.gumroad.com/l/sybuc">Deep Report</a>
+    <a href="mailto:djh973832@gmail.com">联系</a>
+    <a href="/zh/blog/">博客</a>
+  </div>
+</footer>
+<script async src="https://gumroad.com/js/gumroad.js"></script>
+</body>
+</html>
