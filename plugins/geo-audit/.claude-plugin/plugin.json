@@ -1,0 +1,8 @@
+{
+  "name": "geo-audit",
+  "version": "1.0.0",
+  "description": "Audit your brand's visibility across 8 generative AI engines (Doubao, DeepSeek, Qwen, Baidu + ChatGPT, Perplexity, Gemini, Claude). Checks citation rate, sentiment, competitor presence, and produces a prioritized GEO action plan.",
+  "author": {
+    "name": "trygeoaudit.com"
+  }
+}

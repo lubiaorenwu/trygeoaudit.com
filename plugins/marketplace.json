@@ -1,0 +1,15 @@
+{
+  "name": "geo-audit",
+  "owner": {
+    "name": "trygeoaudit.com"
+  },
+  "plugins": [
+    {
+      "name": "geo-audit",
+      "displayName": "GEO Audit",
+      "source": "./plugins/geo-audit",
+      "description": "Audit brand visibility across 8 generative AI engines (Doubao, DeepSeek, Qwen, Baidu + ChatGPT, Perplexity, Gemini, Claude). Checks citation rate, competitor presence, sentiment, and produces a prioritized GEO action plan.",
+      "homepage": "https://trygeoaudit.com"
+    }
+  ]
+}
