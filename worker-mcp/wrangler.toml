@@ -1,0 +1,6 @@
+name = "geo-audit-mcp"
+main = "worker.js"
+compatibility_date = "2026-05-20"
+
+[vars]
+TAVILY_API_KEY = ""

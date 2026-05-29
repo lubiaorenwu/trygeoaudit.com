@@ -20,3 +20,20 @@ Input a brand name and keywords. The engine queries each AI platform, parses res
 - Free Scan: https://trygeoaudit.com/#free-scan
 - Pricing: https://trygeoaudit.com/#pricing
 - Blog: https://trygeoaudit.com/blog/
+
+## MCP Server
+
+Brand visibility audit as an MCP-compatible service. Two tools:
+
+- `geo_audit` — full 8-engine audit with competitor comparison and recommendations
+- `free_scan` — quick single-engine check
+
+MCP endpoint: https://trygeoaudit.com/mcp
+
+## Geo-audit plugin
+
+Clone the GEO Audit Knowledge Work Plugin for Claude Code / Cowork:
+```
+claude plugin install geo-audit@knowledge-work-plugins
+```
+Plugin source: https://github.com/maomao52088/trygeoaudit.com/tree/main/plugins/geo-audit
