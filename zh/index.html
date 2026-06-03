@@ -37,10 +37,10 @@
   --hairline: rgba(232,236,244,0.06);
   --hairline-strong: rgba(232,236,244,0.1);
   --innerlight: rgba(232,236,244,0.04);
-  --accent: #06b6d4;
-  --accent-glow: #22d3ee;
-  --accent-dim: rgba(6,182,212,0.08);
-  --accent-dark: #0891b2;
+  --accent: #10b981;
+  --accent-glow: #34d399;
+  --accent-dim: rgba(16,185,129,0.10);
+  --accent-dark: #059669;
   --red: #f87171;
   --red-dim: rgba(248,113,113,0.08);
   --amber: #fbbf24;
@@ -78,7 +78,7 @@ main,header,footer,nav{position:relative;z-index:1}
 .announce a{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .announce a:hover{color:var(--accent-glow)}
 /* ===== FLOATING PILL NAV ===== */
-.nav-shell{position:sticky;top:20px;z-index:50;margin:20px auto 0;padding:6px;width:max-content;max-width:calc(100% - 56px);border-radius:999px;background:rgba(12,16,40,0.7);backdrop-filter:saturate(160%) blur(22px);-webkit-backdrop-filter:saturate(160%) blur(22px);box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 0 0 1px rgba(232,236,244,0.06),0 12px 36px -18px rgba(6,182,212,0.12)}
+.nav-shell{position:sticky;top:20px;z-index:50;margin:20px auto 0;padding:6px;width:max-content;max-width:calc(100% - 56px);border-radius:999px;background:rgba(12,16,40,0.7);backdrop-filter:saturate(160%) blur(22px);-webkit-backdrop-filter:saturate(160%) blur(22px);box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 0 0 1px rgba(232,236,244,0.06),0 12px 36px -18px rgba(16,185,129,0.12)}
 .nav-inner{display:flex;align-items:center;gap:10px;padding:6px 8px 6px 18px;border-radius:999px;background:rgba(7,11,26,0.5);box-shadow:inset 0 1px 0 rgba(255,255,255,0.03)}
 .nav-brand{font-weight:700;font-size:16px;letter-spacing:-0.02em;display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
 .nav-brand-mark{width:22px;height:22px;border-radius:8px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-glow) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.35),0 1px 2px rgba(10,10,10,0.18)}
@@ -86,7 +86,7 @@ main,header,footer,nav{position:relative;z-index:1}
 .nav-links a{display:inline-block;padding:9px 14px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:background 300ms var(--ease),color 300ms var(--ease)}
 .nav-links a:hover{background:var(--accent-dim);color:var(--ink)}
 .pill{display:inline-flex;align-items:center;gap:6px;padding:7px 7px 7px 16px;border-radius:999px;background:var(--accent);color:#fff;font:600 13px/1 var(--sans);cursor:pointer;border:none;text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,0.18),0 2px 8px var(--accent-dim);transition:transform 300ms var(--ease),box-shadow 300ms var(--ease)}
-.pill:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.22),0 4px 16px rgba(6,182,212,0.25)}
+.pill:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.22),0 4px 16px rgba(16,185,129,0.25)}
 .pill:active{transform:scale(0.98)}
 .pill .icon-wrap{width:26px;height:26px;border-radius:999px;background:rgba(255,255,255,0.15);display:inline-flex;align-items:center;justify-content:center;transition:transform 360ms var(--ease-spring),background 300ms var(--ease)}
 .pill:hover .icon-wrap{transform:translate(2px,-1px) scale(1.06);background:rgba(255,255,255,0.25)}
@@ -102,10 +102,10 @@ main,header,footer,nav{position:relative;z-index:1}
 .hero p.lede{color:var(--muted);font-size:17px;max-width:48ch;margin:0 0 34px;line-height:1.6}
 .hero .actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 /* Double-bezel card */
-.shell{padding:10px;border-radius:var(--shell-radius);background:rgba(12,16,40,0.4);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline),0 28px 56px -28px rgba(6,182,212,0.06),0 10px 24px -16px rgba(0,0,0,0.3)}
+.shell{padding:10px;border-radius:var(--shell-radius);background:rgba(12,16,40,0.4);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline),0 28px 56px -28px rgba(16,185,129,0.06),0 10px 24px -16px rgba(0,0,0,0.3)}
 .shell .core{border-radius:var(--core-radius);background:linear-gradient(180deg,rgba(20,28,60,0.6) 0%,rgba(8,12,30,0.8) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.04),inset 0 0 0 1px var(--hairline);padding:24px;overflow:hidden}
-.shell.accent{border-color:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,0.04),0 0 0 1px rgba(6,182,212,0.2),0 28px 56px -28px rgba(6,182,212,0.08)}
-.shell.accent .core{box-shadow:inset 0 1px 0 rgba(255,255,255,0.04),inset 0 0 0 1px rgba(6,182,212,0.08)}
+.shell.accent{border-color:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,0.04),0 0 0 1px rgba(16,185,129,0.2),0 28px 56px -28px rgba(16,185,129,0.08)}
+.shell.accent .core{box-shadow:inset 0 1px 0 rgba(255,255,255,0.04),inset 0 0 0 1px rgba(16,185,129,0.08)}
 /* Engine cards inside preview */
 .engine-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .ec{background:rgba(12,16,40,0.5);border-radius:14px;padding:16px 18px;box-shadow:inset 0 0 0 1px var(--hairline),inset 0 1px 0 rgba(255,255,255,0.03);transition:transform 300ms var(--ease)}
@@ -150,8 +150,8 @@ section.block{padding:100px 0;position:relative}
 /* ===== BENTO ===== */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
 .qa-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.b-card{padding:8px;border-radius:var(--shell-radius);background:rgba(12,16,40,0.3);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline),0 24px 48px -28px rgba(6,182,212,0.04);transition:transform 600ms var(--ease),box-shadow 600ms var(--ease)}
-.b-card:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline-strong),0 28px 60px -22px rgba(6,182,212,0.08)}
+.b-card{padding:8px;border-radius:var(--shell-radius);background:rgba(12,16,40,0.3);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline),0 24px 48px -28px rgba(16,185,129,0.04);transition:transform 600ms var(--ease),box-shadow 600ms var(--ease)}
+.b-card:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline-strong),0 28px 60px -22px rgba(16,185,129,0.08)}
 .b-card .core{border-radius:var(--core-radius);background:rgba(16,22,48,0.5);box-shadow:inset 0 1px 0 rgba(255,255,255,0.03),inset 0 0 0 1px var(--hairline);padding:28px;height:100%;display:flex;flex-direction:column}
 .b-card.dark .core{background:linear-gradient(180deg,#1A1A1A 0%,#0F0F0F 100%);color:#ECECEA}
 .b-card.dark .meta{color:rgba(255,255,255,0.5)}
@@ -280,8 +280,8 @@ section.block{padding:100px 0;position:relative}
 .faq-a{font-size:13.5px;line-height:1.7;color:var(--muted);margin-bottom:28px}
 .faq-a strong{color:var(--ink);font-weight:600}
 /* ===== CLOSING (dark) ===== */
-.closing{padding:100px 0;margin:40px 28px 28px;border-radius:40px;background:linear-gradient(180deg,rgba(6,182,212,0.06) 0%,rgba(7,11,26,0.9) 100%);color:var(--ink);position:relative;overflow:hidden;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.03),0 30px 80px -40px rgba(0,0,0,0.6)}
-.closing::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 300px at 30% 0%,rgba(6,182,212,0.12),transparent 70%);pointer-events:none}
+.closing{padding:100px 0;margin:40px 28px 28px;border-radius:40px;background:linear-gradient(180deg,rgba(16,185,129,0.06) 0%,rgba(7,11,26,0.9) 100%);color:var(--ink);position:relative;overflow:hidden;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.03),0 30px 80px -40px rgba(0,0,0,0.6)}
+.closing::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 300px at 30% 0%,rgba(16,185,129,0.12),transparent 70%);pointer-events:none}
 .closing-inner{position:relative;max-width:640px;padding:0 32px;margin:0 auto}
 .closing h2{font-size:clamp(36px,5vw,68px);font-weight:700;letter-spacing:-0.035em;line-height:1;margin:0 0 16px}
 .closing p{color:var(--muted);font-size:16px;margin:0 auto 28px;line-height:1.55}
@@ -517,7 +517,7 @@ letter-spacing: 0.06em;
 <div class="ec"><div class="e-name"><span class="e-icon" style="background:#10b981">G</span>GEO Audit</div><div class="e-stat"><strong>8 引擎</strong> · 品牌可见度 · <strong>免费/$20/$200</strong></div></div>
 <div class="ec"><div class="e-name"><span class="e-icon" style="background:#6366f1">Q</span>Agent Quality Guard</div><div class="e-stat"><strong>4 层防护</strong> · Agent 验证 · <strong>PH #115</strong></div></div>
 <div class="ec"><div class="e-name"><span class="e-icon" style="background:#f59e0b">R</span>小红书爆款套件</div><div class="e-stat"><strong>1600+ 下载</strong> · 内容提示词 · <strong>$3</strong></div></div>
-<div class="ec"><div class="e-name"><span class="e-icon" style="background:#06b6d4">A</span>GEO MCP 插件</div><div class="e-stat"><strong>5 个技能</strong> · Claude Cowork · <strong>开源</strong></div></div>
+<div class="ec"><div class="e-name"><span class="e-icon" style="background:#10b981">A</span>GEO MCP 插件</div><div class="e-stat"><strong>5 个技能</strong> · Claude Cowork · <strong>开源</strong></div></div>
 </div>
 <div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--hairline);text-align:center">
 <span style="font-size:10px;color:var(--muted)">TryGEO 工具集的一部分</span>
