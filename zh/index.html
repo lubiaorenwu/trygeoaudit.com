@@ -3,1210 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TryGEO — AI 工具集 · 品牌审计 · Agent 验证 · 内容策略</title>
-<meta name="description" content="AI 时代工具集：8 引擎品牌可见度审计、AI Agent 质量验证、小红书内容套件。为独立开发者、创始人和创作者打造。">
-<script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "SoftwareApplication",
-"name": "TryGEO",
-  "applicationCategory": "DeveloperApplication",
-"operatingSystem": "Web",
-"description": "AI 时代工具集：品牌可见度审计、AI Agent 质量验证、内容优化工具。",
-  "url": "https://trygeoaudit.com",
-  "offers": [
-    {"@type": "Offer", "name": "GEO 审计 - 免费扫描", "price": "0", "priceCurrency": "USD"},
-    {"@type": "Offer", "name": "GEO 审计 - 深度报告", "price": "20", "priceCurrency": "USD"}
-  ],
-  "author": {"@type": "Organization", "name": "TryGEO", "url": "https://trygeoaudit.com"}
-}
-</script>
-<!-- Google tag (gtag.js) -->
+<title>TryGEO — AI 怎么看你？</title>
+<meta name="description" content="看看 AI 怎么评价你的品牌。三个工具：可见度审计、Agent 质量检测、内容套件。没有废话，只有答案。">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5401VR64N9"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5401VR64N9');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
---canvas: #F2F2F0;
---canvas-2: #E8E8E5;
---ink: #0A0A0A;
---ink-2: #18181B;
---muted: #57575A;
---hairline: rgba(10,10,10,0.07);
---hairline-strong: rgba(10,10,10,0.11);
---innerlight: rgba(255,255,255,0.65);
---accent: #10b981;
---accent-glow: #34d399;
---accent-dim: rgba(16,185,129,0.10);
---accent-dark: #059669;
---red: #ef4444;
---red-dim: rgba(239,68,68,0.08);
---amber: #f59e0b;
---sans: 'Plus Jakarta Sans', 'Geist', 'Inter', system-ui, sans-serif;
---mono: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
---ease: cubic-bezier(0.32, 0.72, 0, 1);
---ease-spring: cubic-bezier(0.16, 1.16, 0.3, 1);
---shell-radius: 2.25rem;
---core-radius: calc(2.25rem - 0.4rem);
+:root{
+  --bg:#F2F2F0;--ink:#0c0c0c;--muted:#666;--hair:rgba(0,0,0,.06);--hair2:rgba(0,0,0,.1);
+  --accent:#10b981;--accent2:#34d399;--accent-dim:rgba(16,185,129,.08);
+  --sans:'Figtree',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.32,.72,0,1);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-background:var(--canvas);
-color:var(--ink);
-font-family:var(--sans);
-font-size:16px;line-height:1.5;
-letter-spacing:-0.005em;
--webkit-font-smoothing:antialiased;
-overflow-x:hidden;
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.w{max-width:1200px;margin:0 auto;padding:0 28px}
+
+/* AMBIENT */
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.glow div{position:absolute;border-radius:50%;filter:blur(100px);opacity:.1}
+.g1{width:600px;height:600px;background:#34d399;top:-120px;left:-160px}
+.g2{width:450px;height:450px;background:#D4C5A9;bottom:-80px;right:-100px}
+.g3{width:350px;height:350px;background:#818cf8;top:50%;left:50%;transform:translate(-50%,-50%)}
+header,main,footer{position:relative;z-index:1}
+
+/* NAV */
+nav{display:flex;align-items:center;gap:24px;padding:18px 0;border-bottom:1px solid var(--hair)}
+nav .mark{font-size:15px;font-weight:700;text-decoration:none;color:var(--ink)}
+nav .sp{flex:1}
+nav a{font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .15s}
+nav a:hover{color:var(--ink)}
+
+/* HERO */
+.hero{padding:120px 0 100px;text-align:center;border-bottom:1px solid var(--hair)}
+.hero h1{
+  font-size:clamp(2.4rem,7vw,5rem);font-weight:800;line-height:1.05;
+  letter-spacing:-.04em;max-width:900px;margin:0 auto 16px;
 }
-.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
-/* ===== AMBIENT MESH ===== */
-.mesh{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.mesh::before,.mesh::after{content:'';position:absolute;border-radius:50%;filter:blur(90px);opacity:0.14;will-change:transform}
-.mesh::before{width:720px;height:720px;background:radial-gradient(circle at 30% 30%,var(--accent-glow),transparent 60%);top:-180px;left:-160px;animation:drift1 28s var(--ease) infinite alternate}
-.mesh::after{width:560px;height:560px;background:radial-gradient(circle at 60% 60%,#D4C5A9,transparent 60%);top:120px;right:-140px;animation:drift2 36s var(--ease) infinite alternate}
-@keyframes drift1{from{transform:translate3d(0,0,0)}to{transform:translate3d(80px,60px,0)}}
-@keyframes drift2{from{transform:translate3d(0,0,0)}to{transform:translate3d(-60px,40px,0)}}
-@media(prefers-reduced-motion:reduce){.mesh::before,.mesh::after{animation:none}}
-main,header,footer,nav{position:relative;z-index:1}
-/* ===== ANNOUNCEMENT BAR ===== */
-.announce{background:linear-gradient(135deg,var(--accent-dim),rgba(16,185,129,0.03));border-bottom:1px solid rgba(16,185,129,0.12);text-align:center;padding:9px 20px;font-size:12.5px;font-weight:500;color:var(--accent-dark);letter-spacing:-0.005em}
-.announce strong{font-weight:700;color:var(--accent)}
-.announce a{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
-.announce a:hover{color:var(--accent-glow)}
-/* ===== FLOATING PILL NAV ===== */
-.nav-shell{position:sticky;top:20px;z-index:50;margin:20px auto 0;padding:6px;width:max-content;max-width:calc(100% - 56px);border-radius:999px;background:rgba(255,255,255,0.48);backdrop-filter:saturate(160%) blur(22px);-webkit-backdrop-filter:saturate(160%) blur(22px);box-shadow:0 1px 0 rgba(255,255,255,0.45) inset,0 0 0 1px rgba(10,10,10,0.05),0 12px 36px -18px rgba(10,10,10,0.18)}
-.nav-inner{display:flex;align-items:center;gap:10px;padding:6px 8px 6px 18px;border-radius:999px;background:rgba(255,255,255,0.55);box-shadow:inset 0 1px 0 rgba(255,255,255,0.6)}
-.nav-brand{font-weight:700;font-size:16px;letter-spacing:-0.02em;display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink)}
-.nav-brand-mark{width:22px;height:22px;border-radius:8px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-glow) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.35),0 1px 2px rgba(10,10,10,0.18)}
-.nav-links{list-style:none;display:flex;gap:4px;margin:0;padding:0}
-.nav-links a{display:inline-block;padding:9px 14px;border-radius:999px;color:var(--ink);text-decoration:none;font-size:13px;font-weight:500;transition:background 300ms var(--ease)}
-.nav-links a:hover{background:rgba(10,10,10,0.05)}
-.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 7px 7px 16px;border-radius:999px;background:var(--accent);color:#fff;font:600 13px/1 var(--sans);cursor:pointer;border:none;text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,0.18),0 2px 8px var(--accent-dim);transition:transform 300ms var(--ease),box-shadow 300ms var(--ease)}
-.pill:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.22),0 4px 16px rgba(16,185,129,0.2)}
-.pill:active{transform:scale(0.98)}
-.pill .icon-wrap{width:26px;height:26px;border-radius:999px;background:rgba(255,255,255,0.18);display:inline-flex;align-items:center;justify-content:center;transition:transform 360ms var(--ease-spring),background 300ms var(--ease)}
-.pill:hover .icon-wrap{transform:translate(2px,-1px) scale(1.06);background:rgba(255,255,255,0.28)}
-.pill svg{width:12px;height:12px;stroke:currentColor;fill:none}
-.pill-outline{background:rgba(255,255,255,0.5);color:var(--ink);box-shadow:inset 0 0 0 1px var(--hairline-strong),0 1px 2px rgba(0,0,0,0.04)}
-.pill-outline:hover{background:rgba(255,255,255,0.85);box-shadow:inset 0 0 0 1px var(--hairline-strong),0 2px 8px rgba(0,0,0,0.06)}
-/* ===== HERO ===== */
-.hero{min-height:90dvh;padding:80px 0 100px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:48px;align-items:center}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.55);box-shadow:inset 0 0 0 1px var(--hairline);font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted)}
-.eyebrow .dot{width:6px;height:6px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 4px var(--accent-dim)}
-.hero h1{font-size:clamp(44px,6.5vw,80px);font-weight:700;line-height:0.96;letter-spacing:-0.038em;margin:22px 0 28px;max-width:14ch}
-.hero h1 .soft{display:block;font-size:clamp(20px,2.2vw,26px);color:var(--muted);font-weight:500;margin-top:14px;letter-spacing:-0.015em}
-.hero p.lede{color:var(--muted);font-size:17px;max-width:48ch;margin:0 0 34px;line-height:1.6}
-.hero .actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-/* Double-bezel card */
-.shell{padding:10px;border-radius:var(--shell-radius);background:rgba(255,255,255,0.5);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline),0 28px 56px -28px rgba(10,10,10,0.2),0 10px 24px -16px rgba(10,10,10,0.08)}
-.shell .core{border-radius:var(--core-radius);background:linear-gradient(180deg,#FAFAF7 0%,#EFEFEB 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,0.85),inset 0 0 0 1px var(--hairline);padding:24px;overflow:hidden}
-.shell.accent{border-color:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,0.5),0 0 0 1px rgba(16,185,129,0.25),0 28px 56px -28px rgba(16,185,129,0.15)}
-.shell.accent .core{box-shadow:inset 0 1px 0 rgba(255,255,255,0.85),inset 0 0 0 1px rgba(16,185,129,0.1)}
-/* Engine cards inside preview */
-.engine-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.ec{background:rgba(255,255,255,0.7);border-radius:14px;padding:16px 18px;box-shadow:inset 0 0 0 1px var(--hairline),inset 0 1px 0 rgba(255,255,255,0.8);transition:transform 300ms var(--ease)}
-.ec:hover{transform:translateY(-2px)}
-.ec .e-name{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:3px;letter-spacing:-0.01em;display:flex;align-items:center;gap:7px}
-.ec .e-icon{width:20px;height:20px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0}
-.ec .e-stat{font-size:10.5px;color:var(--muted);line-height:1.4}
-.ec .e-stat strong{color:var(--accent);font-weight:600}
-/* ===== SECTIONS ===== */
-section.block{padding:100px 0;position:relative}
-.section-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:52px}
-.section-head h2{font-size:clamp(34px,4.5vw,58px);font-weight:700;letter-spacing:-0.035em;line-height:1.02;margin:12px 0 0;max-width:14ch}
-.section-head p{color:var(--muted);font-size:16px;max-width:44ch;margin:0;line-height:1.55}
-/* ===== STATS STRIP ===== */
-.stats-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);margin:60px 0}
-.stat-cell{padding:28px 20px;border-right:1px solid var(--hairline)}
-.stat-cell:last-child{border-right:none}
-.stat-cell .sv{font-size:30px;font-weight:700;letter-spacing:-0.03em;color:var(--ink);display:flex;align-items:baseline;gap:4px}
-.stat-cell .su{font-size:14px;color:var(--accent);font-weight:500}
-.stat-cell .sl{font-size:12px;color:var(--muted);line-height:1.5;margin-top:4px}
-/* ===== PAIN CARDS ===== */
-.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.pain-card{padding:8px;border-radius:var(--shell-radius);background:rgba(239,68,68,0.06);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),0 0 0 1px rgba(239,68,68,0.1)}
-.pain-card .core{border-radius:var(--core-radius);background:#FCFCFA;box-shadow:inset 0 1px 0 rgba(255,255,255,0.85),inset 0 0 0 1px var(--hairline);padding:28px}
-.pain-num{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.14em;color:var(--red);margin-bottom:12px}
-.pain-quote{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:10px;line-height:1.4;letter-spacing:-0.01em}
-.pain-body{font-size:13px;line-height:1.6;color:var(--muted)}
-/* ===== MARQUEE ===== */
-.marquee{padding:48px 0;overflow:hidden;mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)}
-.marquee-track{display:flex;gap:56px;width:max-content;animation:track 28s linear infinite;will-change:transform}
-.marquee:hover .marquee-track{animation-play-state:paused}
-@keyframes track{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.marquee-item{font-weight:600;font-size:16px;letter-spacing:-0.01em;color:var(--ink);opacity:0.5;white-space:nowrap}
-.marquee-item::before{content:'✦';color:var(--accent);margin-right:14px;font-size:9px;opacity:0.7}
-/* ===== STEPS ===== */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-.step{padding:40px 28px 40px 0;border-top:2px solid var(--hairline-strong);position:relative}
-.step:last-child{border-bottom:2px solid var(--hairline-strong)}
-.step-num{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.14em;color:var(--accent);margin-bottom:12px}
-.step h3{font-size:19px;font-weight:600;color:var(--ink);margin-bottom:10px;letter-spacing:-0.01em}
-.step p{font-size:13px;line-height:1.6;color:var(--muted);max-width:220px}
-/* ===== BENTO ===== */
-.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-.qa-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.b-card{padding:8px;border-radius:var(--shell-radius);background:rgba(255,255,255,0.5);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline),0 24px 48px -28px rgba(10,10,10,0.16);transition:transform 600ms var(--ease),box-shadow 600ms var(--ease)}
-.b-card:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline),0 28px 60px -22px rgba(10,10,10,0.2)}
-.b-card .core{border-radius:var(--core-radius);background:#FCFCFA;box-shadow:inset 0 1px 0 rgba(255,255,255,0.85),inset 0 0 0 1px var(--hairline);padding:28px;height:100%;display:flex;flex-direction:column}
-.b-card.dark .core{background:linear-gradient(180deg,#1A1A1A 0%,#0F0F0F 100%);color:#ECECEA}
-.b-card.dark .meta{color:rgba(255,255,255,0.5)}
-.b-card.dark h3,.b-card.dark .f-icon{color:#fff}
-.b-card.dark p,.b-card.dark .f-detail{color:rgba(255,255,255,0.6)}
-.b-card.dark .f-detail li::before{color:var(--accent)}
-.b-card .meta{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
-.b-card h3{font-size:22px;font-weight:700;letter-spacing:-0.025em;line-height:1.1;margin:0 0 10px}
-.b-card p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.55;max-width:36ch}
-.b-card .f-icon{font-size:26px;margin-bottom:16px}
-.b-card .f-detail{list-style:none;margin-top:18px;padding-top:14px;border-top:1px solid var(--hairline)}
-.b-card .f-detail li{font-size:12px;color:var(--muted);padding:6px 0;display:flex;align-items:center;gap:8px}
-.b-card .f-detail li::before{content:'✓';color:var(--accent);font-weight:700;font-size:10px;flex-shrink:0}
-.span-2{grid-column:span 2}
-.span-3{grid-column:span 3}
-.span-4{grid-column:span 4}
-.span-6{grid-column:span 6}
-.row-2{grid-row:span 2}
-/* ===== ENGINE SHOWCASE ===== */
-.eng-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.eng{text-align:center;padding:28px 16px}
-.eng .eng-icon{font-size:30px;margin-bottom:12px}
-.eng .eng-name{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:3px}
-.eng .eng-parent{font-size:11px;color:var(--muted);margin-bottom:10px}
-.eng .eng-metric{font-size:12px;color:var(--accent);font-weight:600}
-/* ===== COMPARISON TABLE ===== */
-.compare-wrap{overflow-x:auto}
-.compare-table{width:100%;border-collapse:collapse}
-.compare-table td{padding:13px 18px;font-size:13.5px;border-bottom:1px solid var(--hairline);color:var(--ink)}
-.compare-table tr:last-child td{border-bottom:none}
-.compare-highlight td{background:var(--accent-dim)}
-.check{color:var(--accent);font-weight:700}
-.cross{color:rgba(10,10,10,0.2)}
-/* ===== REPORT PREVIEW ===== */
-.report-preview{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-.report-mock{background:linear-gradient(180deg,#1A1A1A 0%,#0F0F0F 100%);border-radius:16px;padding:24px;color:#ECECEA;font-size:11px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.05)}
-.rm-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.rm-logo{font-size:14px;font-weight:500;color:rgba(255,255,255,0.5)}
-.rm-logo strong{font-weight:700;color:#fff}
-.rm-badge{font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--accent);border:1px solid rgba(16,185,129,0.3);padding:3px 10px;border-radius:20px}
-.rm-brand{font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
-.rm-row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:10px;align-items:center}
-.rm-row.rm-head{font-weight:600;color:rgba(255,255,255,0.35);font-size:9px;text-transform:uppercase;letter-spacing:0.04em}
-.rm-hit{color:var(--accent);font-weight:600}
-.rm-miss{color:var(--red)}
-.rm-pos{color:var(--accent)}
-.rm-neu{color:var(--amber)}
-.rm-comp{color:rgba(255,255,255,0.35)}
-.rm-insight{background:var(--red-dim);color:var(--red);font-size:9px;font-weight:500;padding:8px 12px;border-radius:8px;margin:12px 0;text-align:center}
-.rm-footer{font-size:8px;color:rgba(255,255,255,0.2);text-align:center;letter-spacing:0.03em}
-.report-specs{list-style:none}
-.report-specs li{padding:11px 0;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--hairline)}
-.report-specs li:last-child{border-bottom:none}
-.report-specs .rs-icon{font-size:16px;flex-shrink:0}
-/* ===== FREE SCAN ===== */
-.fscan-shell{max-width:560px}
-.fscan-core{text-align:center}
-.fscan-steps{display:flex;gap:20px;margin:24px 0;justify-content:center}
-.fs-step{text-align:center}
-.fs-num{width:28px;height:28px;border-radius:50%;background:var(--accent-dim);color:var(--accent);font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-bottom:8px}
-.fs-txt{font-size:11px;color:var(--muted)}
-.fscan-note{font-size:11px;color:var(--muted);margin-top:14px}
-/* ===== DEMO CARD ===== */
-.demo-stat{font-size:52px;font-weight:700;color:var(--accent);line-height:1;margin:4px 0}
-.demo-stat-label{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px}
-.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
-.demo-ecard{padding:8px 10px;border-radius:10px;display:flex;align-items:center;gap:6px;font-size:11px}
-.demo-ecard.met{background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.12)}
-.demo-ecard.miss{background:rgba(239,68,68,0.04);border:1px solid rgba(239,68,68,0.08)}
-.demo-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.demo-dot.green{background:var(--accent)}
-.demo-dot.gray{background:rgba(10,10,10,0.15)}
-.demo-ename{color:var(--ink);font-weight:500}
-.demo-estatus{font-size:9px;margin-left:auto}
-.demo-estatus.found{color:var(--accent)}
-.demo-estatus.nf{color:var(--red)}
-/* ===== BLOG BANNER ===== */
-.bb-card{padding:8px;border-radius:var(--shell-radius);background:rgba(16,185,129,0.06);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),0 0 0 1px rgba(16,185,129,0.12);transition:transform 400ms var(--ease),box-shadow 400ms var(--ease)}
-.bb-card:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),0 0 0 1px rgba(16,185,129,0.2),0 16px 40px rgba(16,185,129,0.1)}
-.bb-card .core{border-radius:var(--core-radius);background:#FCFCFA;box-shadow:inset 0 1px 0 rgba(255,255,255,0.85),inset 0 0 0 1px rgba(16,185,129,0.08);padding:28px 32px;display:flex;align-items:center;gap:28px}
-.bb-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-dim);border:1px solid rgba(16,185,129,0.18);border-radius:20px;padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--accent);white-space:nowrap;text-transform:uppercase;flex-shrink:0}
-.bb-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse-dot 2s var(--ease) infinite}
-@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 var(--accent-dim)}50%{box-shadow:0 0 0 6px transparent}}
-.bb-title{font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-0.01em;margin-bottom:6px}
-.bb-title .bb-highlight{color:var(--accent)}
-.bb-excerpt{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
-.bb-link{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--accent);text-decoration:none}
-.bb-link svg{width:14px;height:14px;transition:transform 0.2s}
-.bb-link:hover svg{transform:translateX(3px)}
-.bb-stats{display:flex;gap:16px;margin-top:6px;font-size:10.5px;color:var(--muted)}
-/* ===== PRICING TIERS ===== */
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.pt-name{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.pt-sub{font-size:12px;color:var(--muted);margin-bottom:20px}
-.pt-price{font-size:42px;font-weight:700;letter-spacing:-0.04em;color:var(--ink);margin-bottom:2px}
-.pt-price .pt-unit{font-size:14px;color:var(--muted);font-weight:400}
-.pt-desc{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.5;min-height:38px}
-.pt-feat{list-style:none;margin-bottom:24px;flex:1}
-.pt-feat li{padding:8px 0;font-size:12.5px;color:var(--ink);display:flex;align-items:flex-start;gap:8px;border-bottom:1px solid var(--hairline)}
-.pt-feat li:last-child{border-bottom:none}
-.pt-feat .pf-check{color:var(--accent);font-weight:700;flex-shrink:0;font-size:11px;margin-top:1px}
-.pt-btn{display:block;width:100%;text-align:center;padding:13px 20px;border-radius:999px;font:600 13.5px/1 var(--sans);cursor:pointer;text-decoration:none;transition:transform 300ms var(--ease),box-shadow 300ms var(--ease);border:none;margin-top:auto}
-.pt-btn-primary{background:var(--accent);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,0.18)}
-.pt-btn-primary:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.22),0 4px 16px var(--accent-dim)}
-.pt-btn-outline{background:rgba(255,255,255,0.5);color:var(--ink);box-shadow:inset 0 0 0 1px var(--hairline-strong)}
-.pt-btn-outline:hover{transform:translateY(-1px);background:rgba(255,255,255,0.85)}
-.pt-guarantee{text-align:center;font-size:10.5px;color:var(--muted);margin-top:10px}
-.pricing-feat{border-color:var(--accent);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px rgba(16,185,129,0.25),0 28px 56px -28px rgba(16,185,129,0.2)}
-.pricing-feat::before{content:'MOST POPULAR';position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:9px;font-weight:700;letter-spacing:0.1em;padding:4px 12px;border-radius:20px}
-.pricing-note{text-align:center;margin-top:36px;font-size:13px;color:var(--muted)}
-.pricing-note a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
-/* ===== TOOL CARDS ===== */
-.tool-card{text-decoration:none;display:flex;gap:14px;align-items:flex-start}
-.tool-card h4{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px}
-.tool-card .tool-desc{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:8px}
-.tool-card .tool-price{font-size:13px;font-weight:700;color:var(--accent)}
-/* ===== TESTIMONIALS ===== */
-.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.testimonial .t-stars{color:var(--accent);font-size:13px;margin-bottom:10px;letter-spacing:2px}
-.testimonial .t-text{font-size:13px;line-height:1.65;color:var(--muted);margin-bottom:16px;font-style:italic}
-.testimonial .t-author{font-size:13px;font-weight:600;color:var(--ink)}
-.testimonial .t-role{font-size:11px;color:var(--muted)}
-/* ===== FAQ ===== */
-.faq-list{max-width:760px}
-.faq-q{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:8px;letter-spacing:-0.01em}
-.faq-a{font-size:13.5px;line-height:1.7;color:var(--muted);margin-bottom:28px}
-.faq-a strong{color:var(--ink);font-weight:600}
-/* ===== CLOSING (dark) ===== */
-.closing{padding:100px 0;margin:40px 28px 28px;border-radius:40px;background:linear-gradient(180deg,#131313 0%,#050505 100%);color:#F2F2F0;position:relative;overflow:hidden;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.08),0 30px 80px -40px rgba(10,10,10,0.6)}
-.closing::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 300px at 30% 0%,rgba(16,185,129,0.28),transparent 70%);pointer-events:none}
-.closing-inner{position:relative;max-width:640px;padding:0 32px;margin:0 auto}
-.closing h2{font-size:clamp(36px,5vw,68px);font-weight:700;letter-spacing:-0.035em;line-height:1;margin:0 0 16px}
-.closing p{color:rgba(242,242,240,0.6);font-size:16px;margin:0 auto 28px;line-height:1.55}
-.closing .pill{background:var(--canvas);color:var(--ink)}
-.closing .pill .icon-wrap{background:rgba(10,10,10,0.08)}
-/* ===== LIVE TOAST ===== */
-.live-toast{position:fixed;bottom:24px;right:24px;z-index:9998;padding:8px;border-radius:var(--shell-radius);background:rgba(255,255,255,0.55);box-shadow:inset 0 1px 0 var(--innerlight),0 0 0 1px var(--hairline),0 16px 36px -18px rgba(10,10,10,0.2);max-width:340px;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity 0.4s var(--ease),transform 0.4s var(--ease)}
-.live-toast.show{opacity:1;transform:translateY(0)}
-.live-toast .core{border-radius:var(--core-radius);background:#FCFCFA;box-shadow:inset 0 1px 0 rgba(255,255,255,0.85),inset 0 0 0 1px var(--hairline);padding:12px 14px;display:flex;align-items:center;gap:10px}
-.lt-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:pulse-dot 2s var(--ease) infinite}
-.lt-text{font-size:12px;color:var(--muted);line-height:1.5}
-.lt-text strong{color:var(--ink);font-weight:600}
-.lt-time{font-size:10px;color:rgba(10,10,10,0.3);white-space:nowrap}
-/* ===== FOOTER ===== */
-footer{padding:32px 28px 40px;font-size:12px;color:var(--muted);letter-spacing:0.02em}
-footer .f-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1240px;margin:0 auto}
-footer a{color:var(--muted);text-decoration:none}
-footer a:hover{color:var(--ink)}
-/* ===== REVEAL ANIMATION ===== */
-.reveal{opacity:0;transform:translateY(16px);filter:blur(4px);transition:opacity 800ms var(--ease),transform 800ms var(--ease),filter 800ms var(--ease)}
-.reveal.is-in{opacity:1;transform:none;filter:none}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;filter:none;transition:none}}
-/* ===== RESPONSIVE ===== */
-@media(max-width:980px){
-.hero{grid-template-columns:1fr;padding-top:40px;padding-bottom:60px;min-height:auto}
-.nav-links{display:none}
-.section-head{grid-template-columns:1fr;gap:14px}
-.stats-strip{grid-template-columns:1fr 1fr}
-.stat-cell{border-right:none}
-.stat-cell:nth-child(odd){border-right:1px solid var(--hairline)}
-.stat-cell:nth-child(n+3){border-top:1px solid var(--hairline)}
-.pain-grid{grid-template-columns:1fr}
-.steps{grid-template-columns:1fr}
-.step{border-top:none;padding:24px 0;border-bottom:1px solid var(--hairline-strong)}
-.step:last-child{border-bottom:none}
-.bento{grid-template-columns:1fr}
-.span-2,.span-3,.span-4,.span-6{grid-column:span 1}
-.row-2{grid-row:auto}
-.eng-grid{grid-template-columns:1fr 1fr}
-.report-preview{grid-template-columns:1fr}
-.pricing-grid{grid-template-columns:1fr}
-.testimonials-grid{grid-template-columns:1fr}
-.closing{margin:28px 16px 16px;padding:64px 0}
-.bb-card .core{flex-direction:column;text-align:center;padding:24px}
-.nav-shell{max-width:100%;margin-left:8px;margin-right:8px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:17px;color:var(--muted);max-width:460px;margin:0 auto 32px}
+.hero .btn{display:inline-flex;align-items:center;gap:6px;padding:11px 27px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;background:var(--ink);color:var(--bg);transition:all .2s var(--ease)}.hero .btn:hover{transform:scale(1.04);background:#1a1a1a}
+.hero .sec{display:inline-block;margin-left:10px;padding:11px 27px;border-radius:100px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;border:1px solid var(--hair2);transition:all .2s var(--ease)}.hero .sec:hover{background:rgba(255,255,255,.6)}
+
+/* PRODUCT BLOCKS */
+.products{padding:0}
+.prod{border-bottom:1px solid var(--hair);position:relative}
+.prod-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:100px 0;align-items:center}
+@media(max-width:800px){.prod-inner{grid-template-columns:1fr;gap:24px;padding:60px 0}}
+.prod-left .tag{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:0;margin-bottom:14px;text-transform:uppercase}
+.prod-left h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:10px}
+.prod-left p{font-size:15px;color:var(--muted);line-height:1.55;max-width:420px;margin-bottom:22px}
+.prod-left .actions{display:flex;gap:10px;flex-wrap:wrap}
+.prod-left .actions a{padding:8px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s var(--ease)}
+.prod-left .actions a.pr{background:var(--ink);color:var(--bg)}.prod-left .actions a.pr:hover{transform:scale(1.04)}
+.prod-left .actions a.se{color:var(--ink);border:1px solid var(--hair2)}.prod-left .actions a.se:hover{background:rgba(255,255,255,.6);transform:scale(1.04)}
+.prod-right{
+  display:flex;gap:12px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.6;
 }
-@media(max-width:600px){
-.stats-strip{grid-template-columns:1fr}
-.stat-cell{border-right:none;border-top:1px solid var(--hairline)}
-.stat-cell:first-child{border-top:none}
+.prod-right .stat{
+  background:rgba(255,255,255,.5);border:1px solid var(--hair);
+  border-radius:14px;padding:20px;flex:1;min-width:140px;
 }
-/* ===== CHINESE TYPOGRAPHY OVERRIDES ===== */
-html[lang="zh-CN"] {
---sans: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', 'WenQuanYi Micro Hei', system-ui, sans-serif;
+.prod-right .stat .num{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--ink);font-family:var(--sans);letter-spacing:-.03em;line-height:1}
+.prod-right .stat .lb{font-size:12px;margin-top:4px}
+
+/* tag colors */
+.prod-0 .tag{background:var(--accent-dim);color:var(--accent)}
+.prod-1 .tag{background:rgba(245,158,11,.1);color:#d97706}
+.prod-2 .tag{background:rgba(124,58,237,.1);color:#7c3aed}
+
+/* CTA strip */
+.cta-strip{
+  padding:80px 0;text-align:center;border-bottom:1px solid var(--hair);
+  background:linear-gradient(180deg,transparent,var(--accent-dim),transparent);
 }
-html[lang="zh-CN"] body {
-letter-spacing: 0;
-line-height: 1.75;
-font-weight: 400;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-text-rendering: optimizeLegibility;
-}
-html[lang="zh-CN"] h1, 
-html[lang="zh-CN"] h2, 
-html[lang="zh-CN"] h3, 
-html[lang="zh-CN"] h4 {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .hero h1 {
-letter-spacing: 0;
-line-height: 1.15;
-font-weight: 700;
-}
-html[lang="zh-CN"] .hero h1 .soft {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .eyebrow {
-letter-spacing: 0.08em;
-font-size: 11px;
-}
-html[lang="zh-CN"] .step-num,
-html[lang="zh-CN"] .meta,
-html[lang="zh-CN"] .pt-name,
-html[lang="zh-CN"] .bb-badge {
-letter-spacing: 0.06em;
-}
-html[lang="zh-CN"] .nav-links a {
-font-size: 14px;
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .nav-brand {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .section-head h2 {
-letter-spacing: 0;
-line-height: 1.2;
-}
-html[lang="zh-CN"] .hero p.lede {
-letter-spacing: 0;
-line-height: 1.8;
-font-size: 17px;
-}
-html[lang="zh-CN"] .faq-q {
-letter-spacing: 0;
-line-height: 1.65;
-}
-html[lang="zh-CN"] .faq-a {
-letter-spacing: 0;
-line-height: 1.85;
-}
-html[lang="zh-CN"] .pain-quote {
-letter-spacing: 0;
-line-height: 1.55;
-}
-html[lang="zh-CN"] .pain-body {
-letter-spacing: 0;
-line-height: 1.8;
-}
-html[lang="zh-CN"] .step p {
-letter-spacing: 0;
-line-height: 1.75;
-}
-html[lang="zh-CN"] .b-card p {
-letter-spacing: 0;
-line-height: 1.7;
-}
-html[lang="zh-CN"] .b-card h3 {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .compare-table td {
-letter-spacing: 0;
-font-size: 13.5px;
-}
-html[lang="zh-CN"] .pt-desc {
-letter-spacing: 0;
-line-height: 1.7;
-}
-html[lang="zh-CN"] .pt-feat li {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .testimonial .t-text {
-letter-spacing: 0;
-line-height: 1.75;
-}
-html[lang="zh-CN"] .tool-desc {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .announce {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .marquee-item {
-letter-spacing: 0;
-font-size: 15px;
-}
-html[lang="zh-CN"] .closing p {
-letter-spacing: 0;
-line-height: 1.8;
-}
-html[lang="zh-CN"] .closing h2 {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .fscan-note {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .pricing-note {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .report-specs li {
-letter-spacing: 0;
-line-height: 1.6;
-}
-html[lang="zh-CN"] .stat-cell .sl {
-letter-spacing: 0;
-line-height: 1.6;
-}
-html[lang="zh-CN"] .bb-excerpt {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .bb-title {
-letter-spacing: 0;
-}
-html[lang="zh-CN"] .demo-stat-label {
-letter-spacing: 0.06em;
-}
+.cta-strip h2{font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:700;letter-spacing:-.03em;margin-bottom:8px}
+.cta-strip p{font-size:15px;color:var(--muted);margin-bottom:24px}
+.cta-strip .btn{display:inline-flex;align-items:center;gap:6px;padding:11px 27px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;background:var(--ink);color:var(--bg);transition:all .2s var(--ease)}.cta-strip .btn:hover{transform:scale(1.04)}
+.cta-strip .sml{display:inline-block;margin-left:10px;padding:11px 27px;border-radius:100px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;border:1px solid var(--hair2);transition:all .2s var(--ease)}.cta-strip .sml:hover{background:rgba(255,255,255,.6)}
+
+/* FOOTER */
+footer{display:flex;justify-content:space-between;align-items:center;padding:36px 0;gap:16px;flex-wrap:wrap}
+footer .copy{font-size:13px;color:#999}
+footer .links{display:flex;gap:16px}
+footer .links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .15s}
+footer .links a:hover{color:var(--ink)}
 </style>
-<link rel="alternate" hreflang="en" href="https://trygeoaudit.com/">
-<link rel="alternate" hreflang="zh-CN" href="https://trygeoaudit.com/zh/">
 </head>
 <body>
-<div class="mesh" aria-hidden="true"></div>
-<!-- Announcement -->
-<div class="announce">
-  🛡️ <strong>Agent Quality Guard</strong> — AI Agent 质量验证工具，已上线 Product Hunt。 <a href="https://www.producthunt.com/products/agent-quality-guard" target="_blank">去投票 →</a>
-</div>
-<!-- Nav -->
-<div class="nav-shell">
-<div class="nav-inner">
-<a href="#" class="nav-brand">
-<span class="nav-brand-mark"></span>GEO Audit
-</a>
-<ul class="nav-links">
-<li><a href="/" style="font-weight:600;color:var(--accent)">EN</a></li>
-<li><span style="color:var(--muted);font-size:13px">|</span></li>
-<li><a href="#products">产品</a></li>
-<li><a href="#pricing">定价</a></li>
-<li><a href="#faq">常见问题</a></li>
-<li><a href="/blog/">博客</a></li>
-</ul>
-<a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="pill" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'nav'})">
-深度报告
-<span class="icon-wrap"><svg viewBox="0 0 12 12" stroke-width="1.6"><path d="M2.5 6h7M6 2.5L9.5 6 6 9.5"/></svg></span>
-</a>
-</div>
-</div>
-<main>
-<!-- ===== HERO ===== -->
-<section class="wrap hero reveal">
-<div class="hero-copy">
-<span class="eyebrow"><span class="dot"></span>AI 工具集</span>
-<h1>AI 时代的工具<span class="soft">审计 · 验证 · 优化</span></h1>
-<p class="lede">三个产品，一个目标：帮你了解和掌控 AI 如何看待你的工作。从品牌可见度到 Agent 质量到内容策略——为独立开发者、创始人和创作者打造。</p>
-<div class="actions">
-<a href="#products" class="pill">
-查看全部产品
-<span class="icon-wrap"><svg viewBox="0 0 12 12" stroke-width="1.6"><path d="M2.5 6h7M6 2.5L9.5 6 6 9.5"/></svg></span>
-</a>
-<a href="#free-scan" class="pill pill-outline">免费 GEO 扫描 →</a>
-</div>
-</div>
-<aside class="shell">
-<div class="core">
-<div class="engine-grid">
-<div class="ec"><div class="e-name"><span class="e-icon" style="background:#10b981">G</span>GEO Audit</div><div class="e-stat"><strong>8 引擎</strong> · 品牌可见度 · <strong>免费/$20/$200</strong></div></div>
-<div class="ec"><div class="e-name"><span class="e-icon" style="background:#10b981">Q</span>Agent Quality Guard</div><div class="e-stat"><strong>4 层防护</strong> · Agent 验证 · <strong>PH #115</strong></div></div>
-<div class="ec"><div class="e-name"><span class="e-icon" style="background:#f59e0b">R</span>小红书爆款套件</div><div class="e-stat"><strong>1600+ 下载</strong> · 内容提示词 · <strong>$3</strong></div></div>
-<div class="ec"><div class="e-name"><span class="e-icon" style="background:#06b6d4">A</span>GEO MCP 插件</div><div class="e-stat"><strong>5 个技能</strong> · Claude Cowork · <strong>开源</strong></div></div>
-</div>
-<div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--hairline);text-align:center">
-<span style="font-size:10px;color:var(--muted)">TryGEO 工具集的一部分</span>
-</div>
-</div>
-</aside>
-</section>
-<!-- ===== STATS STRIP ===== -->
-<div class="stats-strip reveal">
-<div class="stat-cell"><div class="sv">8<span class="su">engines</span></div><div class="sl">覆盖中外 AI 引擎</div></div>
-<div class="stat-cell"><div class="sv">2.5<span class="su">B</span></div><div class="sl">八大引擎合并用户总量</div></div>
-<div class="stat-cell"><div class="sv">82<span class="su">%</span></div><div class="sl">的品牌不知道自己被 AI 引用了没</div></div>
-<div class="stat-cell"><div class="sv">~20<span class="su">min</span></div><div class="sl">从下单到报告平均交付时间</div></div>
-<div class="stat-cell"><div class="sv">Free<span class="su">→$20</span></div><div class="sl">从免费扫描开始。再升级深度审计。</div></div>
-<div class="stat-cell"><div class="sv">94<span class="su">%</span></div><div class="sl">的 CMO 在 2026 年增加 AEO 预算</div></div>
-</div>
-<!-- ===== PRODUCTS SECTION ===== -->
-<section class="block reveal" id="products">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>我们的工具</span>
-<p>三个产品，帮你应对 AI 时代的三个核心需求——可见度、质量、内容。</p>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>我们在做什么。</h2>
-<span></span>
-</div>
-<div class="bento">
-<div class="b-card span-2">
-<div class="core">
-<div class="meta">产品 01</div>
-<span style="font-size:28px;display:block;margin-bottom:12px">🔍</span>
-<h3>GEO Audit</h3>
-<p>跨 8 大中外 AI 引擎的品牌可见度扫描。检测 ChatGPT、DeepSeek、豆包等是否知道你的品牌。</p>
-<ul class="f-detail">
-<li>8 引擎：中外全覆盖</li>
-<li>竞品差距分析（最多 5 个）</li>
-<li>每个引擎的情感追踪</li>
-<li>12 节 PDF 报告，~20 分钟出</li>
-<li>从 <strong>免费</strong>（扫描）到 <strong>$20</strong>（深度报告）到 <strong>$200/月</strong>（持续监控）</li>
-</ul>
-<div style="margin-top:18px">
-<a href="#free-scan" class="pill pill-outline" style="font-size:12px;padding:6px 14px">免费扫描</a>
-<a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="pill" style="font-size:12px;padding:6px 14px;margin-left:8px" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'products_geo_zh'})">深度报告 $20</a>
-</div>
-<div style="margin-top:10px;font-size:10px;color:var(--muted)">也提供 <a href="/plugins/geo-audit/" style="color:var(--accent)">MCP 插件</a> 兼容 Claude Cowork</div>
-</div>
-</div>
-<div class="b-card span-2">
-<div class="core">
-<div class="meta">产品 02</div>
-<span style="font-size:28px;display:block;margin-bottom:12px">🛡️</span>
-<h3>Agent Quality Guard</h3>
-<p>AI Agent 质量验证工具。4 层防护：内容腐烂检测、Prompt 注入防护、静默错误捕获、输出验证。</p>
-<ul class="f-detail">
-<li>Context Rot Detection — 知识漂移</li>
-<li>Prompt Injection Shield — 防止劫持</li>
-<li>Silent Error Catcher — 隐蔽故障</li>
-<li>Agent Output Verifier — 事实完整性</li>
-<li>已上线 <strong>Product Hunt</strong> — 4 分, #115</li>
-</ul>
-<div style="margin-top:18px">
-<a href="https://www.producthunt.com/products/agent-quality-guard" target="_blank" class="pill" style="font-size:12px;padding:6px 14px;background:var(--amber);color:#fff">
-去 PH 投票
-<span class="icon-wrap"><svg viewBox="0 0 12 12" stroke-width="1.6"><path d="M2.5 6h7M6 2.5L9.5 6 6 9.5"/></svg></span>
-</a>
-</div>
-</div>
-</div>
-<div class="b-card span-2">
-<div class="core">
-<div class="meta">产品 03</div>
-<span style="font-size:28px;display:block;margin-bottom:12px">📕</span>
-<h3>小红书爆款套件 v2.0</h3>
-<p>小红书 AI 提示词工具包。4 套提示词 + 案例分析（CTR 22.6%）。SkillHub 1600+ 下载。</p>
-<ul class="f-detail">
-<li>4 套 AI 提示词</li>
-<li>Surya Bonaly 案例分析（CTR 22.6%）</li>
-<li>30 天内容日历</li>
-<li>GitHub 开源</li>
-<li><strong>$3</strong> — 一次购买</li>
-</ul>
-<div style="margin-top:18px">
-<a href="https://5529900303702.gumroad.com/l/flpxi" data-gumroad-overlay="true" class="pill" style="font-size:12px;padding:6px 14px" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'products_xhs_zh'})">
-购买 $3
-<span class="icon-wrap"><svg viewBox="0 0 12 12" stroke-width="1.6"><path d="M2.5 6h7M6 2.5L9.5 6 6 9.5"/></svg></span>
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
+<div class="glow"><div class="g1"></div><div class="g2"></div><div class="g3"></div></div>
+
+<header class="w">
+<nav>
+  <a href="/" class="mark">TryGEO</a>
+  <div class="sp"></div>
+</nav>
+</header>
+
+<main class="w">
+
+<section class="hero">
+  <h1>AI 怎么<em>看待</em>你？</h1>
+  <p>三个工具，一个目标：让 AI 正确认识你。</p>
+  <a href="https://trygeoaudit.com/free-scan" class="btn">免费可见度扫描</a>
+  <a href="#geo" class="sec">所有工具</a>
 </section>
 
-<!-- ===== PAIN POINTS ===== -->
-<section class="block reveal">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>01 · 你回避的那些问题</span>
-<p>每个问题的终点都一样：有人问你为什么没有答案。</p>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>你的市场总监马上要打四个电话。</h2>
-<span></span>
-</div>
-<div class="pain-grid">
-<div class="pain-card"><div class="core">
-<div class="pain-num">01</div>
-<div class="pain-quote">"为什么竞品出现在豆包里，我们没有？"</div>
-<div class="pain-body">潜在客户问 AI "小企业最好的 CRM"——竞品被引用了，你没有。你看不到。竞品就这么抢走了你根本不知道存在的订单。</div>
-</div></div>
-<div class="pain-card"><div class="core">
-<div class="pain-num">02</div>
-<div class="pain-quote">"我们的自然流量去哪了？"</div>
-<div class="pain-body">你的 SEO 排名没问题。但 61% 的搜索现在以零点击 AI 回答结束。流量没去竞品网站——去了一个根本没提你的 AI 回答。</div>
-</div></div>
-<div class="pain-card"><div class="core">
-<div class="pain-num">03</div>
-<div class="pain-quote">"我们每月花一万美金做内容。有被引用吗？"</div>
-<div class="pain-body">你有几百个页面。有些可能在喂 AI 回答——也可能一个都没有。不做审计，你就是在给已经转向 AI 搜索的用户写内容。</div>
-</div></div>
-<div class="pain-card"><div class="core">
-<div class="pain-num">04</div>
-<div class="pain-quote">"三个竞品每次都被提到。就我们没有。解决它。"</div>
-<div class="pain-body">40-60% 的 AI 引用每月轮换。每等一个月，竞品就多锁定一个月的引用历史。AI 引擎默认开始信任他们。</div>
-</div></div>
+<!-- GEO -->
+<div class="prod prod-0" id="geo">
+<div class="prod-inner">
+  <div class="prod-left">
+    <div class="tag">GEO 审计</div>
+    <h2>哪些 AI 引擎提到了你的品牌？</h2>
+    <p>ChatGPT、DeepSeek、Perplexity、Gemini、Claude、Grok、Copilot、Meta AI。30 秒扫描，立刻知道谁认识你，谁不认识。</p>
+    <div class="actions">
+      <a href="https://trygeoaudit.com/free-scan" class="pr">免费扫描</a>
+      <a href="https://5529900303702.gumroad.com/l/wbdmfq" class="se">深度报告 $20</a>
+    </div>
+  </div>
+  <div class="prod-right">
+    <div class="stat"><div class="num">8</div><div class="lb">AI 引擎</div></div>
+    <div class="stat"><div class="num">30秒</div><div class="lb">扫描时间</div></div>
+    <div class="stat"><div class="num">$20</div><div class="lb">深度报告</div></div>
+  </div>
 </div>
 </div>
+
+<!-- AQG -->
+<div class="prod prod-1">
+<div class="prod-inner">
+  <div class="prod-left">
+    <div class="tag" style="background:rgba(245,158,11,.1);color:#d97706">Agent Quality Guard</div>
+    <h2>你的 AI Agent 在胡说八道吗？</h2>
+    <p>检测 LLM 流水线的输出质量、一致性和准确性。为生产环境中使用 AI 的团队打造。</p>
+    <div class="actions">
+      <a href="https://www.producthunt.com/products/agent-quality-guard" class="pr">在 Product Hunt 试用</a>
+    </div>
+  </div>
+  <div class="prod-right">
+    <div class="stat"><div class="num">≥92%</div><div class="lb">准确率目标</div></div>
+    <div class="stat"><div class="num">免费</div><div class="lb">试用</div></div>
+  </div>
+</div>
+</div>
+
+<!-- XHS -->
+<div class="prod prod-2">
+<div class="prod-inner">
+  <div class="prod-left">
+    <div class="tag" style="background:rgba(124,58,237,.1);color:#7c3aed">小红书爆款套件</div>
+    <h2>几分钟，做出爆款内容。</h2>
+    <p>AI 驱动的标题、布局、SEO 帖子。一个模板包，无限迭代。</p>
+    <div class="actions">
+      <a href="https://5529900303702.gumroad.com/l/wbdmfq" class="pr">购买套件 $3</a>
+    </div>
+  </div>
+  <div class="prod-right">
+    <div class="stat"><div class="num">50+</div><div class="lb">模板</div></div>
+    <div class="stat"><div class="num">$3</div><div class="lb">一次性</div></div>
+  </div>
+</div>
+</div>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <h2>免费扫描，还是深度分析？</h2>
+  <p>30 秒检查你的 AI 可见度。无需注册。</p>
+  <a href="https://trygeoaudit.com/free-scan" class="btn">立即扫描</a>
+  <a href="https://5529900303702.gumroad.com/l/wbdmfq" class="sml">深度报告 $20</a>
 </section>
-<!-- ===== MARQUEE ===== -->
-<div class="marquee reveal">
-<div class="marquee-track">
-<span class="marquee-item">"我们的品牌在中国 AI 搜索里看得见吗？"</span>
-<span class="marquee-item">"哪个引擎提到我们最多？"</span>
-<span class="marquee-item">"AI 对我们的品牌是什么情感倾向？"</span>
-<span class="marquee-item">"竞品被引用得比我们多吗？"</span>
-<span class="marquee-item">"该先优化豆包还是 DeepSeek？"</span>
-<span class="marquee-item">"我们的品牌在中国 AI 搜索里看得见吗？"</span>
-<span class="marquee-item">"哪个引擎提到我们最多？"</span>
-<span class="marquee-item">"AI 对我们的品牌是什么情感倾向？"</span>
-<span class="marquee-item">"竞品被引用得比我们多吗？"</span>
-<span class="marquee-item">"该先优化豆包还是 DeepSeek？"</span>
-</div>
-</div>
-<!-- ===== HOW IT WORKS ===== -->
-<section class="block reveal" id="how">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>02 · 四阶段体系</span>
-<p>源自同一套 3 个月产生 83 万曝光的工作流。四个阶段——从可见度检查到持续监控。</p>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>诊断 → 策略 → 质检 → 交付。一个体系，四个阶段。</h2>
-<span></span>
-</div>
-<div class="steps">
-<div class="step"><div class="step-num">STAGE 1</div><h3>诊断 Diagnosis</h3><p>扫描 8 大 AI 引擎。找出哪些认识你的品牌、哪些不认识。30 秒出健康分。免费。</p></div>
-<div class="step"><div class="step-num">STAGE 2</div><h3>策略 Strategy</h3><p>12 周内容路线图。竞品差距分析。关键词机会地图。清楚知道该在哪里发力。</p></div>
-<div class="step"><div class="step-num">STAGE 3</div><h3>质检 QA</h3><p>4 层内容评分：搜索意图 → 排名规则 → 语言框架 → AI 检测。≥ 80 分才能发布。</p></div>
-<div class="step"><div class="step-num">STAGE 4</div><h3>交付 Delivery</h3><p>交互式仪表盘。PDF 报告。每周监控。执行指南。团队行动所需的一切。</p></div>
-</div>
-</div>
-</section>
-<!-- ===== FEATURES (Bento) ===== -->
-<section class="block reveal" id="features">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>03 · 报告内容</span>
-<p>每份 GEO 审计报告是一份 12 章节的 PDF，覆盖品牌 AI 可见度的每个维度。没废话。只有你需要的数据。</p>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>关于你的 AI 搜索存在感，你想知道的一切。</h2>
-<span></span>
-</div>
-<div class="bento">
-<div class="b-card span-4 row-2">
-<div class="core">
-<div class="meta">核心 · 引用矩阵</div>
-<h3>完整引用矩阵</h3>
-<p>一张 8×N 网格，展示每个引擎提到你品牌的每个实例——以及本该提到却没提到的空白。</p>
-<ul class="f-detail">
-<li>8 大引擎逐查询拆解</li>
-<li>引用状态：已引用 / 缺失 / 间接</li>
-<li>每次提及的情感评分</li>
-<li>引用来源 URL</li>
-<li>每项发现的截图证据</li>
-</ul>
-</div>
-</div>
-<div class="b-card span-2">
-<div class="core">
-<div class="meta">竞品</div>
-<h3>差距分析</h3>
-<p>我们检测哪些竞品出现在相同查询中。如果他们被引用而你没有被引用——你将清楚知道该在哪里发力。</p>
-<ul class="f-detail"><li>最多追踪 5 个竞品</li><li>声量份额对比</li><li>引用重叠地图</li></ul>
-</div>
-</div>
-<div class="b-card span-2">
-<div class="core">
-<div class="meta">情感</div>
-<h3>情感审计</h3>
-<p>不是所有提及都一样。我们把每次引用标记为正面、中性或负面——让你知道 AI 是在帮你还是害你。</p>
-<ul class="f-detail"><li>各引擎情感拆解</li><li>关键词级情感标签</li><li>负面提及风险标记</li></ul>
-</div>
-</div>
-<div class="b-card span-2">
-<div class="core">
-<div class="meta">行动</div>
-<h3>优先级计划</h3>
-<p>不止是数据——一份排序清单：先优化哪个引擎、修哪些内容、每项修复需要多久。</p>
-</div>
-</div>
-<div class="b-card span-2">
-<div class="core">
-<div class="meta">语言</div>
-<h3>中英双语</h3>
-<p>英文报告 + 保留中文查询上下文。北京办公室和伦敦总部都能看懂。</p>
-</div>
-</div>
-<div class="b-card span-2">
-<div class="core">
-<div class="meta">速度</div>
-<h3>~30 秒交付</h3>
-<p>5 引擎并行查询。咖啡还没喝完结果就出来了。实时雷达图。不用等。</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- ===== STAGE 3: CONTENT QA ===== -->
-<section class="block reveal" id="qa">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>STAGE 3 · 内容质量保障</span>
-<p>发布任何内容之前，先经过同一套 4 层质检系统——在用户发现 AI 幻觉之前把它揪出来。</p>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>你的内容通过 4 层防线。否则不发。</h2>
-</div>
-<div class="qa-grid">
-<div class="b-card span-3">
-<div class="core" style="border-left:3px solid var(--accent);padding-left:25px">
-<div class="meta">第 1 层</div>
-<h3 style="font-size:20px;margin-bottom:6px">搜索意图匹配</h3>
-<p style="font-size:13px;color:var(--muted);line-height:1.5">你的内容真的在回答用户问 AI 的问题吗？我们用 8 大引擎的真实查询模式来验证，不是关键词工具。</p>
-<div style="margin-top:12px;font-family:var(--mono);font-size:24px;font-weight:700;color:var(--accent)">✓ MATCH</div>
-</div>
-</div>
-<div class="b-card span-3">
-<div class="core" style="border-left:3px solid #f59e0b;padding-left:25px">
-<div class="meta">第 2 层</div>
-<h3 style="font-size:20px;margin-bottom:6px">平台排名规则</h3>
-<p style="font-size:13px;color:var(--muted);line-height:1.5">每个 AI 引擎排名逻辑不同。DeepSeek 看重技术深度。ChatGPT 奖励清晰度。你的内容必须满足平台特定的排名逻辑。</p>
-<div style="margin-top:12px;font-family:var(--mono);font-size:24px;font-weight:700;color:#f59e0b">⚡ OPTIMIZE</div>
-</div>
-</div>
-<div class="b-card span-3">
-<div class="core" style="border-left:3px solid #7c3aed;padding-left:25px">
-<div class="meta">第 3 层</div>
-<h3 style="font-size:20px;margin-bottom:6px">自然语言框架</h3>
-<p style="font-size:13px;color:var(--muted);line-height:1.5">AI 写的内容会被标记。我们评分人类可读性：句式多样性、逻辑流畅度、真实声音。要求 >80% 自然语言密度。</p>
-<div style="margin-top:12px;font-family:var(--mono);font-size:24px;font-weight:700;color:#7c3aed">83/100</div>
-</div>
-</div>
-<div class="b-card span-3">
-<div class="core" style="border-left:3px solid var(--red);padding-left:25px">
-<div class="meta">第 4 层</div>
-<h3 style="font-size:20px;margin-bottom:6px">AI 词汇检测</h3>
-<p style="font-size:13px;color:var(--muted);line-height:1.5">"Delve"、"tapestry"、"moreover"——AI 指纹。我们扫描 200+ 中英文 AI 标记词。通过阈值：AI 词密度 <15%。</p>
-<div style="margin-top:12px;font-family:var(--mono);font-size:24px;font-weight:700;color:var(--red)">11% AI → PASS</div>
-</div>
-</div>
-</div>
-<div style="text-align:center;margin-top:40px;padding:28px;background:linear-gradient(135deg,var(--accent-dim),rgba(16,185,129,0.03));border-radius:var(--shell-radius);border:1px solid rgba(16,185,129,0.12)">
-<div style="font-family:var(--mono);font-size:11px;letter-spacing:0.18em;color:var(--accent);margin-bottom:8px">综合评分</div>
-<div style="font-size:48px;font-weight:800;color:var(--accent);letter-spacing:-0.03em;line-height:1">82<span style="font-size:20px;color:var(--muted);font-weight:500">/100</span></div>
-<div style="font-size:14px;color:var(--muted);margin-top:6px">≥ 80 = 可以发布。深度报告和监控版包含此功能。</div>
-</div>
-</div>
-</section>
-<!-- ===== ENGINES ===== -->
-<section class="block reveal">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>04 · 覆盖引擎</span>
-<p>只覆盖中国引擎？海外工具能做。只覆盖海外引擎？也有人做。但没人覆盖全部八个——直到现在。</p>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>八大引擎。中西合璧。全覆盖。</h2>
-<span></span>
-</div>
-<div class="eng-grid">
-<div class="b-card"><div class="core"><div class="eng"><div class="eng-icon">🤖</div><div class="eng-name">豆包 Doubao</div><div class="eng-parent">字节跳动</div><div class="eng-metric">2.7 亿月活 · 消费级 AI 第一</div></div></div></div>
-<div class="b-card"><div class="core"><div class="eng"><div class="eng-icon">🧠</div><div class="eng-name">DeepSeek</div><div class="eng-parent">DeepSeek-R1</div><div class="eng-metric">开源 · HuggingFace 榜首</div></div></div></div>
-<div class="b-card"><div class="core"><div class="eng"><div class="eng-icon">☁️</div><div class="eng-name">通义千问 Qwen</div><div class="eng-parent">阿里云</div><div class="eng-metric">企业级首选平台</div></div></div></div>
-<div class="b-card"><div class="core"><div class="eng"><div class="eng-icon">🔴</div><div class="eng-name">文心一言</div><div class="eng-parent">百度 ERNIE</div><div class="eng-metric">与百度搜索深度整合</div></div></div></div>
-<div class="b-card"><div class="core"><div class="eng"><div class="eng-icon">🟢</div><div class="eng-name">ChatGPT</div><div class="eng-parent">OpenAI</div><div class="eng-metric">5 亿+ 用户 · 全球默认</div></div></div></div>
-<div class="b-card"><div class="core"><div class="eng"><div class="eng-icon">🔵</div><div class="eng-name">Perplexity</div><div class="eng-parent">AI 原生搜索</div><div class="eng-metric">月搜索 1 亿次</div></div></div></div>
-<div class="b-card"><div class="core"><div class="eng"><div class="eng-icon">🟣</div><div class="eng-name">Gemini</div><div class="eng-parent">Google AI</div><div class="eng-metric">20 亿+ 设备</div></div></div></div>
-<div class="b-card"><div class="core"><div class="eng"><div class="eng-icon">🟠</div><div class="eng-name">Claude</div><div class="eng-parent">Anthropic</div><div class="eng-metric">企业级 AI 领导者</div></div></div></div>
-</div>
-</div>
-</section>
-<!-- ===== COMPARISON ===== -->
-<section class="block reveal" id="compare">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>05 · 为什么选 GEO 审计</span>
-<p>看看 GEO 审计与其他方案的对比。</p>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>一次审计。八大引擎。无需订阅。</h2>
-<span></span>
-</div>
-<div class="compare-wrap">
-<table class="compare-table">
-<tr class="compare-highlight"><td>豆包覆盖</td><td><span class="check">✓</span></td><td>✗</td><td>数小时手动查询</td></tr>
-<tr class="compare-highlight"><td>DeepSeek 覆盖</td><td><span class="check">✓</span></td><td>✗</td><td>数小时手动查询</td></tr>
-<tr class="compare-highlight"><td>通义千问覆盖</td><td><span class="check">✓</span></td><td>✗</td><td>数小时手动查询</td></tr>
-<tr class="compare-highlight"><td>文心一言覆盖</td><td><span class="check">✓</span></td><td>✗</td><td>数小时手动查询</td></tr>
-<tr class="compare-highlight"><td>ChatGPT 覆盖</td><td><span class="check">✓</span></td><td>✓</td><td>数小时手动查询</td></tr>
-<tr class="compare-highlight"><td>Perplexity 覆盖</td><td><span class="check">✓</span></td><td>✓</td><td>数小时手动查询</td></tr>
-<tr class="compare-highlight"><td>Gemini 覆盖</td><td><span class="check">✓</span></td><td>✓</td><td>数小时手动查询</td></tr>
-<tr class="compare-highlight"><td>Claude 覆盖</td><td><span class="check">✓</span></td><td>✗</td><td>数小时手动查询</td></tr>
-<tr class="compare-highlight"><td>竞品追踪</td><td><span class="check">✓</span> 最多 5 个</td><td>✗ or enterprise-only</td><td>双倍手动工作量</td></tr>
-<tr class="compare-highlight"><td>情感分析</td><td><span class="check">✓</span> 各引擎</td><td>✗</td><td>主观判断</td></tr>
-<tr class="compare-highlight"><td>交付时间</td><td>~20 分钟</td><td>3-7 天设置</td><td>8+ 小时</td></tr>
-<tr class="compare-highlight"><td>价格</td><td><strong style="color:var(--accent)">$20（首发价）</strong></td><td>$300-500/月</td><td>你的时薪</td></tr>
-<tr class="compare-highlight"><td>订阅</td><td><strong>可选</strong>（监控版）</td><td>必须</td><td>不适用</td></tr>
-</table>
-</div>
-</div>
-</section>
-<!-- ===== REPORT PREVIEW ===== -->
-<section class="block reveal">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>06 · 报告样本</span>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>你将收到什么。</h2>
-</div>
-<div class="report-preview">
-<div class="shell">
-<div class="core" style="background:linear-gradient(180deg,#1A1A1A 0%,#0F0F0F 100%);padding:18px;border-radius:18px">
-<div class="report-mock" style="background:transparent;padding:8px;border-radius:0;box-shadow:none">
-<div class="rm-header"><div class="rm-logo"><strong>GEO</strong> Audit</div><div class="rm-badge">REPORT</div></div>
-<div class="rm-brand">某 SaaS 品牌 — 2026 年 5 月</div>
-<div class="rm-row rm-head"><span>引擎</span><span>引用</span><span>情感</span><span>竞品</span></div>
-<div class="rm-row"><span>DeepSeek</span><span class="rm-hit">3 次提及</span><span class="rm-pos">正面</span><span class="rm-comp">未引用</span></div>
-<div class="rm-row"><span>ChatGPT</span><span class="rm-hit">2 次提及</span><span class="rm-pos">正面</span><span class="rm-comp">已引用 ✓</span></div>
-<div class="rm-row"><span>Perplexity</span><span class="rm-hit">1 次提及</span><span class="rm-neu">中性</span><span class="rm-comp">未引用</span></div>
-<div class="rm-row"><span>Gemini</span><span class="rm-miss">未引用</span><span>—</span><span class="rm-comp">已引用 ✓</span></div>
-<div class="rm-insight">⚠ 5 个引擎中 2 个引用了你的竞品却没引用你</div>
-<div class="rm-footer">5 引擎 · 引用矩阵 · 雷达图 · 竞品差距 · 情感审计 · 行动计划</div>
-</div>
-</div>
-</div>
-<div>
-<ul class="report-specs">
-<li><span class="rs-icon">📄</span>12 章节，专业排版</li>
-<li><span class="rs-icon">🔤</span>中英双语（英文数据 + 中文查询上下文）</li>
-<li><span class="rs-icon">📊</span>引用矩阵，各引擎拆解</li>
-<li><span class="rs-icon">🏷️</span>每次提及的情感标签</li>
-<li><span class="rs-icon">👥</span>竞品对比网格</li>
-<li><span class="rs-icon">🎯</span>排序优先级行动项</li>
-<li><span class="rs-icon">📸</span>所有发现的截图证据</li>
-<li><span class="rs-icon">📧</span>PDF 发送到你的邮箱</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<!-- ===== FREE SCAN ===== -->
-<section class="block reveal" id="free-scan">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>07 · 从这里开始</span>
-<p>输入你的品牌名和邮箱。我们问 5 个 AI 引擎你是谁。即时出结果。</p>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>免费扫描。无需信用卡。30 秒。</h2>
-</div>
-<div class="fscan-shell">
-<div class="shell accent">
-<div class="core fscan-core">
-<div class="meta">怎么运作</div>
-<div class="fscan-steps">
-<div class="fs-step"><div class="fs-num">1</div><div class="fs-txt">输入品牌 + 邮箱</div></div>
-<div class="fs-step"><div class="fs-num">2</div><div class="fs-txt">扫描 DeepSeek</div></div>
-<div class="fs-step"><div class="fs-num">3</div><div class="fs-txt">结果发到邮箱</div></div>
-</div>
-<a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true" class="pill" style="justify-content:center" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'free_scan'})">
-免费扫描
-<span class="icon-wrap"><svg viewBox="0 0 12 12" stroke-width="1.6"><path d="M2.5 6h7M6 2.5L9.5 6 6 9.5"/></svg></span>
-</a>
-<p class="fscan-note">无需信用卡。没有垃圾邮件。就是一个有/没有的答案。<br>想看全貌？<a href="#pricing" style="color:var(--accent);text-decoration:underline">升级到深度报告（$20）</a></p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- ===== LIVE DEMO ===== -->
-<section class="block reveal">
-<div class="wrap">
-<div class="bb-card" style="margin-bottom:0">
-<div class="core">
-<div style="flex:1">
-<div class="bb-badge" style="margin-bottom:10px"><span class="bb-dot"></span>在线演示</div>
-<h3 style="font-size:22px;font-weight:700;margin:0 0 8px">看看实际效果</h3>
-<p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 12px">这就是真实扫描的样子。5 个 AI 引擎。30 秒。你的结果可能大不相同——这才是关键。</p>
-<div class="demo-stat">5/5</div>
-<div class="demo-stat-label">提及 Nike 的引擎数</div>
-<a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true" class="pill pill-outline">检测你的品牌 →</a>
-</div>
-<div style="flex:0 0 280px">
-<canvas id="demoRadar" style="max-height:180px"></canvas>
-<div class="demo-grid">
-<div class="demo-ecard met"><div class="demo-dot green"></div><span class="demo-ename">DeepSeek</span><span class="demo-estatus found">✓</span></div>
-<div class="demo-ecard met"><div class="demo-dot green"></div><span class="demo-ename">ChatGPT</span><span class="demo-estatus found">✓</span></div>
-<div class="demo-ecard met"><div class="demo-dot green"></div><span class="demo-ename">Perplexity</span><span class="demo-estatus found">✓</span></div>
-<div class="demo-ecard met"><div class="demo-dot green"></div><span class="demo-ename">Gemini</span><span class="demo-estatus found">✓</span></div>
-<div class="demo-ecard met"><div class="demo-dot green"></div><span class="demo-ename">Claude</span><span class="demo-estatus found">✓</span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- ===== BLOG BANNER ===== -->
-<div class="wrap reveal">
-<div class="bb-card">
-<div class="core">
-<div class="bb-badge"><span class="bb-dot"></span>独家基准测试</div>
-<div style="flex:1">
-<div class="bb-title"><span class="bb-highlight">DeepSeek V4 刚发布。</span> 我们拿 V3 做了对比——两者引用率均为零。</div>
-<div class="bb-excerpt">V4 预览版今日上线。我们的基准测试：V4 比 V3 短 47%。更重要的是，两个模型默认都不引用 URL。这对你的 GEO 策略意味着什么。</div>
-<a href="/blog/deepseek-v4-vs-v3.html" class="bb-link">阅读基准测试 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4l4 4-4 4"/></svg></a>
-<div class="bb-stats"><span>字符数 -47%</span><span>0 引用</span><span>8 引擎</span><span>2026 年 5 月 18 日</span></div>
-</div>
-</div>
-</div>
-</div>
-<!-- ===== PRICING ===== -->
-<section class="block reveal" id="pricing">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>定价 · 匹配四阶段体系</span>
-<p>每个套餐对应一个阶段。Stage 1 免费起步。按需逐步升级。</p>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>免费诊断。深度策略。质量保障。持续交付。</h2>
-</div>
-<div class="pricing-grid">
-<div class="b-card"><div class="core" style="position:relative">
-<div class="meta">STAGE 1</div>
-<div class="pt-name">免费扫描</div>
-<div class="pt-sub">诊断 · 看看 AI 认不认识你</div>
-<div class="pt-price">$0</div>
-<div class="pt-desc">快速可见度检查。一个引擎。一个问题：AI 到底提没提过你的品牌？含健康分。</div>
-<ul class="pt-feat">
-<li><span class="pf-check">✓</span>1 个引擎扫描（DeepSeek）</li>
-<li><span class="pf-check">✓</span>健康分：红/黄/绿</li>
-<li><span class="pf-check">✓</span>即时发送到邮箱</li>
-<li><span class="pf-check">✓</span>无需信用卡</li>
-</ul>
-<a href="https://5529900303702.gumroad.com/l/free-scan" data-gumroad-overlay="true" class="pt-btn pt-btn-outline" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'pricing_free'})">Get Free Scan</a>
-</div></div>
-<div class="b-card pricing-feat" style="position:relative"><div class="core">
-<div class="meta">STAGE 1+2</div>
-<div class="pt-name">深度报告</div>
-<div class="pt-sub">诊断+策略 · 完整审计 + 路线图</div>
-<div class="pt-price">$20<span class="pt-unit"> 一次性</span></div>
-<div class="pt-desc">完整视图。5 引擎、竞品、情感、12 周内容策略。行动所需的一切。</div>
-<ul class="pt-feat">
-<li><span class="pf-check">✓</span>全部 5 引擎（DeepSeek + ChatGPT + Perplexity + Gemini + Claude）</li>
-<li><span class="pf-check">✓</span>竞品差距分析（最多 5 个）</li>
-<li><span class="pf-check">✓</span>12 周内容路线图</li>
-<li><span class="pf-check">✓</span>各引擎情感分析</li>
-<li><span class="pf-check">✓</span>优先级排序行动计划</li>
-<li><span class="pf-check">✓</span>12 章节 PDF 交付</li>
-<li><span class="pf-check">✓</span>~20 分钟交付</li>
-</ul>
-<a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="pt-btn pt-btn-primary" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'pricing_pro'})">Get Deep Report — $20</a>
-<p class="pt-guarantee">满意保证 · 未交付可退款</p>
-</div></div>
-<div class="b-card"><div class="core">
-<div class="meta">STAGE 3+4</div>
-<div class="pt-name">监控版</div>
-<div class="pt-sub">质检+交付 · 质量保障 + 持续交付</div>
-<div class="pt-price">$200<span class="pt-unit"> /月</span></div>
-<div class="pt-desc">AI 知识在变化。每周追踪你的可见度。所有内容 4 层质检。交互式仪表盘 + PDF 交付。</div>
-<ul class="pt-feat">
-<li><span class="pf-check">✓</span>每周 5 引擎重审计</li>
-<li><span class="pf-check">✓</span>4 层内容质检评分</li>
-<li><span class="pf-check">✓</span>交互式仪表盘访问</li>
-<li><span class="pf-check">✓</span>变化检测提醒</li>
-<li><span class="pf-check">✓</span>竞品动态追踪</li>
-<li><span class="pf-check">✓</span>月度趋势报告（含图表）</li>
-<li><span class="pf-check">✓</span>执行指南</li>
-<li><span class="pf-check">✓</span>优先支持 · 随时取消</li>
-</ul>
-<a href="https://5529900303702.gumroad.com/l/hcamls" data-gumroad-overlay="true" class="pt-btn pt-btn-outline" onclick="gtag('event','click_purchase',{event_category:'CTA',event_label:'pricing_monitor'})">Start Monitoring</a>
-</div></div>
-</div>
-<p class="pricing-note">不确定从哪里开始？<a href="#free-scan">Stage 1 免费</a>——先拿你的健康分。深度报告客户首月监控版（Stage 3+4）减 $50。</p>
-</div>
-</section>
-<!-- ===== MORE TOOLS ===== -->
-<section class="block reveal">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>更多工具</span>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>不止 GEO。我们为 AI 时代造工具。</h2>
-<p>以下每个工具都由真实运营者打造、测试、使用。一次付费。无需订阅。</p>
-</div>
-<div class="bento">
-<div class="b-card span-3">
-<div class="core">
-<a href="https://5529900303702.gumroad.com/l/flpxi" data-gumroad-overlay="true" target="_blank" class="tool-card" style="text-decoration:none;color:inherit">
-<span style="font-size:28px;flex-shrink:0">📕</span>
-<div>
-<h4 style="font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px">小红书爆款套件 v2.0</h4>
-<p class="tool-desc">4 组 AI 提示词 + Surya Bonaly 案例分析（CTR 22.6%）。SkillHub 1600+ 下载 · GitHub 开源</p>
-<span class="tool-price">$3 美元 · 30天日历 · 即买即用</span>
-</div>
-</a>
-</div>
-</div>
-<div class="b-card span-3">
-<div class="core">
-<a href="https://5529900303702.gumroad.com/l/sybuc" data-gumroad-overlay="true" class="tool-card" style="text-decoration:none;color:inherit">
-<span style="font-size:28px;flex-shrink:0">🔍</span>
-<div>
-<h4 style="font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px">GEO Audit</h4>
-<p class="tool-desc">8 大中外 AI 引擎品牌提及检测 · 竞品对比 · PDF 报告。豆包/DeepSeek/千问/文心 + ChatGPT/Perplexity/Gemini/Claude</p>
-<span class="tool-price">$20 · ~20 分钟出报告 · 一次付费</span>
-</div>
-</a>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- ===== TESTIMONIALS ===== -->
-<section class="block reveal">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>谁在用</span>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>品牌、代理商、创始人——那些需要知道答案的人。</h2>
-</div>
-<div class="testimonials-grid">
-<div class="b-card"><div class="core">
-<div class="t-stars">★★★★★</div>
-<div class="t-text">"我们正在拓展中国市场，对中国 AI 引擎是否知道我们的品牌存在一无所知。GEO 审计显示 DeepSeek 和通义千问都引用了我们——但豆包没有。这一个发现改变了我们的中国内容策略。"</div>
-<div class="t-author">Anonymous</div>
-<div class="t-role">SaaS 公司，拓展亚太市场</div>
-</div></div>
-<div class="b-card"><div class="core">
-<div class="t-stars">★★★★★</div>
-<div class="t-text">"我运营一个小红书内容团队。我们以为品牌被 AI 引擎收录了——结果四个引擎上全是隐形的。竞品差距分析精准显示了引擎在引用哪些内容。一周就搞定了。"</div>
-<div class="t-author">内容负责人</div>
-<div class="t-role">消费品牌，上海</div>
-</div></div>
-<div class="b-card"><div class="core">
-<div class="t-stars">★★★★★</div>
-<div class="t-text">"我向客户推销 AEO 服务。他们问"先证明我们有这个问题"。一次 GEO 审计后——他们零引擎被引用，而头号竞品被三个引擎引用。成交。"</div>
-<div class="t-author">SEO 顾问</div>
-<div class="t-role">代理商老板，新加坡</div>
-</div></div>
-</div>
-</div>
-</section>
-<!-- ===== FAQ ===== -->
-<section class="block reveal" id="faq">
-<div class="wrap">
-<div class="section-head">
-<span class="eyebrow"><span class="dot"></span>FAQ</span>
-</div>
-<div class="section-head" style="margin-bottom:44px">
-<h2>常见问题。</h2>
-</div>
-<div class="faq-list">
-<div class="faq-q">免费扫描、深度报告和监控版的区别？</div>
-<div class="faq-a"><strong>免费扫描</strong>检测 1 个引擎（DeepSeek） — tells you if your brand is mentioned at all. 无需信用卡。<strong>深度报告（$20）</strong>覆盖全部 8 大引擎，含完整引用矩阵、竞品分析、情感审计和行动计划——12 章节 PDF。<strong>监控版（$200/月）</strong>每周重审计，引用出现或消失时提醒，追踪竞品动态变化。</div>
-<div class="faq-q">什么是 GEO？为什么重要？</div>
-<div class="faq-a">生成式引擎优化（GEO）是确保品牌出现在 AI 生成回答中的实践。当用户问豆包"小企业最好的 CRM"而你的品牌没被提到 ——这就是 GEO 缺口。中外 AI 引擎合并 25 亿用户，在 AI 回答里隐形，相当于在 Google 上没有排名。</div>
-<div class="faq-q">为什么是 $20 而不是 $500/月？</div>
-<div class="faq-a">大多数 AEO 平台按代理商月费定价。GEO 审计为<strong>只想知道的品牌</strong>而建。从免费扫描开始。需要全貌时，深度报告一次性 $20。如果 AI 可见度对业务至关重要，监控版 $200/月持续追踪。</div>
-<div class="faq-q">为什么同时覆盖中外引擎？</div>
-<div class="faq-a">因为品牌需要在所有 AI 用户所在之处可见。中国引擎（豆包、DeepSeek、通义千问、文心一言）服务 14 亿+ 用户。海外引擎（ChatGPT、Perplexity、Gemini、Claude）再服务 10 亿+。大多数工具只覆盖一端。GEO 审计覆盖全部八个——一份报告，完整覆盖。</div>
-<div class="faq-q">实际怎么查询引擎？</div>
-<div class="faq-a">我们用品牌名和标准化行业提示词查询每个引擎。每次查询实时执行 ——不缓存结果。捕获完整回答，提取引用数据，分类情感，与竞品在相同查询集对比。</div>
-<div class="faq-q">这和 SEO 有什么不同？</div>
-<div class="faq-a">是的。SEO 优化传统搜索引擎排名（百度、Google）。GEO 优化 AI 生成回答。一个页面可以 Google 排名第一，却从未被 AI 引擎引用。GEO 审计弥合这个差距——告诉你 AI 引擎实际怎么说你的品牌。</div>
-<div class="faq-q">之后可以重新审计吗？</div>
-<div class="faq-a">可以。随时再次购买深度报告获取最新快照——很多客户每季度跑一次。如需持续监控（每周），监控版自动完成，含变化提醒和趋势报告。</div>
-<div class="faq-q">如果品牌完全没被提到？</div>
-<div class="faq-a">这是最常见也最有价值的结果。82% 审计品牌至少在 2 个引擎上零引用。报告给基线数据和优先级行动计划。没测量的东西没法修。</div>
-<div class="faq-q">支持非中国品牌吗？</div>
-<div class="faq-a">支持。很多国际品牌需要在中国 AI 引擎可见——为进入中国市场、亚太策略，或因竞品已被引用。报告中英双语，全球团队都能用。</div>
-<div class="faq-q">怎么支付？</div>
-<div class="faq-a">Gumroad 处理支付——信用卡、PayPal、Apple Pay、Google Pay。免费扫描无需支付。深度报告一次性 $20。监控版 $200/月，随时取消。</div>
-</div>
-</div>
-</section>
+
 </main>
-<!-- ===== CLOSING ===== -->
-<div class="closing reveal">
-<div class="closing-inner">
-<h2>为 AI 时代打造。</h2>
-<p>无论你需要知道品牌在 AI 引擎中的位置、验证 AI Agent 质量，还是优化内容策略——我们用工具帮你自信交付。</p>
-<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-<a href="#products" class="pill">
-查看全部工具
-<span class="icon-wrap"><svg viewBox="0 0 12 12" stroke-width="1.6"><path d="M2.5 6h7M6 2.5L9.5 6 6 9.5"/></svg></span>
-</a>
-<a href="#free-scan" class="pill pill-outline">免费 GEO 扫描</a>
-</div>
-</div>
-</div>
-<footer>
-<div class="f-row">
-<span>TryGEO &copy; 2026</span>
-<div style="display:flex;gap:24px">
-<a href="#products">产品</a>
-<a href="#pricing">定价</a>
-<a href="mailto:djh973832@gmail.com">联系</a>
-<a href="/blog/">博客</a>
-</div>
-</div>
+
+<footer class="w">
+  <div class="copy">&copy; 2026 TryGEO</div>
+  <div class="links">
+    <a href="/zh">首页</a>
+    <a href="https://x.com/maomaofeng99787">X</a>
+  </div>
 </footer>
-<!-- Live Toast -->
-<div class="live-toast" id="liveToast">
-<div class="core">
-<div class="lt-dot"></div>
-<span class="lt-text" id="ltMsg"></span>
-<span class="lt-time" id="ltTime"></span>
-</div>
-</div>
-<script async src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script async src="https://gumroad.com/js/gumroad.js"></script>
-<script>
-(function(){
-var c=document.getElementById('demoRadar');
-if(!c)return;
-var draw=function(){
-if(typeof Chart==='undefined'){setTimeout(draw,200);return}
-new Chart(c,{
-type:'radar',
-data:{
-labels:['DeepSeek','ChatGPT','Perplexity','Gemini','Claude'],
-datasets:[{data:[1,1,1,1,1],backgroundColor:'rgba(16,185,129,0.08)',borderColor:'#10b981',borderWidth:2,pointBackgroundColor:'#10b981',pointRadius:4}]
-},
-options:{
-responsive:true,maintainAspectRatio:true,
-scales:{r:{beginAtZero:true,max:1,ticks:{display:false},grid:{color:'rgba(10,10,10,0.06)'},angleLines:{color:'rgba(10,10,10,0.06)'},pointLabels:{color:'#57575A',font:{size:10}}}},
-plugins:{legend:{display:false}}
-}
-});
-};
-draw();
-var names=['James','Sophie','Lucas','Emma','Oliver','Mia','Ethan','Isabella','Noah','Charlotte','William','Amelia','Henry','Harper','Jack','Evelyn','Daniel','Abigail','Matthew','Emily'];
-var cities=['Shanghai','Beijing','Shenzhen','Guangzhou','Hangzhou','Singapore','Hong Kong','Tokyo','Seoul','Taipei','Bangkok','London','New York','San Francisco','Berlin','Sydney'];
-var brands=['SaaS','E-commerce','Consumer brand','Tech startup','Agency','Enterprise','DTC brand','B2B company','Fintech','Healthtech'];
-var toast=document.getElementById('liveToast'),msgEl=document.getElementById('ltMsg'),timeEl=document.getElementById('ltTime');
-function pick(a){return a[Math.floor(Math.random()*a.length)]}
-function ago(){return Math.floor(Math.random()*9)+1+' min ago'}
-function show(){
-msgEl.innerHTML='<strong>'+pick(names)+'</strong> from '+pick(cities)+' just audited their '+pick(brands);
-timeEl.textContent=ago();
-toast.classList.add('show');
-setTimeout(function(){toast.classList.remove('show')},5000);
-}
-show();setInterval(show,12000);
-})();
-</script>
-<script>
-(function(){
-var obs=new IntersectionObserver(function(entries){
-entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('is-in')})
-},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
-})();
-</script>
+
 </body>
 </html>
