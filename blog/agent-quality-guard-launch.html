@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5401VR64N9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5401VR64N9');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Quality Guard — 5 Skills to Stop Your AI Agent from Lying | TryGEO</title>
+<meta name="description" content="We shipped Agent Quality Guard on Product Hunt. 5 battle-tested verification skills for Hermes Agent: prompt injection shield, output verifier, silent error catcher, context rot detector, trust dashboard.">
+<link rel="canonical" href="https://trygeoaudit.com/blog/agent-quality-guard-launch.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Agent Quality Guard — 5 Skills to Stop Your AI Agent from Lying",
+  "description": "We shipped Agent Quality Guard on Product Hunt. 5 battle-tested verification skills to catch agent failures before they cost you.",
+  "author": {"@type": "Organization", "name": "TryGEO"},
+  "publisher": {"@type": "Organization", "name": "TryGEO"},
+  "datePublished": "2026-06-03",
+  "dateModified": "2026-06-03",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://trygeoaudit.com/blog/agent-quality-guard-launch.html"}
+}
+</script>
+<style>
+  :root{--bg:#0a0f0a;--fg:#e4e4e7;--muted:#71717a;--accent:#10b981;--accent-dim:rgba(16,185,129,.12);--border:#1c1c1f;--card-bg:#0d120d}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:'Geist','Inter',-apple-system,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .container{max-width:700px;margin:0 auto;padding:0 24px}
+  article{padding:64px 0 48px}
+  h1{font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1.2;color:#fafafa;margin-bottom:16px}
+  .meta{font-size:13px;color:var(--muted);margin-bottom:40px}
+  h2{font-size:22px;font-weight:600;color:#fafafa;margin-top:48px;margin-bottom:16px;letter-spacing:-.01em}
+  h3{font-size:18px;font-weight:600;color:#fafafa;margin-top:32px;margin-bottom:12px}
+  p{margin-bottom:20px;color:var(--fg)}
+  ul,ol{margin-bottom:20px;padding-left:24px}
+  li{margin-bottom:8px}
+  code{background:var(--card-bg);padding:2px 8px;border-radius:4px;font-size:14px;border:1px solid var(--border)}
+  .highlight{background:var(--accent-dim);border-left:3px solid var(--accent);padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:24px}
+  .highlight p:last-child{margin-bottom:0}
+  .btn{display:inline-block;background:var(--accent);color:#09090b;font-weight:600;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:15px;transition:opacity .2s;margin-top:8px}
+  .btn:hover{opacity:.9}
+  .btn-sec{display:inline-block;border:1px solid var(--border);color:var(--fg);font-weight:500;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:15px;margin-top:8px;margin-left:8px;transition:all .2s}
+  .btn-sec:hover{border-color:var(--accent);color:var(--accent)}
+  .cta-box{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:32px;margin-top:40px;text-align:center}
+  .cta-box h3{color:var(--accent);margin-top:0}
+  .cta-sub{font-size:13px;color:var(--muted);margin-top:8px}
+  .cta-sub a{color:var(--accent)}
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;margin-top:48px}
+  .back-link:hover{color:var(--accent)}
+  footer{padding:32px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+  .footer-links{display:flex;gap:20px}
+  .footer-links a{color:var(--muted);text-decoration:none}
+  .footer-links a:hover{color:var(--accent)}
+  table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:14px}
+  th{text-align:left;color:var(--muted);font-weight:500;padding:10px 12px;border-bottom:1px solid var(--border);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--fg)}
+  @media(max-width:640px){h1{font-size:28px}.container{padding:0 16px}}
+</style>
+</head>
+<body>
+
+<article class="container">
+
+  <a href="/blog/" class="back-link">← Blog</a>
+
+  <h1>Agent Quality Guard — 5 Skills to Stop Your Agent from Lying</h1>
+  <p class="meta">June 3, 2026 · 3 min read</p>
+
+  <p>Agents lie. They say "done" when they failed. They forget instructions mid-session. They execute injection attacks from untrusted content. And they do it silently.</p>
+
+  <p>We've been running AI agents in production for months. Every single failure followed the same pattern: the agent <em>looked</em> successful but the outputs were wrong, corrupted, or hallucinated.</p>
+
+  <p>So we built <strong>Agent Quality Guard</strong> — 5 Hermes/Superpowers skills that catch these failures before they reach your users.</p>
+
+  <div class="highlight">
+    <p><strong>Agent Quality Guard</strong> — Drop-in skills for Hermes Agent. One-time purchase $9.90.</p>
+    <a href="https://5529900303702.gumroad.com/l/wbdmfq" class="btn">Buy on Gumroad</a>
+    <a href="https://www.producthunt.com/products/agent-quality-guard" class="btn-sec">See on Product Hunt</a>
+  </div>
+
+  <h2>The 5 Skills</h2>
+
+  <h3>1. Prompt Injection Shield</h3>
+  <p>Block injection attacks in untrusted content. When your agent scrapes a web page or reads a PDF, injected instructions can hijack its behavior. This skill detects and neutralizes them before they execute.</p>
+
+  <h3>2. Agent Output Verifier</h3>
+  <p>Verify agent claims before trusting them. The agent says "email sent" — did it actually send? This skill cross-checks outputs against real system state: file hashes, API responses, database rows.</p>
+
+  <h3>3. Silent Error Catcher</h3>
+  <p>Catch errors that don't throw. API returns 200 with error body. Function completes but writes nothing. Network call times out silently. This skill watches for the failures your agent hides from you.</p>
+
+  <h3>4. Context Rot Detector</h3>
+  <p>Detect when your agent starts forgetting. Over long sessions, agents lose track of context and their output quality degrades. This skill monitors coherence and flags rot before it affects results.</p>
+
+  <h3>5. Agent Trust Dashboard</h3>
+  <p>Track reliability over time. A terminal dashboard that shows pass/fail rates per skill, trending accuracy, and the top failure modes — so you know exactly where your agent is weakest.</p>
+
+  <h2>Why We Built This</h2>
+
+  <p>Every AI agent team we know has a graveyard of "silent failures" — bugs that were running in production for weeks before anyone noticed. Not because the team was sloppy, but because the default failure mode of an LLM is to <em>sound confident while being wrong</em>.</p>
+
+  <p>We needed defensive layers. The same way web apps have CSP headers and input sanitization, AI agents need verification layers. Agent Quality Guard is our attempt to build that layer — not as a framework, but as 5 drop-in skills that work with any Hermes agent.</p>
+
+  <h2>PH Launch: 4 Upvotes, #115 All-Time</h2>
+
+  <p>We launched on Product Hunt on June 2. Here's the raw data:</p>
+
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Upvotes</td><td>4</td></tr>
+    <tr><td>All-time ranking</td><td>#115</td></tr>
+    <tr><td>Comments</td><td>1 (Maker)</td></tr>
+    <tr><td>Price</td><td>$9.90 one-time</td></tr>
+    <tr><td>Launch date</td><td>June 2, 2026</td></tr>
+  </table>
+
+  <p>Not a viral launch. But it doesn't need to be — Agent Quality Guard is a utility tool. It solves one problem well. If your AI agent has failed you silently even once, it's worth $9.90.</p>
+
+  <div class="cta-box">
+    <h3>Try it yourself</h3>
+    <p>5 skills in one pack. Drop into ~/.hermes/skills/ and you're protected.</p>
+    <a href="https://5529900303702.gumroad.com/l/wbdmfq" class="btn">Get Agent Quality Guard →</a>
+    <p class="cta-sub"><a href="https://www.producthunt.com/products/agent-quality-guard">Upvote on Product Hunt</a></p>
+  </div>
+
+  <a href="/blog/" class="back-link">← Back to Blog</a>
+
+</article>
+
+<footer class="container">
+  <div>&copy; 2026 TryGEO</div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="https://x.com/maomaofeng99787">X</a>
+    <a href="https://5529900303702.gumroad.com/l/wbdmfq">Gumroad</a>
+  </div>
+</footer>
+
+</body>
+</html>

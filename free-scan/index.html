@@ -166,7 +166,7 @@ btn.addEventListener('click', async () => {
   results.classList.add('show');
 
   try {
-    const res = await fetch('https://geo-audit-free-scan.maomaofeng.workers.dev/scan', {
+    const res = await fetch('https://geo-audit-free-scan.djh973832.workers.dev/api/free-scan', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({domain})

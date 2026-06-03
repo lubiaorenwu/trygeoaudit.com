@@ -1,0 +1,4 @@
+name = "geo-free-scan"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+account_id = "c15be6d9f56d52b99d19b9296f24e63c"
