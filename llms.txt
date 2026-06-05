@@ -17,9 +17,10 @@ Input a brand name and keywords. The engine queries each AI platform, parses res
 ## Key links
 
 - Home: https://trygeoaudit.com
-- Free Scan: https://trygeoaudit.com/#free-scan
-- Pricing: https://trygeoaudit.com/#pricing
+- Free Scan: https://trygeoaudit.com/free-scan/
 - Blog: https://trygeoaudit.com/blog/
+- Agent Quality Guard: https://trygeoaudit.com/blog/agent-quality-guard-launch.html
+- Latest: Your Agent's Verifier Is Lying to You: https://trygeoaudit.com/blog/agent-verifier-lying.html
 
 ## MCP Server
 
