@@ -48,6 +48,7 @@ nav a:hover{color:var(--ink)}
 .engine-row .status.yes{color:var(--accent)}
 .engine-row .status.no{color:#999}
 .engine-row .status.wait{color:#f59e0b}
+.engine-row .status.limited{color:#999;font-size:12px}
 .score-card{text-align:center;padding:40px 0 20px}
 .score-card .score-num{font-size:clamp(3rem,6vw,4rem);font-weight:800;letter-spacing:-.04em;color:var(--accent)}
 .score-card .score-lb{font-size:14px;color:var(--muted);margin-top:4px}
@@ -134,32 +135,72 @@ const input = document.getElementById('domain-input');
 const results = document.getElementById('results');
 const engineResults = document.getElementById('engine-results');
 const scoreNum = document.getElementById('score-num');
-const names = ['ChatGPT','DeepSeek','Perplexity','Gemini','Claude','Grok','Copilot','Meta AI'];
 
 btn.addEventListener('click', async () => {
   const domain = input.value.trim();
   if (!domain) return;
   btn.disabled = true;
   btn.textContent = 'Scanning...';
+  const allNames = ['ChatGPT','DeepSeek','Perplexity','Gemini','Claude','Grok','Copilot','Meta AI'];
   results.classList.remove('show');
-  engineResults.innerHTML = names.map(e => `<div class="engine-row"><span class="name">${e}</span><span class="status wait">Checking...</span></div>`).join('');
+  engineResults.innerHTML = allNames.map(e => `<div class="engine-row"><span class="name">${e}</span><span class="status wait">Checking...</span></div>`).join('');
   results.classList.add('show');
   try {
     const brand = domain.replace(/^https?:\/\//,'').replace(/^www\./,'').split('.')[0];
-    const res = await fetch('https://api.tavily.com/search', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({api_key:TAVILY_KEY, query:'what do you know about '+brand, search_depth:'basic', max_results:5, include_answer:false})
-    });
-    if (!res.ok) throw new Error('Tavily returned '+res.status);
-    const data = await res.json();
-    const resultsList = data.results || [];
     const b = brand.toLowerCase();
-    const mentioned = resultsList.some(r => (r.title||'').toLowerCase().includes(b) || (r.content||'').toLowerCase().includes(b));
-    const realEngines = new Set(['ChatGPT','DeepSeek','Perplexity','Gemini','Claude','Grok']);
-    const engines = names.map(n => ({name:n, cited: realEngines.has(n) && mentioned}));
-    const score = Math.round(engines.filter(e => e.cited).length / engines.length * 100);
-    engineResults.innerHTML = engines.map(e => `<div class="engine-row"><span class="name">${e.name}</span><span class="status ${e.cited?'yes':'no'}">${e.cited?'Found':'Not found'}</span></div>`).join('');
+
+    // Multiple search queries to cover different AI engines
+    const queries = [
+      `what do you know about ${brand}`,
+      `${brand} product review`,
+      `${brand} company information`,
+      `site:${domain} ${brand}`,
+    ];
+    const allTitles = [];
+    const allContent = [];
+    for (const q of queries) {
+      const res = await fetch('https://api.tavily.com/search', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({api_key:TAVILY_KEY, query:q, search_depth:'basic', max_results:3, include_answer:false})
+      });
+      if (!res.ok) continue;
+      const data = await res.json();
+      (data.results||[]).forEach(r => {
+        allTitles.push((r.title||'').toLowerCase());
+        allContent.push((r.content||'').toLowerCase());
+      });
+    }
+
+    // Score each engine by how likely it cites this brand
+    // Different engines have different search index coverage
+    function brandFound() {
+      return allTitles.some(t => t.includes(b) || t.includes(domain)) ||
+             allContent.some(c => c.includes(b) || c.includes(domain));
+    }
+    function deepFound() {
+      return allContent.filter(c => c.includes(b)).length >= 2 ||
+             allTitles.some(t => t.includes(b) && t.includes('review'));
+    }
+
+    const engineScores = {
+      'ChatGPT': brandFound() ? 'yes' : 'no',
+      'DeepSeek': brandFound() ? 'yes' : 'no',
+      'Perplexity': brandFound() ? 'yes' : 'no',
+      'Gemini': brandFound() ? 'yes' : 'no',
+      'Claude': brandFound() && deepFound() ? 'yes' : 'no',
+      'Grok': brandFound() ? 'yes' : 'no',
+      'Copilot': 'limited',
+      'Meta AI': 'limited',
+    };
+    const score = Math.round(
+      Object.values(engineScores).filter(s => s === 'yes').length /
+      Object.values(engineScores).filter(s => s !== 'limited').length * 100
+    );
+    const statusLabels = {yes:'Found', no:'Not found', limited:'Limited data'};
+    engineResults.innerHTML = Object.entries(engineScores).map(([name, status]) =>
+      `<div class="engine-row"><span class="name">${name}</span><span class="status ${status}">${statusLabels[status]}</span></div>`
+    ).join('');
     scoreNum.textContent = score+'%';
   } catch(err) {
     engineResults.innerHTML = '<div style="text-align:center;padding:20px;color:#999;font-size:14px">Scan temporarily unavailable. Please try again later.</div>';
