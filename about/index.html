@@ -4,26 +4,205 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3785488016873433" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — trygeoaudit.com</title>
-<meta name="description" content="About trygeoaudit.com — GEO audit tools for AI search visibility">
+<title>Who Built GEO Audit — About | trygeoaudit.com</title>
+<meta name="description" content="Meet Leo Zhang — GEO researcher specializing in Chinese and Western AI search ecosystems. Learn how trygeoaudit.com was built and why GEO matters for your brand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "trygeoaudit.com",
+  "url": "https://trygeoaudit.com",
+  "logo": "https://trygeoaudit.com/logo.png",
+  "description": "GEO audit tools helping brands understand and improve visibility in AI-powered search engines across Chinese and Western markets.",
+  "email": "hello@trygeoaudit.com",
+  "founder": {
+    "@type": "Person",
+    "name": "Leo Zhang",
+    "jobTitle": "GEO Researcher",
+    "description": "GEO researcher focusing on Chinese and Western AI search ecosystems. Specializing in cross-market AI search visibility analysis across 8+ AI engines including ChatGPT, DeepSeek, Doubao, Kimi, Qwen, Perplexity, Gemini, and Claude."
+  },
+  "sameAs": [
+    "https://x.com/maomaofeng99787"
+  ]
+}
+</script>
+
 <style>
-body{font-family:system-ui,sans-serif;max-width:720px;margin:0 auto;padding:40px 20px;line-height:1.7;color:#222}h1{font-size:1.8rem;margin-bottom:.5rem}p{margin-bottom:1rem}
+:root{
+  --bg:#09090b;--ink:#fafafa;--muted:#a1a1aa;--muted2:#71717a;
+  --hair:#1c1c1f;--hair2:#27272a;
+  --accent:#10b981;--accent2:#34d399;--accent-dim:rgba(16,185,129,.08);
+  --sans:'Figtree',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.32,.72,0,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--muted);font-family:var(--sans);font-size:16px;line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.w{max-width:1200px;margin:0 auto;padding:0 28px}
+
+/* AMBIENT */
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.glow div{position:absolute;border-radius:50%;filter:blur(100px);opacity:.08}
+.g1{width:600px;height:600px;background:#34d399;top:-120px;left:-160px}
+.g2{width:450px;height:450px;background:#818cf8;bottom:-80px;right:-100px}
+header,main,footer{position:relative;z-index:1}
+
+/* NAV */
+nav{display:flex;align-items:center;gap:24px;padding:18px 0;border-bottom:1px solid var(--hair)}
+nav .mark{font-size:15px;font-weight:700;text-decoration:none;color:var(--ink);letter-spacing:-.01em}
+nav .sp{flex:1}
+nav a{font-size:13px;font-weight:500;color:var(--muted2);text-decoration:none;transition:color .15s}
+nav a:hover{color:var(--accent)}
+nav a.active{color:var(--accent)}
+
+/* PAGE HEADER */
+.page-hd{padding:80px 0 48px;border-bottom:1px solid var(--hair)}
+.page-hd .bread{font-size:12px;color:var(--muted2);margin-bottom:12px}
+.page-hd .bread a{color:var(--muted2);text-decoration:none}
+.page-hd .bread a:hover{color:var(--accent)}
+.page-hd h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;color:var(--ink);letter-spacing:-.04em;line-height:1.05;margin-bottom:12px}
+.page-hd p{font-size:16px;color:var(--muted);max-width:640px}
+
+/* ABOUT CONTENT */
+.about-content{padding:60px 0;max-width:800px}
+.about-content h2{font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;color:var(--ink);letter-spacing:-.02em;margin-top:48px;margin-bottom:12px}
+.about-content h2:first-child{margin-top:0}
+.about-content p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+.about-content p strong{color:var(--ink);font-weight:600}
+
+/* AUTHOR CARD */
+.author-card{display:flex;gap:32px;align-items:flex-start;padding:32px;border:1px solid var(--hair);border-radius:16px;background:rgba(255,255,255,.02);margin-bottom:40px}
+@media(max-width:640px){.author-card{flex-direction:column;gap:16px}}
+.author-avatar{width:72px;height:72px;border-radius:50%;background:var(--accent-dim);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:28px;font-weight:800;color:var(--accent);font-family:var(--sans)}
+.author-info{flex:1}
+.author-info .name{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.author-info .role{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px}
+.author-info .bio{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* ENGINE LIST */
+.engine-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin:16px 0}
+.engine-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;background:var(--accent-dim);color:var(--accent);border:1px solid rgba(16,185,129,.15)}
+.engine-tag.cn{background:rgba(139,92,246,.08);color:#a78bfa;border-color:rgba(139,92,246,.15)}
+.engine-tag.west{background:rgba(59,130,246,.08);color:#60a5fa;border-color:rgba(59,130,246,.15)}
+
+/* CALL OUT BOX */
+.callout{padding:24px;border-left:3px solid var(--accent);border-radius:8px;background:var(--accent-dim);margin:24px 0}
+.callout p{font-size:14px;margin-bottom:0}
+.callout a{color:var(--accent2);text-decoration:none;font-weight:600}
+.callout a:hover{text-decoration:underline}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--hair);margin:48px 0}
+
+/* FOOTER */
+footer{display:flex;justify-content:space-between;align-items:center;padding:36px 0;gap:16px;flex-wrap:wrap;border-top:1px solid var(--hair)}
+footer .copy{font-size:13px;color:var(--muted2)}
+footer .links{display:flex;gap:16px}
+footer .links a{font-size:13px;color:var(--muted2);text-decoration:none;transition:color .15s}
+footer .links a:hover{color:var(--accent)}
 </style>
 </head>
 <body>
-<h1>About trygeoaudit.com</h1>
-<p>trygeoaudit.com provides tools to help brands understand and improve their visibility in AI-powered search engines and chat interfaces — including ChatGPT, Perplexity, Claude, DeepSeek, Gemini, and more.</p>
+<div class="glow"><div class="g1"></div><div class="g2"></div></div>
 
-<p>Our tools include:</p>
-<ul>
-<li><strong>GEO Audit</strong> — Full visibility check across 8+ AI search engines</li>
-<li><strong>Agent Quality Guard</strong> — Monitor how AI agents cite and evaluate your brand</li>
-<li><strong>Content Suite</strong> — Optimize your content for AI search discovery</li>
-</ul>
+<header class="w">
+<nav>
+  <a href="/" class="mark">TryGEO</a>
+  <div class="sp"></div>
+  <a href="/">Home</a>
+  <a href="/blog">Blog</a>
+  <a href="/resources">Resources</a>
+  <a href="/about" class="active">About</a>
+</nav>
+</header>
 
-<p>We believe in practical, no-fluff answers. Our audit results highlight exactly where you stand and what to do next.</p>
+<main class="w">
 
-<h2>Contact</h2>
-<p>Email: <a href="mailto:hello@trygeoaudit.com">hello@trygeoaudit.com</a></p>
+<section class="page-hd">
+  <div class="bread"><a href="/">Home</a> / About</div>
+  <h1>Who Built GEO Audit</h1>
+  <p>The story behind trygeoaudit.com — from a single researcher asking hard questions to a cross-market GEO intelligence platform spanning 8+ AI engines.</p>
+</section>
+
+<div class="about-content">
+
+  <!-- Author -->
+  <div class="author-card">
+    <div class="author-avatar">LZ</div>
+    <div class="author-info">
+      <div class="name">Leo Zhang</div>
+      <div class="role">GEO Researcher — Chinese & Western AI Search Ecosystems</div>
+      <div class="bio">Leo is a Generative Engine Optimization (GEO) researcher focused on how brands are discovered, cited, and evaluated across the world's most influential AI search platforms. His work bridges the gap between Western AI search (ChatGPT, Perplexity, Gemini) and the rapidly evolving Chinese AI ecosystem (Doubao, DeepSeek, Kimi, Qwen, ERNIE Bot, and more).</div>
+    </div>
+  </div>
+
+  <h2>Why GEO Audit Exists</h2>
+  <p>In 2025, Leo noticed a glaring blind spot in the AI search industry: while brands poured resources into optimizing for Google, the emerging AI search landscape — where answers are <strong>generated, not linked</strong> — was almost entirely unmeasured. No tool existed to tell a brand whether ChatGPT was citing them accurately, whether DeepSeek was mentioning their product, or whether Doubao was recommending them to Chinese consumers.</p>
+  <p>So Leo built one.</p>
+  <p>trygeoaudit.com started as a personal research project — running manual probes across AI engines, documenting citation patterns, and publishing the raw findings. What began as a spreadsheet evolved into the <strong>GEO Audit</strong> tool: a 30-second scan that checks brand visibility across 8+ AI engines and surfaces what each engine says, where it cites you, and what context it uses.</p>
+
+  <h2>Research Coverage: 8+ AI Engines</h2>
+  <p>We monitor and analyze how the following AI search engines discover, cite, and talk about your brand:</p>
+
+  <div class="engine-grid">
+    <span class="engine-tag west">ChatGPT</span>
+    <span class="engine-tag west">Perplexity</span>
+    <span class="engine-tag west">Google Gemini</span>
+    <span class="engine-tag west">Claude</span>
+    <span class="engine-tag west">Grok</span>
+    <span class="engine-tag west">Microsoft Copilot</span>
+    <span class="engine-tag west">Meta AI</span>
+    <span class="engine-tag cn">豆包 Doubao</span>
+    <span class="engine-tag cn">DeepSeek</span>
+    <span class="engine-tag cn">Kimi</span>
+    <span class="engine-tag cn">通义千问 Qwen</span>
+    <span class="engine-tag cn">文心一言 ERNIE Bot</span>
+  </div>
+
+  <p>This dual-market focus is what sets GEO Audit apart. While most GEO tools cover only Western engines, we recognize that <strong>Chinese AI platforms serve over 300 million monthly active users</strong> who use AI for shopping, travel, and purchasing decisions. A brand invisible in Doubao or DeepSeek is leaving billions of impressions on the table.</p>
+
+  <h2>What We've Discovered</h2>
+  <p>Our research has uncovered critical insights that challenge how the industry thinks about AI search visibility:</p>
+  <p><strong>Citation ≠ Visibility.</strong> Chinese AI engines rarely provide explicit citations, but they do mention brands by name in generated responses. GEO Audit tracks both — citations in Western engines and brand mentions in Chinese engines — because the metric that matters is whether the AI <em>talks about you</em>.</p>
+  <p><strong>The GEO Industry Has Blind Spots.</strong> When Leo tested three companies rated as "Top 3 Doubao GEO Optimization" providers, their brand citation rates across Doubao, Kimi, and DeepSeek were <strong>0%</strong>. The so-called "reviews" that ranked them were paid placements, not independent analysis.</p>
+  <p><strong>Chinese vs. Western Engines Follow Different Rules.</strong> Western engines favor structured data, authoritative backlinks, and clear citations. Chinese engines prioritize platform ecosystem integration, social media presence (Xiaohongshu, WeChat), and supply-chain relationship data. Optimizing for one doesn't guarantee visibility in the other.</p>
+
+  <h2>Our Philosophy</h2>
+  <p>We believe in <strong>practical, transparent, no-fluff GEO</strong>. Our audit results don't sugarcoat — they tell you exactly where you stand, which engines see you, which don't, and what to do next. We don't sell "guaranteed rankings" because AI search doesn't work that way. We sell clarity.</p>
+  <p>Every tool we build starts with a real question from a real brand. If we can't answer it honestly, we don't ship it.</p>
+
+  <h2>Get in Touch</h2>
+  <p>Whether you want to discuss GEO strategy, commission a deep-dive audit, or just share feedback, we'd love to hear from you.</p>
+
+  <div class="callout">
+    <p>📧 <strong>Email:</strong> <a href="mailto:hello@trygeoaudit.com">hello@trygeoaudit.com</a></p>
+    <p style="margin-top:6px">Follow GEO research and updates on <a href="https://x.com/maomaofeng99787">X (Twitter)</a>.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <p style="font-size:13px;color:var(--muted2)"><em>Last updated: June 2026. GEO Audit is an independent research project focused on measuring and improving brand visibility in AI-powered search engines.</em></p>
+
+</div>
+
+</main>
+
+<footer class="w">
+  <div class="copy">&copy; 2026 TryGEO</div>
+  <div class="links">
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="/resources">Resources</a>
+    <a href="/about">About</a>
+    <a href="/privacy-policy">Privacy</a>
+    <a href="/terms-of-service">Terms</a>
+  </div>
+</footer>
+
 </body>
 </html>
