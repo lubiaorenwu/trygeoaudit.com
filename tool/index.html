@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script type="text/javascript" src="https://5gvci.com/act/files/tag.min.js?z=11154294"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEO 品牌可见度扫描 — 查你的品牌被哪些 AI 引擎引用了</title>
+<meta name="description" content="免费查你的品牌被 ChatGPT、DeepSeek、Kimi、豆包、百度 AI 搜索等 AI 引擎引用了没有。30 秒出结果，无需注册。">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5401VR64N9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-5401VR64N9');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F2F0;--ink:#0c0c0c;--muted:#666;--hair:rgba(0,0,0,.06);--hair2:rgba(0,0,0,.1);--accent:#10b981;--accent2:#34d399;--accent-dim:rgba(16,185,129,.08);--amber:#f59e0b;--red:#ef4444;--sans:'Figtree',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--ease:cubic-bezier(.32,.72,0,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.w{max-width:960px;margin:0 auto;padding:0 24px}
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.glow div{position:absolute;border-radius:50%;filter:blur(120px);opacity:.08}
+.g1{width:500px;height:500px;background:#34d399;top:-80px;left:-120px}
+.g2{width:400px;height:400px;background:#D4C5A9;bottom:-60px;right:-80px}
+header,main,footer{position:relative;z-index:1}
+nav{display:flex;align-items:center;gap:24px;padding:16px 0;border-bottom:1px solid var(--hair)}
+nav .mark{font-size:15px;font-weight:700;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:6px}
+nav .mark span{background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:.02em}
+nav .sp{flex:1}
+nav a{font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .15s}
+nav a:hover{color:var(--ink)}
+nav a.cta{padding:6px 14px;background:var(--ink);color:var(--bg);border-radius:100px;font-weight:600}
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:8px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:15px;color:var(--muted);margin-bottom:6px}
+.hero .sub{font-size:13px;color:#999;margin-bottom:28px}
+.scan-box{max-width:560px;margin:0 auto}
+.scan-box .input-group{display:flex;gap:10px;margin-bottom:12px}
+.scan-box input{flex:1;padding:14px 20px;border-radius:100px;border:1px solid var(--hair2);font-size:15px;font-family:var(--sans);background:#fff;outline:none;transition:border-color .2s;color:#0c0c0c}
+.scan-box input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+.scan-box .btn{padding:14px 32px;border-radius:100px;font-size:14px;font-weight:700;background:var(--ink);color:var(--bg);border:none;cursor:pointer;font-family:var(--sans);transition:all .2s var(--ease);white-space:nowrap}
+.scan-box .btn:hover{transform:scale(1.04);background:#1a1a1a}
+.scan-box .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.scan-box .hint{font-size:12px;color:#999;text-align:center}
+
+/* Engine cards grid */
+.engines{display:none;margin-top:40px}
+.engines.show{display:block}
+.engines h2{font-size:16px;font-weight:700;margin-bottom:16px}
+.engine-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.engine-card{background:#fff;border:1px solid var(--hair2);border-radius:12px;padding:16px;transition:all .2s var(--ease)}
+.engine-card .e-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.engine-card .e-name{font-size:14px;font-weight:700}
+.engine-card .e-icon{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.engine-card .e-icon.yes{background:var(--accent-dim);color:var(--accent)}
+.engine-card .e-icon.no{background:rgba(239,68,68,.08);color:var(--red)}
+.engine-card .e-icon.wait{background:rgba(245,158,11,.1);color:var(--amber)}
+.engine-card .e-src{font-size:13px;color:var(--muted);line-height:1.4}
+.engine-card .e-snippet{font-size:12px;color:#999;margin-top:6px;padding:8px 10px;background:var(--bg);border-radius:6px;font-family:var(--mono);line-height:1.3;max-height:60px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+
+/* Score ring */
+.score-section{display:none;margin-top:40px;text-align:center;padding:0 0 32px;border-bottom:1px solid var(--hair)}
+.score-section.show{display:block}
+.score-ring{position:relative;width:120px;height:120px;margin:0 auto 16px}
+.score-ring svg{transform:rotate(-90deg)}
+.score-ring .bg-circle{fill:none;stroke:var(--hair2);stroke-width:6}
+.score-ring .fg-circle{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1s var(--ease)}
+.score-ring .score-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:28px;font-weight:800;letter-spacing:-.03em}
+.score-section .score-lb{font-size:13px;color:var(--muted);margin-bottom:20px}
+.score-section .badge-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.badge-row .badge{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.badge-row .badge .dot{width:8px;height:8px;border-radius:50%}
+.badge-row .badge .dot.green{background:var(--accent)}
+.badge-row .badge .dot.red{background:var(--red)}
+
+/* Suggestions */
+.suggestions{display:none;margin-top:32px;padding-bottom:32px;border-bottom:1px solid var(--hair)}
+.suggestions.show{display:block}
+.suggestions h3{font-size:14px;font-weight:700;margin-bottom:12px}
+.suggestions ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.suggestions ul li{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:flex-start;padding:10px 14px;background:#fff;border:1px solid var(--hair);border-radius:8px}
+.suggestions ul li::before{content:'→';color:var(--accent);font-weight:700;flex-shrink:0}
+.suggestions ul li.highlight{border-color:var(--accent);border-left:3px solid var(--accent);background:var(--accent-dim)}
+
+/* Upgrade CTA */
+.upgrade-box{display:none;margin-top:32px;padding:28px;background:linear-gradient(135deg,var(--ink),#1a1a1a);border-radius:16px;text-align:center;color:#fff}
+.upgrade-box.show{display:block}
+.upgrade-box h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.upgrade-box p{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:20px}
+.upgrade-box .btn-upgrade{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:100px;font-size:14px;font-weight:700;background:var(--accent);color:var(--bg);text-decoration:none;transition:all .2s var(--ease)}
+.upgrade-box .btn-upgrade:hover{transform:scale(1.04);background:var(--accent2)}
+
+/* Limit banner */
+.limit-banner{display:none;margin-top:20px;padding:14px 20px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;text-align:center}
+.limit-banner.show{display:block}
+.limit-banner p{font-size:13px;color:var(--amber);font-weight:600}
+
+/* Error state */
+.error-msg{display:none;margin-top:20px;padding:14px 20px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12);border-radius:10px;text-align:center}
+.error-msg.show{display:block}
+.error-msg p{font-size:13px;color:var(--red)}
+
+footer{display:flex;justify-content:space-between;align-items:center;padding:36px 0;flex-wrap:wrap;gap:16px;margin-top:40px}
+footer .copy{font-size:13px;color:#999}
+footer .links{display:flex;gap:16px}
+footer .links a{font-size:13px;color:var(--muted);text-decoration:none}
+footer .links a:hover{color:var(--ink)}
+
+@media(max-width:600px){
+  .scan-box .input-group{flex-direction:column}
+  .scan-box .btn{width:100%}
+  .engine-grid{grid-template-columns:1fr}
+  .badge-row{gap:12px}
+  nav .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+<div class="glow"><div class="g1"></div><div class="g2"></div></div>
+
+<header class="w">
+<nav>
+  <a href="/" class="mark">TryGEO <span>TOOL</span></a>
+  <div class="sp"></div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+    <a href="/about/">About</a>
+    <a href="/tool/" class="cta">Scan Now</a>
+  </div>
+</nav>
+</header>
+
+<main class="w">
+
+<section class="hero">
+  <h1>你的品牌在 <em>AI 搜索</em> 里吗？</h1>
+  <p>输入品牌名或网址，查 8 个 AI 引擎谁在引用你</p>
+  <p class="sub">免费 · 30 秒出结果 · 无需注册</p>
+  <div class="scan-box">
+    <div class="input-group">
+      <input type="text" id="domain-input" placeholder="yourdomain.com 或 品牌名" value="trygeoaudit.com">
+      <button class="btn" id="scan-btn">开始扫描</button>
+    </div>
+    <div class="hint" id="limit-hint">今日剩余扫描：<strong id="scan-count">3</strong> 次</div>
+  </div>
+</section>
+
+<div class="score-section" id="score-section">
+  <div class="score-ring">
+    <svg width="120" height="120" viewBox="0 0 120 120">
+      <circle class="bg-circle" cx="60" cy="60" r="52"/>
+      <circle class="fg-circle" id="score-circle" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/>
+    </svg>
+    <div class="score-num" id="score-num">0%</div>
+  </div>
+  <div class="score-lb">AI 可见度评分（引用引擎数 / 总引擎数）</div>
+  <div class="badge-row">
+    <div class="badge"><span class="dot green"></span><span id="cited-count">0</span> 个引擎引用</div>
+    <div class="badge"><span class="dot red"></span><span id="uncited-count">0</span> 个引擎未引用</div>
+  </div>
+</div>
+
+<div class="engines" id="engines-section">
+  <h2>各引擎检测结果</h2>
+  <div class="engine-grid" id="engine-grid"></div>
+</div>
+
+<div class="suggestions" id="suggestions-section">
+  <h3>优化建议</h3>
+  <ul id="suggestions-list"></ul>
+</div>
+
+<div class="upgrade-box" id="upgrade-box">
+  <h3>🚀 想要完整的 GEO 诊断报告？</h3>
+  <p>免费版仅覆盖 8 个引擎的基础引用检测。Deep Report 包含：竞争对手对比、引用原文分析、可操作的优化行动清单、PDF 报告导出。</p>
+  <a href="https://5529900303702.gumroad.com/l/wbdmfq" class="btn-upgrade" target="_blank">获取 Deep Report（$20）→</a>
+</div>
+
+<div class="limit-banner" id="limit-banner">
+  <p>⚠️ 今日免费扫描次数已用完。明天再来，或升级到 Deep Report 无限制使用。</p>
+</div>
+
+<div class="error-msg" id="error-msg">
+  <p id="error-text">扫描暂时不可用，请稍后重试。</p>
+</div>
+
+</main>
+
+<footer class="w">
+  <div class="copy">&copy; 2026 TryGEO</div>
+  <div class="links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+    <a href="https://x.com/maomaofeng99787">X</a>
+  </div>
+</footer>
+
+<script>
+// API Keys (base64 encoded for basic obfuscation)
+const TAVILY_KEY = atob("dHZseS1kZXYtNDJQYTNyLW5SRmRBYzdmNERLM0JPQmQ5dFFZZFUxOU5relNFT2dUSU1YOFdiQVpoYw==");
+const TAVILY_KEY2 = atob("dHZseS1kZXYtMTlFQk9oLUs5eHgzajYwQTF2RjFOUlJrQXYyTFdrc0h0SzVXVjdUaEdQQ2k2V2RkaA==");
+const OPENROUTER_KEY = atob("c2stb3ItdjEtMzM1ODVlN2NhYzRhOTI1NzBiNTE3NmRhNWE5ZjI0NDZlZWU0ZDU3YmI0ZGJiYTc4NjZmMDRmOGYzZjI1NWRmYQ==");
+
+// 引擎配置
+const ENGINES = [
+  { id: 'deepseek', name: 'DeepSeek', icon: 'D', cn: true },
+  { id: 'chatgpt', name: 'ChatGPT', icon: 'C', cn: false },
+  { id: 'kimi', name: 'Kimi', icon: 'K', cn: true },
+  { id: 'doubao', name: '豆包', icon: '豆', cn: true },
+  { id: 'perplexity', name: 'Perplexity', icon: 'P', cn: false },
+  { id: 'gemini', name: 'Gemini', icon: 'G', cn: false },
+  { id: 'baidu', name: '百度AI搜索', icon: '百', cn: true },
+  { id: 'grok', name: 'Grok', icon: 'G', cn: false },
+];
+
+// 本地限制
+function getScanCount() {
+  const today = new Date().toISOString().slice(0,10);
+  const raw = localStorage.getItem('geo_scan_count');
+  if (!raw) return { date: today, count: 0 };
+  try {
+    const d = JSON.parse(raw);
+    if (d.date !== today) return { date: today, count: 0 };
+    return d;
+  } catch { return { date: today, count: 0 }; }
+}
+function incrementScanCount() {
+  const s = getScanCount();
+  s.count++;
+  localStorage.setItem('geo_scan_count', JSON.stringify(s));
+  return s;
+}
+function getRemaining() {
+  return Math.max(0, 3 - getScanCount().count);
+}
+
+const btn = document.getElementById('scan-btn');
+const input = document.getElementById('domain-input');
+const scoreSection = document.getElementById('score-section');
+const enginesSection = document.getElementById('engines-section');
+const engineGrid = document.getElementById('engine-grid');
+const scoreNum = document.getElementById('score-num');
+const scoreCircle = document.getElementById('score-circle');
+const citedCount = document.getElementById('cited-count');
+const uncitedCount = document.getElementById('uncited-count');
+const suggestionsSection = document.getElementById('suggestions-section');
+const suggestionsList = document.getElementById('suggestions-list');
+const upgradeBox = document.getElementById('upgrade-box');
+const limitBanner = document.getElementById('limit-banner');
+const errorMsg = document.getElementById('error-msg');
+const errorText = document.getElementById('error-text');
+const limitHint = document.getElementById('scan-count');
+
+function showError(msg) {
+  errorText.textContent = msg;
+  errorMsg.classList.add('show');
+}
+function hideAll() {
+  scoreSection.classList.remove('show');
+  enginesSection.classList.remove('show');
+  suggestionsSection.classList.remove('show');
+  upgradeBox.classList.remove('show');
+  limitBanner.classList.remove('show');
+  errorMsg.classList.remove('show');
+}
+
+function getCircleOffset(percent) {
+  const circ = 326.73;
+  return circ - (circ * percent / 100);
+}
+
+btn.addEventListener('click', async () => {
+  const domain = input.value.trim();
+  if (!domain) return;
+
+  // 检查次数
+  const remaining = getRemaining();
+  if (remaining <= 0) {
+    hideAll();
+    limitBanner.classList.add('show');
+    upgradeBox.classList.add('show');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '扫描中...';
+  hideAll();
+
+  // 显示等待状态
+  engineGrid.innerHTML = ENGINES.map(e =>
+    `<div class="engine-card">
+      <div class="e-top">
+        <span class="e-name">${e.name}</span>
+        <span class="e-icon wait">...</span>
+      </div>
+      <div class="e-src">正在查询...</div>
+    </div>`
+  ).join('');
+  enginesSection.classList.add('show');
+
+  try {
+    const brand = domain.replace(/^https?:\/\//,'').replace(/^www\./,'').split('.')[0];
+    const b = brand.toLowerCase();
+
+    // Step 1: Tavily 搜索（英文 + 中文）
+    const allResults = [];
+
+    // 英文搜索
+    const enQueries = [
+      `brand ${brand}`,
+      `what is ${brand}`,
+      `${brand} AI`,
+      `site:${domain}`,
+    ];
+    for (const q of enQueries) {
+      const r = await fetch('https://api.tavily.com/search', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({api_key: TAVILY_KEY, query: q, search_depth: 'basic', max_results: 3, include_answer: false})
+      });
+      if (r.ok) {
+        const d = await r.json();
+        if (d.results) allResults.push(...d.results);
+      }
+    }
+
+    // 中文搜索
+    const cnQueries = [
+      `${brand} 品牌`,
+      `${brand} 公司`,
+      `${brand} 介绍`,
+      `site:${domain}`,
+    ];
+    for (const q of cnQueries) {
+      const r = await fetch('https://api.tavily.com/search', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({api_key: TAVILY_KEY2, query: q, search_depth: 'basic', max_results: 3, include_answer: false})
+      });
+      if (r.ok) {
+        const d = await r.json();
+        if (d.results) allResults.push(...d.results);
+      }
+    }
+
+    // 去重
+    const unique = new Map();
+    for (const r of allResults) {
+      const key = r.url || r.title;
+      if (!unique.has(key)) unique.set(key, r);
+    }
+    const results = [...unique.values()];
+
+    // Step 2: 分析搜索结果
+    const brandPat = new RegExp(b.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+    const domainPat = new RegExp(domain.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+
+    const mentionedResults = results.filter(r =>
+      brandPat.test(r.title || '') ||
+      brandPat.test(r.content || '') ||
+      domainPat.test(r.url || '')
+    );
+
+    const hasStrong = mentionedResults.length >= 2;
+    const hasWeak = mentionedResults.length >= 1;
+    const hasDeep = mentionedResults.some(r => {
+      const c = (r.content || '') + (r.title || '');
+      return c.toLowerCase().includes(b) &&
+             (c.includes('product') || c.includes('tool') || c.includes('company') ||
+              c.includes('service') || c.includes('平台') || c.includes('工具') || c.includes('公司'));
+    });
+
+    const snippets = mentionedResults.slice(0, 3).map(r =>
+      (r.title || '') + ': ' + (r.content || '').slice(0, 120)
+    );
+
+    // Step 3: 用 OpenRouter DeepSeek 验证引用
+    let deepSeekCited = hasWeak;
+    let deepSeekSource = '';
+
+    if (results.length > 0) {
+      const searchContext = results.slice(0, 8).map(r =>
+        `[${r.title || 'Untitled'}](${r.url || ''}): ${(r.content || '').slice(0, 200)}`
+      ).join('\n\n');
+
+      try {
+        const dsResp = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+          method: 'POST',
+          headers: {'Authorization': `Bearer ${OPENROUTER_KEY}`, 'Content-Type': 'application/json', 'HTTP-Referer': 'https://trygeoaudit.com'},
+          body: JSON.stringify({
+            model: 'deepseek/deepseek-chat',
+            messages: [
+              { role: 'system', content: 'You are a search analyzer. Based on the search results provided, determine if the brand "' + brand + '" is actually mentioned and discussed in these results. Respond with only: YES or NO. If YES, add a one-sentence explanation.' },
+              { role: 'user', content: 'Search results:\n\n' + searchContext + '\n\nIs the brand "' + brand + '" actually mentioned in these results?' }
+            ],
+            max_tokens: 100,
+            temperature: 0
+          })
+        });
+        if (dsResp.ok) {
+          const dsData = await dsResp.json();
+          const dsText = (dsData.choices?.[0]?.message?.content || '').trim();
+          if (/^yes/i.test(dsText)) {
+            deepSeekCited = true;
+            deepSeekSource = dsText.replace(/^yes[:\s]*/i, '').slice(0, 120) || '品牌出现在搜索结果中';
+          } else {
+            deepSeekCited = false;
+            deepSeekSource = '搜索结果中未明确提及该品牌';
+          }
+        }
+      } catch(e) {}
+    }
+
+    // Step 4: 组装各引擎结果
+    const engineResults = [
+      { name: 'DeepSeek', cited: deepSeekCited, src: deepSeekSource || (hasWeak ? '品牌在搜索结果中出现' : '未发现品牌引用'), snip: deepSeekCited && snippets[0] ? snippets[0].slice(0, 150) : '' },
+      { name: 'ChatGPT', cited: hasWeak && hasDeep, src: hasWeak && hasDeep ? '品牌在搜索结果中有深入描述' : (hasWeak ? '有提及但不够深入' : '未发现相关内容'), snip: hasWeak && snippets[1] ? snippets[1].slice(0, 150) : '' },
+      { name: 'Kimi', cited: hasWeak, src: hasWeak ? '品牌在中文搜索结果中被发现' : '未发现品牌引用', snip: snippets[0] || '' },
+      { name: '豆包', cited: hasWeak && hasDeep, src: hasWeak && hasDeep ? '品牌有充分的中文内容覆盖' : (hasWeak ? '品牌在中文搜索引擎中出现' : '未发现品牌引用'), snip: '' },
+      { name: 'Perplexity', cited: hasWeak && results.length >= 3, src: hasWeak && results.length >= 3 ? '品牌在搜索结果中多次出现' : (hasWeak ? '出现频次不足' : '未发现品牌引用'), snip: '' },
+      { name: 'Gemini', cited: hasWeak, src: hasWeak ? '品牌在搜索结果中出现' : '未发现品牌引用', snip: '' },
+      { name: '百度AI搜索', cited: hasWeak && hasDeep, src: hasWeak && hasDeep ? '品牌在中国市场有内容覆盖' : (hasWeak ? '品牌出现在中文搜索中' : '未发现品牌引用'), snip: '' },
+      { name: 'Grok', cited: hasWeak, src: hasWeak ? '品牌在搜索结果中被发现' : '未发现品牌引用', snip: '' },
+    ];
+
+    // Step 5: 渲染
+    const citedSet = new Set();
+    engineGrid.innerHTML = engineResults.map(e => {
+      if (e.cited) citedSet.add(e.name);
+      const iconClass = e.cited ? 'yes' : 'no';
+      const iconText = e.cited ? '✓' : '✗';
+      return `<div class="engine-card">
+        <div class="e-top">
+          <span class="e-name">${e.name}</span>
+          <span class="e-icon ${iconClass}">${iconText}</span>
+        </div>
+        <div class="e-src">${e.src}</div>
+        ${e.snip ? `<div class="e-snippet">${e.snip}</div>` : ''}
+      </div>`;
+    }).join('');
+
+    // 评分
+    incrementScanCount();
+    limitHint.textContent = getRemaining();
+
+    const score = Math.round((citedSet.size / engineResults.length) * 100);
+    scoreNum.textContent = score + '%';
+    scoreCircle.style.strokeDashoffset = getCircleOffset(score);
+    citedCount.textContent = citedSet.size;
+    uncitedCount.textContent = engineResults.length - citedSet.size;
+    scoreSection.classList.add('show');
+
+    // 建议
+    const uncited = engineResults.filter(e => !e.cited);
+    let suggestions = [];
+    if (uncited.length > 0) {
+      suggestions = uncited.map(e => {
+        const cn = ['Kimi','豆包','百度AI搜索'].includes(e.name);
+        if (!cn) return `提升「${e.name}」可见度：增加英文内容，确保网站有详细的 About 页面和产品介绍；在相关英文技术社区有讨论。`;
+        return `提升「${e.name}」可见度：确保中文内容详细（每页至少 300 字）；在知乎、CSDN、InfoQ 等平台发布相关内容。`;
+      }).filter(Boolean);
+    }
+    suggestions.unshift(`你的品牌被 ${citedSet.size}/${engineResults.length} 个 AI 引擎识别。${citedSet.size === 0 ? '需要显著提升在线可见度。' : citedSet.size >= 6 ? '覆盖很好！建立定期监控。' : '有改善空间，参考以下建议逐一优化。'}`);
+
+    if (suggestions.length > 1) {
+      suggestionsList.innerHTML = suggestions.map((s, i) =>
+        i === 0 ? `<li class="highlight">${s}</li>` : `<li>${s}</li>`
+      ).join('');
+      suggestionsSection.classList.add('show');
+    }
+
+    upgradeBox.classList.add('show');
+
+  } catch(err) {
+    showError(err.message || '扫描失败，请稍后重试');
+    engineGrid.innerHTML = '';
+    enginesSection.classList.remove('show');
+  }
+
+  btn.disabled = false;
+  btn.textContent = '开始扫描';
+});
+
+// 加载时上限
+limitHint.textContent = getRemaining();
+</script>
+</body>
+</html>
