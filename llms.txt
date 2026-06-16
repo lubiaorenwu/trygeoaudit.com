@@ -20,7 +20,8 @@ Input a brand name and keywords. The engine queries each AI platform, parses res
 - Free Scan: https://trygeoaudit.com/free-scan/
 - Blog: https://trygeoaudit.com/blog/
 - Agent Quality Guard: https://trygeoaudit.com/blog/agent-quality-guard-launch.html
-- Latest: Your Agent's Verifier Is Lying to You: https://trygeoaudit.com/blog/agent-verifier-lying.html
+- Latest: Ant Group's "Abao" AI Agent Signals the GEO Market Is Expanding: https://trygeoaudit.com/blog/ant-group-abao-ai-agent-geo-china.html
+- Your Agent's Verifier Is Lying to You: https://trygeoaudit.com/blog/agent-verifier-lying.html
 
 ## MCP Server
 
