@@ -19,5 +19,9 @@ Allow: /
 # All other crawlers
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /test/
+Disallow: /private/
 
 Sitemap: https://trygeoaudit.com/sitemap.xml
