@@ -1,3 +1,22 @@
+# AI crawlers: explicit allow for main AI search engines
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: meta-externalagent
+Allow: /
+
+# All other crawlers
 User-agent: *
 Allow: /
 

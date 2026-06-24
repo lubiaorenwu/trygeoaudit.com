@@ -66,6 +66,28 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "GEO Audit",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "AI Visibility Checker for ChatGPT, DeepSeek, Gemini and more. 30-second free scan across 8+ AI engines.",
+  "url": "https://trygeoaudit.com/",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "15"
+  },
+  "browserRequirements": "Requires modern web browser"
+}
+</script>
 <style>
 :root{--bg:#09090b;--fg:#e4e4e7;--muted:#71717a;--accent:#10b981;--accent2:#34d399;--accent-dim:rgba(16,185,129,.08);--border:#1c1c1f;--card-bg:#0d120d;--sans:'Figtree','Inter',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--ease:cubic-bezier(.32,.72,0,1)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -391,6 +413,14 @@ footer .links a:hover{color:var(--accent2)}
     <div class="faq-item">
       <div class="q">Can GEO Audit help Chinese AI search?</div>
       <div class="a">Yes. GEO Audit is one of the only tools that covers Chinese AI engines including DeepSeek, Doubao (ByteDance), Kimi (Moonshot AI), Qwen (Alibaba), and ERNIE Bot (Baidu) — markets most Western GEO tools ignore.</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">My site ranks on Google but ChatGPT won't cite it. Why?</div>
+      <div class="a">ChatGPT Browse uses Bing's search index, not Google's. A high Google ranking doesn't guarantee Bing indexing. Check if your site is indexed by Bing (search "site:yoursite.com" on Bing). If not, submit via IndexNow. Also check for SSL certificate errors — AI crawlers reject sites with broken HTTPS.</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">How do I check if my site is indexed by Bing?</div>
+      <div class="a">Search "site:trygeoaudit.com" (use your domain) on Bing.com. If no results appear, your site is not in Bing's index. Fix: generate an IndexNow API key, upload the key file to your site root, and POST your URLs to api.indexnow.org. Most sites are indexed within hours of a successful IndexNow submission.</div>
     </div>
   </div>
 </section>
