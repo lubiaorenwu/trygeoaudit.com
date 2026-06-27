@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEO Audit — Check if AI Engines Mention Your Brand</title>
-<meta name="description" content="30-second free scan across ChatGPT, DeepSeek, Gemini and more. See if AI knows your brand exists.">
+<title>GEO Audit — AI Visibility Monitoring for Your Brand</title>
+<meta name="description" content="Monitor if ChatGPT, DeepSeek, Gemini and 5 more AI engines mention your brand. Weekly auto-scans, trend charts, competitor comparison. Start free — no signup.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,6 +17,8 @@
   --muted: #71717a;
   --accent: #059669;
   --accent-light: #ecfdf5;
+  --amber: #d97706;
+  --amber-light: #fffbeb;
   --red: #dc2626;
   --sans: 'Inter', system-ui, sans-serif;
 }
@@ -40,6 +42,7 @@ nav a.ncta:hover{filter:brightness(0.9)}
 .hero-text h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:var(--text);margin-bottom:16px}
 .hero-text h1 em{font-style:normal;color:var(--accent);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
 .hero-text .sub{font-size:16px;color:var(--muted);line-height:1.55;margin-bottom:28px;max-width:440px}
+.hero-text .sub strong{color:var(--text)}
 .hero-text .btns{display:flex;gap:12px;flex-wrap:wrap}
 .hero-text .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s}
 .hero-text .btn.primary{background:var(--accent);color:#fff}
@@ -52,6 +55,7 @@ nav a.ncta:hover{filter:brightness(0.9)}
 .scan-card .sc-header{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:1px solid var(--border);background:#f8f8f8}
 .scan-card .sc-dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
 .scan-card .sc-url{font-size:12px;color:var(--muted);font-family:monospace}
+.scan-card .sc-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:var(--accent-light);color:var(--accent);margin-left:auto}
 .scan-card .sc-body{padding:20px}
 .scan-card .sc-brand{font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px}
 .scan-card .sc-score{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600;margin-bottom:16px}
@@ -63,50 +67,89 @@ nav a.ncta:hover{filter:brightness(0.9)}
 .scan-card .sc-engine .e-status{font-size:12px;font-weight:600;padding:2px 10px;border-radius:100px}
 .scan-card .sc-engine .e-status.found{background:var(--accent-light);color:var(--accent)}
 .scan-card .sc-engine .e-status.miss{background:#fef2f2;color:var(--red)}
+.scan-card .sc-engine .e-status.lock{background:#f5f5f5;color:#aaa}
+.scan-card .sc-footer{padding:14px 20px;background:#fafafa;border-top:1px solid var(--border);font-size:12px;color:var(--muted);text-align:center}
+.scan-card .sc-footer a{color:var(--accent);font-weight:600;text-decoration:none}
 
+/* HOOK */
 .hook{padding:80px 0;text-align:center;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .hook h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:8px}
 .hook p{font-size:15px;color:var(--muted);max-width:560px;margin:0 auto}
 
-.steps{padding:80px 0}
+/* WHY CONTINUOUS */
+.why-cont{padding:80px 0}
+.why-cont .section-label{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.why-cont h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:12px}
+.why-cont .sub{font-size:15px;color:var(--muted);max-width:580px;margin-bottom:40px}
+.why-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+@media(max-width:768px){.why-grid{grid-template-columns:1fr}}
+.why-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px}
+.why-card .wc-icon{font-size:24px;margin-bottom:14px}
+.why-card h3{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px}
+.why-card p{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* STEPS */
+.steps{padding:80px 0;background:var(--surface);border-top:1px solid var(--border)}
 .steps .section-label{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
 .steps h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:40px}
 .steps-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
 @media(max-width:768px){.steps-grid{grid-template-columns:1fr}}
-.step-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.step-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:32px}
 .step-card .step-num{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:12px}
 .step-card h3{font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px}
 .step-card p{font-size:13px;color:var(--muted);line-height:1.5}
+.step-card.highlight{background:var(--accent-light);border-color:var(--accent)}
 
-.decision{padding:80px 0;background:var(--surface);border-top:1px solid var(--border)}
+/* PRICING */
+.decision{padding:80px 0;border-top:1px solid var(--border)}
 .decision .section-label{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
-.decision h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:40px}
-.price-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
-@media(max-width:768px){.price-grid{grid-template-columns:1fr}}
-.price-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:32px;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
-.price-card.featured{border:2px solid var(--accent);background:var(--accent-light);box-shadow:0 4px 24px rgba(5,150,105,0.08)}
+.decision .hrow{display:flex;align-items:baseline;gap:16px;margin-bottom:40px;flex-wrap:wrap}
+.decision h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em}
+.billing-toggle{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.billing-toggle .pill{display:flex;background:var(--border);border-radius:100px;padding:3px}
+.billing-toggle .pill button{border:none;background:transparent;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;color:var(--muted);transition:all .2s}
+.billing-toggle .pill button.active{background:#fff;color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.save-tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:100px;background:var(--amber-light);color:var(--amber)}
+
+.price-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px}
+@media(max-width:1024px){.price-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.price-grid{grid-template-columns:1fr}}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;position:relative}
+.price-card.featured{border:2px solid var(--accent);background:var(--accent-light)}
 .price-card .pc-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;width:fit-content}
-.price-card .pc-badge.free{background:var(--accent-light);color:var(--accent)}
-.price-card .pc-badge.pro{background:#fef3c7;color:#92400e}
+.price-card .pc-badge.free-b{background:var(--accent-light);color:var(--accent)}
+.price-card .pc-badge.pro-b{background:var(--accent);color:#fff;position:absolute;top:-12px;left:50%;transform:translateX(-50%);white-space:nowrap}
+.price-card .pc-badge.agency-b{background:#1e40af;color:#fff}
+.price-card .pc-badge.custom-b{background:#7c3aed;color:#fff}
 .price-card h3{font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px}
-.price-card .pc-price{font-size:28px;font-weight:800;color:var(--accent);margin-bottom:16px}
+.price-card .pc-price{font-size:32px;font-weight:800;color:var(--accent);margin-bottom:4px;letter-spacing:-.02em}
 .price-card .pc-price sub{font-size:14px;font-weight:400;color:var(--muted)}
+.price-card .pc-period{font-size:12px;color:var(--muted);margin-bottom:16px}
 .price-card .pc-feats{list-style:none;margin-bottom:24px;flex:1}
-.price-card .pc-feats li{font-size:13px;color:var(--muted);padding:4px 0;padding-left:18px;position:relative}
+.price-card .pc-feats li{font-size:13px;color:var(--muted);padding:5px 0;padding-left:18px;position:relative;line-height:1.4}
 .price-card .pc-feats li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}
+.price-card .pc-feats li.dim{color:#ccc}
+.price-card .pc-feats li.dim::before{color:#ddd}
 .price-card .pc-btn{display:block;text-align:center;padding:11px 0;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s}
 .price-card .pc-btn.green{background:var(--accent);color:#fff}
 .price-card .pc-btn.green:hover{filter:brightness(0.9)}
 .price-card .pc-btn.ghost{border:1px solid var(--border);color:var(--text)}
 .price-card .pc-btn.ghost:hover{background:var(--accent-light)}
+.price-card .pc-note{font-size:11px;color:var(--muted);text-align:center;margin-top:8px}
 
+/* UNIQUE BADGE */
 .trust{padding:60px 0;text-align:center}
 .trust .trust-logos{display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap;margin-bottom:24px}
 .trust .trust-item{text-align:center}
 .trust .trust-num{font-size:32px;font-weight:800;color:var(--accent);letter-spacing:-.02em}
 .trust .trust-label{font-size:12px;color:var(--muted);margin-top:2px}
 .trust .trust-note{font-size:13px;color:var(--muted);max-width:480px;margin:0 auto}
+.unique-banner{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 28px;display:flex;align-items:center;gap:16px;max-width:680px;margin:24px auto 0;flex-wrap:wrap}
+.unique-banner .ub-icon{font-size:22px}
+.unique-banner .ub-text{font-size:13px;color:var(--muted);flex:1}
+.unique-banner .ub-text strong{color:var(--text)}
 
+/* FAQ */
 .faq{padding:80px 0;background:var(--surface);border-top:1px solid var(--border)}
 .faq h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:32px;text-align:center}
 .faq-grid{max-width:700px;margin:0 auto}
@@ -117,6 +160,7 @@ nav a.ncta:hover{filter:brightness(0.9)}
 .faq-item .a{font-size:14px;color:var(--muted);line-height:1.55;margin-top:12px;display:none}
 .faq-item.open .a{display:block}
 
+/* CTA BOT */
 .cta-bot{padding:100px 0 80px;text-align:center}
 .cta-bot h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;color:var(--text);letter-spacing:-.03em;margin-bottom:12px}
 .cta-bot p{font-size:15px;color:var(--muted);margin-bottom:28px}
@@ -135,102 +179,205 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="sp"></div>
   <a href="/blog/" class="nlink">Blog</a>
   <a href="/resources/" class="nlink">Resources</a>
-  <a href="/tool/" class="ncta">Start Free Scan</a>
+  <a href="#pricing" class="nlink">Pricing</a>
+  <a href="/tool/" class="ncta">Free Scan</a>
 </nav>
 
+<!-- HERO -->
 <section class="hero w">
   <div class="hero-text">
-    <h1>Your brand is <em>invisible</em> to AI.</h1>
-    <p class="sub">70% of users now ask ChatGPT, DeepSeek, and Gemini instead of Googling. If AI doesn't mention your brand, you don't exist.</p>
+    <h1>Your brand is <em>invisible</em> to AI — and it changes every week.</h1>
+    <p class="sub">70% of users now ask ChatGPT, DeepSeek, and Gemini instead of Googling. If AI doesn't mention your brand, you don't exist. And <strong>AI visibility changes constantly</strong> — what's true today may not be true next month.</p>
     <div class="btns">
       <a href="/tool/" class="btn primary">Scan My Brand — Free</a>
       <a href="#how" class="btn secondary">How It Works</a>
     </div>
-    <p class="subnote">No signup. 30 seconds. 8+ AI engines.</p>
+    <p class="subnote">No signup. 30 seconds. 8+ AI engines — including Chinese AI.</p>
   </div>
   <div class="scan-card">
     <div class="sc-header">
       <div class="sc-dot"></div>
       <div class="sc-url">trygeoaudit.com/scan</div>
+      <div class="sc-tag">Live Monitoring</div>
     </div>
     <div class="sc-body">
       <div class="sc-brand">YourBrand</div>
-      <div class="sc-score low">3 of 8 engines found you</div>
+      <div class="sc-score low">3 of 8 engines found you ↑ from 2 last week</div>
       <div class="sc-engines">
         <div class="sc-engine"><span class="e-name">ChatGPT</span><span class="e-status miss">Not Found</span></div>
         <div class="sc-engine"><span class="e-name">DeepSeek</span><span class="e-status found">Cited</span></div>
         <div class="sc-engine"><span class="e-name">Gemini</span><span class="e-status miss">Not Found</span></div>
-        <div class="sc-engine"><span class="e-name">Perplexity</span><span class="e-status found">Cited</span></div>
-        <div class="sc-engine"><span class="e-name">Claude</span><span class="e-status miss">Not Found</span></div>
+        <div class="sc-engine"><span class="e-name">豆包 Doubao</span><span class="e-status found">Cited</span></div>
+        <div class="sc-engine"><span class="e-name">Kimi</span><span class="e-status miss">Not Found</span></div>
+        <div class="sc-engine"><span class="e-name">Competitor A</span><span class="e-status lock">🔒 Pro</span></div>
       </div>
     </div>
+    <div class="sc-footer">Competitor tracking & weekly alerts → <a href="#pricing">Start 7-day free trial</a></div>
   </div>
 </section>
 
+<!-- HOOK -->
 <section class="hook w">
   <h2>You rank #1 on Google. ChatGPT has never heard of you.</h2>
-  <p>ChatGPT uses Bing's index, not Google's. DeepSeek has its own crawler. AI engines have different rules — being invisible costs you customers every day.</p>
+  <p>ChatGPT uses Bing's index, not Google's. DeepSeek has its own crawler. AI engines have different rules — and their knowledge of your brand shifts every week. One scan tells you today. Monitoring tells you the trend.</p>
 </section>
 
+<!-- WHY CONTINUOUS -->
+<section class="why-cont w">
+  <div class="section-label">Why Monitor Continuously</div>
+  <h2>AI visibility isn't a snapshot — it's a moving target.</h2>
+  <p class="sub">A one-time scan tells you where you stand today. It can't tell you if you're improving, if a competitor just overtook you, or if an engine suddenly stopped citing you.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="wc-icon">🔄</div>
+      <h3>AI memory changes weekly</h3>
+      <p>You fix your robots.txt and add schema markup today. Does ChatGPT actually pick you up next month? Only continuous scanning tells you if your optimizations are working.</p>
+    </div>
+    <div class="why-card">
+      <div class="wc-icon">📊</div>
+      <h3>Competitors are gaining ground</h3>
+      <p>While you're reading this, a competitor may be getting cited by AI engines that ignore you. Weekly competitor comparison shows you exactly where you're losing AI share.</p>
+    </div>
+    <div class="why-card">
+      <div class="wc-icon">🚨</div>
+      <h3>Get alerted before it costs you</h3>
+      <p>An AI engine suddenly stops citing you — or worse, starts citing you incorrectly. Weekly email alerts catch these problems early, before they quietly cost you customers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
 <section class="steps w" id="how">
   <div class="section-label">How It Works</div>
-  <h2>Three steps. 30 seconds.</h2>
+  <h2>Three steps. Then it runs itself.</h2>
   <div class="steps-grid">
-    <div class="step-card"><div class="step-num">01</div><h3>Enter your brand name</h3><p>Any brand, product, or domain. We query all major AI engines in parallel.</p></div>
-    <div class="step-card"><div class="step-num">02</div><h3>See your AI visibility score</h3><p>Which engines cite you. Which don't. What they actually say about your brand.</p></div>
-    <div class="step-card"><div class="step-num">03</div><h3>Get a fix-it checklist</h3><p>Actionable steps: fix your robots.txt, add Schema markup, submit to IndexNow.</p></div>
+    <div class="step-card"><div class="step-num">01</div><h3>Enter your brand name</h3><p>Any brand, product, or domain. We query all major AI engines in parallel — Western and Chinese.</p></div>
+    <div class="step-card"><div class="step-num">02</div><h3>See your AI visibility score</h3><p>Which engines cite you. Which don't. What they actually say about your brand, with a full snippet.</p></div>
+    <div class="step-card highlight"><div class="step-num">03</div><h3>Monitor weekly, automatically</h3><p>Pro users get weekly auto-scans, trend charts, competitor comparison, and email alerts — so you always know where you stand without lifting a finger.</p></div>
   </div>
 </section>
 
-<section class="decision w">
-  <div class="section-label">Products</div>
-  <h2>Start free. Upgrade when you're ready.</h2>
+<!-- PRICING -->
+<section class="decision w" id="pricing">
+  <div class="section-label">Pricing</div>
+  <div class="hrow">
+    <h2>Start free. Monitor when you're ready.</h2>
+    <div class="billing-toggle">
+      <div class="pill">
+        <button class="active" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
+        <button id="btn-annual" onclick="setBilling('annual')">Annual</button>
+      </div>
+      <span class="save-tag" id="save-label">Save 2 months</span>
+    </div>
+  </div>
   <div class="price-grid">
+
+    <!-- FREE -->
     <div class="price-card">
-      <div class="pc-badge free">Free</div>
+      <div class="pc-badge free-b">Free</div>
       <h3>Quick Scan</h3>
       <div class="pc-price">$0</div>
-      <ul class="pc-feats"><li>8 AI engines scanned</li><li>Visibility score</li><li>Basic report</li></ul>
-      <a href="/tool/" class="pc-btn green">Start Free</a>
+      <div class="pc-period">forever free</div>
+      <ul class="pc-feats">
+        <li>3 AI engines (limited)</li>
+        <li>One-time visibility score</li>
+        <li>Basic report</li>
+        <li class="dim">No history saved</li>
+        <li class="dim">No competitor tracking</li>
+        <li class="dim">No weekly alerts</li>
+      </ul>
+      <a href="/tool/" class="pc-btn ghost">Start Free Scan</a>
+      <p class="pc-note">No credit card required</p>
     </div>
+
+    <!-- PRO -->
     <div class="price-card featured">
-      <div class="pc-badge pro">Most Popular</div>
-      <h3>GEO Toolkit</h3>
-      <div class="pc-price">$5<sub> one-time</sub></div>
-      <ul class="pc-feats"><li>Everything in Free</li><li>Fix-it checklist with priority</li><li>Schema markup templates</li><li>robots.txt validator</li><li>IndexNow submission guide</li><li>Competitor AI visibility comparison</li></ul>
-      <a href="https://trygeoaudit.com/toolkit" class="pc-btn green">Get Toolkit — $5</a>
+      <div class="pc-badge pro-b">⭐ Most Popular</div>
+      <h3>Pro Monitor</h3>
+      <div class="pc-price" id="pro-price">$29<sub>/mo</sub></div>
+      <div class="pc-period" id="pro-period">billed monthly · cancel anytime</div>
+      <ul class="pc-feats">
+        <li>All 8+ AI engines</li>
+        <li>Weekly auto-scans</li>
+        <li>Trend charts (12-month history)</li>
+        <li>Competitor tracking (3 brands)</li>
+        <li>Email alerts on changes</li>
+        <li>Fix-it checklist & Schema templates</li>
+      </ul>
+      <a href="/toolkit/" class="pc-btn green">Start 7-Day Free Trial</a>
+      <p class="pc-note">Then <span id="pro-note-price">$29/mo</span> · cancel anytime</p>
     </div>
+
+    <!-- AGENCY -->
     <div class="price-card">
-      <h3>Custom Audit</h3>
-      <div class="pc-price">Contact us</div>
-      <ul class="pc-feats"><li>Everything in Toolkit</li><li>Manual audit &amp; report</li><li>Custom strategy document</li><li>1-on-1 consultation</li></ul>
-      <a href="mailto:hello@trygeoaudit.com" class="pc-btn ghost">Get in Touch</a>
+      <div class="pc-badge agency-b">Agency</div>
+      <h3>Agency Monitor</h3>
+      <div class="pc-price" id="agency-price">$199<sub>/mo</sub></div>
+      <div class="pc-period" id="agency-period">billed monthly · cancel anytime</div>
+      <ul class="pc-feats">
+        <li>Up to 25 brands</li>
+        <li>White-label PDF reports</li>
+        <li>API access</li>
+        <li>Team seats (5 users)</li>
+        <li>Priority support</li>
+        <li>Everything in Pro</li>
+      </ul>
+      <a href="mailto:hello@trygeoaudit.com?subject=Agency Plan" class="pc-btn ghost">Contact Sales</a>
+      <p class="pc-note">Annual discount available</p>
     </div>
+
+    <!-- CUSTOM -->
+    <div class="price-card">
+      <div class="pc-badge custom-b">Custom</div>
+      <h3>Custom Audit</h3>
+      <div class="pc-price" style="font-size:22px;">Contact us</div>
+      <div class="pc-period">project-based pricing</div>
+      <ul class="pc-feats">
+        <li>Manual audit & report</li>
+        <li>Custom strategy document</li>
+        <li>1-on-1 consultation</li>
+        <li>Everything in Agency</li>
+      </ul>
+      <a href="mailto:hello@trygeoaudit.com" class="pc-btn ghost">Get in Touch</a>
+      <p class="pc-note">&nbsp;</p>
+    </div>
+
   </div>
 </section>
 
+<!-- TRUST STATS -->
 <section class="trust w">
   <div class="trust-logos">
     <div class="trust-item"><div class="trust-num">8+</div><div class="trust-label">AI Engines</div></div>
-    <div class="trust-item"><div class="trust-num">30s</div><div class="trust-label">Scan Time</div></div>
-    <div class="trust-item"><div class="trust-num">0</div><div class="trust-label">Signup Required</div></div>
+    <div class="trust-item"><div class="trust-num">Weekly</div><div class="trust-label">Auto-Scans</div></div>
+    <div class="trust-item"><div class="trust-num">12mo</div><div class="trust-label">Trend History</div></div>
   </div>
-  <p class="trust-note">Covers ChatGPT, DeepSeek, Gemini, Perplexity, Claude, Doubao, Kimi, Qwen — Western and Chinese AI engines in one scan.</p>
+  <p class="trust-note">Covers ChatGPT, DeepSeek, Gemini, Perplexity, Claude, Doubao, Kimi, Qwen — the only tool covering both Western and Chinese AI engines.</p>
+  <div class="unique-banner">
+    <div class="ub-icon">🇨🇳</div>
+    <div class="ub-text"><strong>Unique: Western + Chinese AI engines in one scan.</strong> Doubao (ByteDance), Kimi (Moonshot), Qwen (Alibaba) — no other GEO tool covers the world's largest AI search market.</div>
+  </div>
 </section>
 
+<!-- FAQ -->
 <section class="faq w">
   <h2>Frequently Asked Questions</h2>
   <div class="faq-grid">
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">What's the difference between SEO and GEO?</div><div class="a">SEO optimizes for Google rankings. GEO optimizes for AI citations. A site ranking #1 on Google can be completely invisible to ChatGPT — because ChatGPT uses Bing's index, not Google's.</div></div>
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Which AI engines do you check?</div><div class="a">ChatGPT, DeepSeek, Gemini, Perplexity, Claude, Doubao (ByteDance), Kimi (Moonshot), and Qwen (Alibaba). We're the only tool covering both Western and Chinese AI engines.</div></div>
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">How can I improve my AI visibility?</div><div class="a">After scanning, you'll get a checklist. Most common fixes: ensure AI crawlers aren't blocked in robots.txt, add Schema.org markup, submit to Bing via IndexNow, and structure content as Q&A.</div></div>
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Do I need to sign up?</div><div class="a">No. The free scan requires no signup, no email, no credit card. Enter your brand name and get results in 30 seconds.</div></div>
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">What's the difference between SEO and GEO?</div><div class="a">SEO optimizes for Google rankings. GEO optimizes for AI citations. A site ranking #1 on Google can be completely invisible to ChatGPT — because ChatGPT uses Bing's index, not Google's. Two audiences, two different strategies.</div></div>
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Which AI engines do you check?</div><div class="a">ChatGPT, DeepSeek, Gemini, Perplexity, Claude, Doubao (ByteDance), Kimi (Moonshot), and Qwen (Alibaba). We're the only GEO monitoring tool covering both Western and Chinese AI engines in a single dashboard.</div></div>
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Why do I need monitoring instead of a one-time scan?</div><div class="a">AI engine indexes update continuously. ChatGPT's knowledge base is re-trained periodically; Perplexity and DeepSeek crawl the web in near real-time. A one-time scan tells you your score today — but not whether your optimizations worked, whether a competitor just overtook you, or whether an engine started citing you incorrectly. Weekly monitoring answers all of these.</div></div>
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">How does the 7-day free trial work?</div><div class="a">Sign up for Pro, get full access for 7 days. No charge until the trial ends. Cancel anytime before day 7 and you won't be billed a cent. After the trial, billing starts at the plan rate you selected.</div></div>
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Can I cancel anytime?</div><div class="a">Yes — one click, no questions asked. You keep access until the end of your current billing period. We don't believe in dark patterns or cancel flows designed to frustrate you.</div></div>
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">How long is my scan history saved?</div><div class="a">Pro and above plans retain your full scan history for 12 months, giving you a complete trend chart to show your team or clients. Free scans are not saved — each free scan is a fresh one-time result.</div></div>
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">What are white-label PDF reports (Agency plan)?</div><div class="a">You can export monitoring reports as branded PDFs — with your agency's logo, colors, and domain — and deliver them directly to clients. Clients see your brand, not GEO Audit. It's your service, powered by our infrastructure.</div></div>
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Do I need to sign up for the free scan?</div><div class="a">No. The free scan requires no signup, no email, no credit card. Enter your brand name and get results in 30 seconds. Signup is only needed for Pro monitoring.</div></div>
   </div>
 </section>
 
+<!-- BOTTOM CTA -->
 <section class="cta-bot w">
-  <h2>Is your brand visible to AI?</h2>
-  <p>30 seconds. Free. No signup.</p>
+  <h2>Is your brand visible to AI — this week?</h2>
+  <p>30-second free scan. No signup. See where you stand right now.</p>
   <a href="/tool/" class="btn">Start Free Scan →</a>
 </section>
 
@@ -238,5 +385,28 @@ footer a{color:var(--accent);text-decoration:none}
   <p>© 2026 GEO Audit · <a href="mailto:hello@trygeoaudit.com">hello@trygeoaudit.com</a></p>
 </footer>
 
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-item .q').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
+
+// Billing toggle
+const prices = {
+  monthly: { pro: '$29<sub>/mo</sub>', agency: '$199<sub>/mo</sub>', proPeriod: 'billed monthly · cancel anytime', agencyPeriod: 'billed monthly · cancel anytime', proNote: '$29/mo' },
+  annual:  { pro: '$24<sub>/mo</sub>', agency: '$165<sub>/mo</sub>', proPeriod: 'billed $290/yr · cancel anytime', agencyPeriod: 'billed $1,990/yr · cancel anytime', proNote: '$24/mo' }
+};
+function setBilling(mode) {
+  document.getElementById('btn-monthly').classList.toggle('active', mode === 'monthly');
+  document.getElementById('btn-annual').classList.toggle('active', mode === 'annual');
+  document.getElementById('save-label').style.opacity = mode === 'annual' ? '1' : '0.3';
+  document.getElementById('pro-price').innerHTML = prices[mode].pro;
+  document.getElementById('agency-price').innerHTML = prices[mode].agency;
+  document.getElementById('pro-period').textContent = prices[mode].proPeriod;
+  document.getElementById('agency-period').textContent = prices[mode].agencyPeriod;
+  document.getElementById('pro-note-price').textContent = prices[mode].proNote;
+}
+setBilling('monthly');
+</script>
 </body>
 </html>

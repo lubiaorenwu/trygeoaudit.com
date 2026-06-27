@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEO Audit — Check if AI Engines Mention Your Brand</title>
+<meta name="description" content="30-second free scan across ChatGPT, DeepSeek, Gemini and more. See if AI knows your brand exists.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafafa;
+  --surface: #fff;
+  --border: #e5e5e5;
+  --text: #18181b;
+  --muted: #71717a;
+  --accent: #059669;
+  --accent-light: #ecfdf5;
+  --red: #dc2626;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.w{max-width:1100px;margin:0 auto;padding:0 24px}
+
+nav{display:flex;align-items:center;gap:32px;padding:18px 0}
+nav .logo{font-size:16px;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:-.02em}
+nav .logo span{color:var(--accent)}
+nav .sp{flex:1}
+nav a.nlink{font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .15s}
+nav a.nlink:hover{color:var(--text)}
+nav a.ncta{padding:7px 18px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;background:var(--accent);color:#fff;transition:all .2s}
+nav a.ncta:hover{filter:brightness(0.9)}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:80px 0 100px}
+@media(max-width:768px){.hero{grid-template-columns:1fr;gap:40px;padding:40px 0 60px}}
+.hero-text h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:var(--text);margin-bottom:16px}
+.hero-text h1 em{font-style:normal;color:var(--accent);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.hero-text .sub{font-size:16px;color:var(--muted);line-height:1.55;margin-bottom:28px;max-width:440px}
+.hero-text .btns{display:flex;gap:12px;flex-wrap:wrap}
+.hero-text .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s}
+.hero-text .btn.primary{background:var(--accent);color:#fff}
+.hero-text .btn.primary:hover{filter:brightness(0.9);transform:translateY(-1px)}
+.hero-text .btn.secondary{border:1px solid var(--border);color:var(--text);background:#fff}
+.hero-text .btn.secondary:hover{background:var(--accent-light)}
+.hero-text .subnote{font-size:12px;color:var(--muted);margin-top:12px}
+
+.scan-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.06)}
+.scan-card .sc-header{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:1px solid var(--border);background:#f8f8f8}
+.scan-card .sc-dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.scan-card .sc-url{font-size:12px;color:var(--muted);font-family:monospace}
+.scan-card .sc-body{padding:20px}
+.scan-card .sc-brand{font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px}
+.scan-card .sc-score{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600;margin-bottom:16px}
+.scan-card .sc-score.low{background:#fef2f2;color:var(--red)}
+.scan-card .sc-score.high{background:var(--accent-light);color:var(--accent)}
+.scan-card .sc-engines{display:flex;flex-direction:column;gap:6px}
+.scan-card .sc-engine{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-radius:8px;background:var(--bg)}
+.scan-card .sc-engine .e-name{font-size:13px;font-weight:500}
+.scan-card .sc-engine .e-status{font-size:12px;font-weight:600;padding:2px 10px;border-radius:100px}
+.scan-card .sc-engine .e-status.found{background:var(--accent-light);color:var(--accent)}
+.scan-card .sc-engine .e-status.miss{background:#fef2f2;color:var(--red)}
+
+.hook{padding:80px 0;text-align:center;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.hook h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:8px}
+.hook p{font-size:15px;color:var(--muted);max-width:560px;margin:0 auto}
+
+.steps{padding:80px 0}
+.steps .section-label{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.steps h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:40px}
+.steps-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+@media(max-width:768px){.steps-grid{grid-template-columns:1fr}}
+.step-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.step-card .step-num{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:12px}
+.step-card h3{font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px}
+.step-card p{font-size:13px;color:var(--muted);line-height:1.5}
+
+.decision{padding:80px 0;background:var(--surface);border-top:1px solid var(--border)}
+.decision .section-label{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.decision h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:40px}
+.price-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+@media(max-width:768px){.price-grid{grid-template-columns:1fr}}
+.price-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:32px;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.price-card.featured{border:2px solid var(--accent);background:var(--accent-light);box-shadow:0 4px 24px rgba(5,150,105,0.08)}
+.price-card .pc-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;width:fit-content}
+.price-card .pc-badge.free{background:var(--accent-light);color:var(--accent)}
+.price-card .pc-badge.pro{background:#fef3c7;color:#92400e}
+.price-card h3{font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px}
+.price-card .pc-price{font-size:28px;font-weight:800;color:var(--accent);margin-bottom:16px}
+.price-card .pc-price sub{font-size:14px;font-weight:400;color:var(--muted)}
+.price-card .pc-feats{list-style:none;margin-bottom:24px;flex:1}
+.price-card .pc-feats li{font-size:13px;color:var(--muted);padding:4px 0;padding-left:18px;position:relative}
+.price-card .pc-feats li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}
+.price-card .pc-btn{display:block;text-align:center;padding:11px 0;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s}
+.price-card .pc-btn.green{background:var(--accent);color:#fff}
+.price-card .pc-btn.green:hover{filter:brightness(0.9)}
+.price-card .pc-btn.ghost{border:1px solid var(--border);color:var(--text)}
+.price-card .pc-btn.ghost:hover{background:var(--accent-light)}
+
+.trust{padding:60px 0;text-align:center}
+.trust .trust-logos{display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap;margin-bottom:24px}
+.trust .trust-item{text-align:center}
+.trust .trust-num{font-size:32px;font-weight:800;color:var(--accent);letter-spacing:-.02em}
+.trust .trust-label{font-size:12px;color:var(--muted);margin-top:2px}
+.trust .trust-note{font-size:13px;color:var(--muted);max-width:480px;margin:0 auto}
+
+.faq{padding:80px 0;background:var(--surface);border-top:1px solid var(--border)}
+.faq h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:32px;text-align:center}
+.faq-grid{max-width:700px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
+.faq-item .q{font-size:15px;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.faq-item .q::after{content:'+';font-size:18px;color:var(--muted);transition:color .2s}
+.faq-item.open .q::after{content:'−';color:var(--accent)}
+.faq-item .a{font-size:14px;color:var(--muted);line-height:1.55;margin-top:12px;display:none}
+.faq-item.open .a{display:block}
+
+.cta-bot{padding:100px 0 80px;text-align:center}
+.cta-bot h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;color:var(--text);letter-spacing:-.03em;margin-bottom:12px}
+.cta-bot p{font-size:15px;color:var(--muted);margin-bottom:28px}
+.cta-bot .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;background:var(--accent);color:#fff;transition:all .2s}
+.cta-bot .btn:hover{filter:brightness(0.9);transform:translateY(-1px)}
+
+footer{padding:40px 0;border-top:1px solid var(--border);text-align:center}
+footer p{font-size:12px;color:var(--muted)}
+footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav class="w">
+  <a href="/" class="logo">GEO<span>Audit</span></a>
+  <div class="sp"></div>
+  <a href="/blog/" class="nlink">Blog</a>
+  <a href="/resources/" class="nlink">Resources</a>
+  <a href="/tool/" class="ncta">Start Free Scan</a>
+</nav>
+
+<section class="hero w">
+  <div class="hero-text">
+    <h1>Your brand is <em>invisible</em> to AI.</h1>
+    <p class="sub">70% of users now ask ChatGPT, DeepSeek, and Gemini instead of Googling. If AI doesn't mention your brand, you don't exist.</p>
+    <div class="btns">
+      <a href="/tool/" class="btn primary">Scan My Brand — Free</a>
+      <a href="#how" class="btn secondary">How It Works</a>
+    </div>
+    <p class="subnote">No signup. 30 seconds. 8+ AI engines.</p>
+  </div>
+  <div class="scan-card">
+    <div class="sc-header">
+      <div class="sc-dot"></div>
+      <div class="sc-url">trygeoaudit.com/scan</div>
+    </div>
+    <div class="sc-body">
+      <div class="sc-brand">YourBrand</div>
+      <div class="sc-score low">3 of 8 engines found you</div>
+      <div class="sc-engines">
+        <div class="sc-engine"><span class="e-name">ChatGPT</span><span class="e-status miss">Not Found</span></div>
+        <div class="sc-engine"><span class="e-name">DeepSeek</span><span class="e-status found">Cited</span></div>
+        <div class="sc-engine"><span class="e-name">Gemini</span><span class="e-status miss">Not Found</span></div>
+        <div class="sc-engine"><span class="e-name">Perplexity</span><span class="e-status found">Cited</span></div>
+        <div class="sc-engine"><span class="e-name">Claude</span><span class="e-status miss">Not Found</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hook w">
+  <h2>You rank #1 on Google. ChatGPT has never heard of you.</h2>
+  <p>ChatGPT uses Bing's index, not Google's. DeepSeek has its own crawler. AI engines have different rules — being invisible costs you customers every day.</p>
+</section>
+
+<section class="steps w" id="how">
+  <div class="section-label">How It Works</div>
+  <h2>Three steps. 30 seconds.</h2>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">01</div><h3>Enter your brand name</h3><p>Any brand, product, or domain. We query all major AI engines in parallel.</p></div>
+    <div class="step-card"><div class="step-num">02</div><h3>See your AI visibility score</h3><p>Which engines cite you. Which don't. What they actually say about your brand.</p></div>
+    <div class="step-card"><div class="step-num">03</div><h3>Get a fix-it checklist</h3><p>Actionable steps: fix your robots.txt, add Schema markup, submit to IndexNow.</p></div>
+  </div>
+</section>
+
+<section class="decision w">
+  <div class="section-label">Products</div>
+  <h2>Start free. Upgrade when you're ready.</h2>
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="pc-badge free">Free</div>
+      <h3>Quick Scan</h3>
+      <div class="pc-price">$0</div>
+      <ul class="pc-feats"><li>8 AI engines scanned</li><li>Visibility score</li><li>Basic report</li></ul>
+      <a href="/tool/" class="pc-btn green">Start Free</a>
+    </div>
+    <div class="price-card featured">
+      <div class="pc-badge pro">Most Popular</div>
+      <h3>GEO Toolkit</h3>
+      <div class="pc-price">$5<sub> one-time</sub></div>
+      <ul class="pc-feats"><li>Everything in Free</li><li>Fix-it checklist with priority</li><li>Schema markup templates</li><li>robots.txt validator</li><li>IndexNow submission guide</li><li>Competitor AI visibility comparison</li></ul>
+      <a href="https://trygeoaudit.com/toolkit" class="pc-btn green">Get Toolkit — $5</a>
+    </div>
+    <div class="price-card">
+      <h3>Custom Audit</h3>
+      <div class="pc-price">Contact us</div>
+      <ul class="pc-feats"><li>Everything in Toolkit</li><li>Manual audit &amp; report</li><li>Custom strategy document</li><li>1-on-1 consultation</li></ul>
+      <a href="mailto:hello@trygeoaudit.com" class="pc-btn ghost">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<section class="trust w">
+  <div class="trust-logos">
+    <div class="trust-item"><div class="trust-num">8+</div><div class="trust-label">AI Engines</div></div>
+    <div class="trust-item"><div class="trust-num">30s</div><div class="trust-label">Scan Time</div></div>
+    <div class="trust-item"><div class="trust-num">0</div><div class="trust-label">Signup Required</div></div>
+  </div>
+  <p class="trust-note">Covers ChatGPT, DeepSeek, Gemini, Perplexity, Claude, Doubao, Kimi, Qwen — Western and Chinese AI engines in one scan.</p>
+</section>
+
+<section class="faq w">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-grid">
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">What's the difference between SEO and GEO?</div><div class="a">SEO optimizes for Google rankings. GEO optimizes for AI citations. A site ranking #1 on Google can be completely invisible to ChatGPT — because ChatGPT uses Bing's index, not Google's.</div></div>
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Which AI engines do you check?</div><div class="a">ChatGPT, DeepSeek, Gemini, Perplexity, Claude, Doubao (ByteDance), Kimi (Moonshot), and Qwen (Alibaba). We're the only tool covering both Western and Chinese AI engines.</div></div>
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">How can I improve my AI visibility?</div><div class="a">After scanning, you'll get a checklist. Most common fixes: ensure AI crawlers aren't blocked in robots.txt, add Schema.org markup, submit to Bing via IndexNow, and structure content as Q&A.</div></div>
+    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Do I need to sign up?</div><div class="a">No. The free scan requires no signup, no email, no credit card. Enter your brand name and get results in 30 seconds.</div></div>
+  </div>
+</section>
+
+<section class="cta-bot w">
+  <h2>Is your brand visible to AI?</h2>
+  <p>30 seconds. Free. No signup.</p>
+  <a href="/tool/" class="btn">Start Free Scan →</a>
+</section>
+
+<footer class="w">
+  <p>© 2026 GEO Audit · <a href="mailto:hello@trygeoaudit.com">hello@trygeoaudit.com</a></p>
+</footer>
+
+</body>
+</html>
