@@ -137,7 +137,7 @@ footer .links a{font-size:13px;color:var(--muted);text-decoration:none}
 // Replace the empty base64 strings below with your real obfuscated API keys (e.g. window.btoa('your-key'))
 const OPENAI_KEY = atob(""); // ghp_ / sk-...
 const DEEPSEEK_KEY = atob(""); // dsk-...
-const GEMINI_KEY = atob(""); // gemini-...
+const GEMINI_KEY = atob("QVEuQWI4Uk42SmJyTGpsLVlvQ0lCMnB5QTlzTExGazBybDBkVXZpZDRpbDl4MHBvRzRuTWc="); // gemini-...
 
 const btn = document.getElementById('scan-btn');
 const input = document.getElementById('domain-input');
@@ -160,7 +160,7 @@ function withTimeout(promise, ms) {
 
 // System instruction to ensure strict structured output
 const getSystemPrompt = () => 
-  `You are a GEO (Generative Engine Optimization) audit bot. Analyze if the user's brand is cited or mentioned in relation to its industry. Your output must be a valid JSON object containing exactly two keys: "cited" (boolean) and "snippet" (string, max 150 chars, showing the citation context or brief explanation). Do not return any markdown markdown wrapper except pure JSON.`;
+  `You are a GEO (Generative Engine Optimization) audit bot. Analyze if the user's brand is cited or mentioned in relation to its industry. Your output must be a valid JSON object containing exactly two keys: "cited" (boolean) and "snippet" (string, max 150 chars, showing the citation context or brief explanation). Do not return any markdown wrapper. Output pure JSON only.`;
 
 // 1. ChatGPT (OpenAI GPT-4o-mini)
 async function queryChatGPT(brand, domain, signal) {
