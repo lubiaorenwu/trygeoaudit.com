@@ -289,7 +289,7 @@ btn.addEventListener('click', async () => {
   engineResults.innerHTML = initialHtml;
   results.classList.add('show');
 
-  const brand = domain.replace(/^https?:///, '').replace(/^www\./, '').split('.')[0];
+  const brand = domain.replace(/^https?:\/\//, '').replace(/^www\./, '').split('.')[0];
   
   // Parallel execution of the 3 free engines with 8-second timeout
   const timeoutMs = 8000;
