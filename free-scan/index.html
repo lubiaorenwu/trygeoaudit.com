@@ -176,7 +176,7 @@ async function queryChatGPT(brand, domain, signal) {
     },
     signal,
     body: JSON.stringify({
-      model: "openai/gpt-4o-mini",
+      model: "meta-llama/llama-4-maverick",
       messages: [
         { role: "system", content: getSystemPrompt() },
         { role: "user", content: `Search your knowledge base. Is the brand "${brand}" (domain: ${domain}) cited, recommended or mentioned as a solution?` }
@@ -226,7 +226,7 @@ async function queryGemini(brand, domain, signal) {
     },
     signal,
     body: JSON.stringify({
-      model: "google/gemini-2.0-flash-001",
+      model: "google/gemma-3-27b-it",
       messages: [
         { role: "system", content: getSystemPrompt() },
         { role: "user", content: `You must return a JSON object with "cited" (boolean) and "snippet" (string). Is the brand "${brand}" (domain: ${domain}) cited or mentioned in your knowledge base?` }
