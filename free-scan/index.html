@@ -226,7 +226,7 @@ async function queryGemini(brand, domain, signal) {
     },
     signal,
     body: JSON.stringify({
-      model: "google/gemma-3-27b-it",
+      model: "qwen/qwen-2.5-72b-instruct",
       messages: [
         { role: "system", content: getSystemPrompt() },
         { role: "user", content: `You must return a JSON object with "cited" (boolean) and "snippet" (string). Is the brand "${brand}" (domain: ${domain}) cited or mentioned in your knowledge base?` }
