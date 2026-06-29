@@ -186,10 +186,10 @@ async function queryChatGPT(brand, domain, signal) {
   });
   if (!response.ok) throw new Error("ChatGPT API failed");
   const data = await response.json();
-  return JSON.parse(data.choices[0].message.content);
+  return JSON.parse(data.choices[0].message.content.trim());
 }
 
-// 2. DeepSeek (deepseek-chat)
+// 2. DeepSeek (deepseek-chat — direct API, works from browser)
 async function queryDeepSeek(brand, domain, signal) {
   if (!DEEPSEEK_KEY) throw new Error("Missing DeepSeek Key");
   const response = await fetch("https://api.deepseek.com/v1/chat/completions", {
@@ -210,7 +210,7 @@ async function queryDeepSeek(brand, domain, signal) {
   });
   if (!response.ok) throw new Error("DeepSeek API failed");
   const data = await response.json();
-  return JSON.parse(data.choices[0].message.content);
+  return JSON.parse(data.choices[0].message.content.trim());
 }
 
 // 3. Gemini via OpenRouter (bypasses CORS)
@@ -236,7 +236,7 @@ async function queryGemini(brand, domain, signal) {
   });
   if (!response.ok) throw new Error("Gemini API failed");
   const data = await response.json();
-  return JSON.parse(data.choices[0].message.content);
+  return JSON.parse(data.choices[0].message.content.trim());
 }
 
 btn.addEventListener('click', async () => {
