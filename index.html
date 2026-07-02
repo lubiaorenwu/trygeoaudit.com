@@ -3,410 +3,572 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEO Audit — AI Visibility Monitoring for Your Brand</title>
-<meta name="description" content="Monitor if ChatGPT, DeepSeek, Gemini and 5 more AI engines mention your brand. Weekly auto-scans, trend charts, competitor comparison. Start free — no signup.">
+<title>GEO Audit — Your brand's passport control for AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #fafafa;
-  --surface: #fff;
-  --border: #e5e5e5;
-  --text: #18181b;
-  --muted: #71717a;
-  --accent: #059669;
-  --accent-light: #ecfdf5;
-  --amber: #d97706;
-  --amber-light: #fffbeb;
-  --red: #dc2626;
-  --sans: 'Inter', system-ui, sans-serif;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-.w{max-width:1100px;margin:0 auto;padding:0 24px}
+  :root{
+    --bg:#12151c;
+    --bg-alt:#191e28;
+    --bg-alt2:#1f2530;
+    --paper:#ede6d6;
+    --paper2:#e2d8c0;
+    --ink:#1c2430;
+    --ink-soft:#565f6e;
+    --text:#ede9df;
+    --text-dim:#a9b0bd;
+    --text-mute:#727c8c;
+    --green:#3f8f68;
+    --green-deep:#2b5a41;
+    --red:#c14a3c;
+    --red-deep:#8a2f24;
+    --brass:#c9a24a;
+    --brass-bright:#e0bc63;
+    --line:rgba(237,233,223,0.13);
+    --line-strong:rgba(237,233,223,0.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;color:var(--text);}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{content:'';width:20px;height:1px;background:var(--brass);display:inline-block;}
+  :focus-visible{outline:2px solid var(--brass-bright);outline-offset:3px;}
 
-nav{display:flex;align-items:center;gap:32px;padding:18px 0}
-nav .logo{font-size:16px;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:-.02em}
-nav .logo span{color:var(--accent)}
-nav .sp{flex:1}
-nav a.nlink{font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .15s}
-nav a.nlink:hover{color:var(--text)}
-nav a.ncta{padding:7px 18px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;background:var(--accent);color:#fff;transition:all .2s}
-nav a.ncta:hover{filter:brightness(0.9)}
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(18,21,28,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1120px;margin:0 auto;}
+  .logo{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;letter-spacing:0.04em;display:flex;align-items:center;gap:8px;}
+  .logo .mark{width:9px;height:9px;border:1.5px solid var(--brass);transform:rotate(45deg);display:inline-block;}
+  .navlinks{display:flex;align-items:center;gap:32px;font-size:14px;color:var(--text-dim);}
+  .navlinks a:hover{color:var(--text);}
+  .btn-cta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;font-weight:500;
+    color:var(--bg);
+    background:var(--brass-bright);
+    padding:9px 18px;
+    border:1px solid var(--brass-bright);
+    letter-spacing:0.02em;
+    transition:transform .15s ease, background .15s ease;
+    display:inline-block;
+  }
+  .btn-cta:hover{background:var(--brass);transform:translateY(-1px);}
+  .btn-ghost{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;color:var(--text-dim);
+    border:1px solid var(--line-strong);
+    padding:9px 18px;
+    display:inline-block;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .btn-ghost:hover{border-color:var(--text-dim);color:var(--text);}
+  @media (max-width:760px){ .navlinks a:not(.btn-cta){display:none;} }
 
-/* HERO */
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:80px 0 100px}
-@media(max-width:768px){.hero{grid-template-columns:1fr;gap:40px;padding:40px 0 60px}}
-.hero-text h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:var(--text);margin-bottom:16px}
-.hero-text h1 em{font-style:normal;color:var(--accent);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
-.hero-text .sub{font-size:16px;color:var(--muted);line-height:1.55;margin-bottom:28px;max-width:440px}
-.hero-text .sub strong{color:var(--text)}
-.hero-text .btns{display:flex;gap:12px;flex-wrap:wrap}
-.hero-text .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s}
-.hero-text .btn.primary{background:var(--accent);color:#fff}
-.hero-text .btn.primary:hover{filter:brightness(0.9);transform:translateY(-1px)}
-.hero-text .btn.secondary{border:1px solid var(--border);color:var(--text);background:#fff}
-.hero-text .btn.secondary:hover{background:var(--accent-light)}
-.hero-text .subnote{font-size:12px;color:var(--muted);margin-top:12px}
+  /* HERO */
+  .hero{padding:88px 0 64px;position:relative;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center;}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;gap:48px;} .hero{padding:56px 0 48px;} }
+  .hero h1{font-size:clamp(34px,4.6vw,54px);line-height:1.06;margin:20px 0 22px;}
+  .hero h1 em{font-style:italic;font-weight:500;color:var(--brass-bright);}
+  .hero p.lede{font-size:18px;color:var(--text-dim);max-width:46ch;margin-bottom:32px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px;}
+  .hero-fine{font-size:13px;color:var(--text-mute);font-family:'IBM Plex Mono',monospace;}
 
-.scan-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.06)}
-.scan-card .sc-header{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:1px solid var(--border);background:#f8f8f8}
-.scan-card .sc-dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
-.scan-card .sc-url{font-size:12px;color:var(--muted);font-family:monospace}
-.scan-card .sc-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;background:var(--accent-light);color:var(--accent);margin-left:auto}
-.scan-card .sc-body{padding:20px}
-.scan-card .sc-brand{font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px}
-.scan-card .sc-score{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600;margin-bottom:16px}
-.scan-card .sc-score.low{background:#fef2f2;color:var(--red)}
-.scan-card .sc-score.high{background:var(--accent-light);color:var(--accent)}
-.scan-card .sc-engines{display:flex;flex-direction:column;gap:6px}
-.scan-card .sc-engine{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-radius:8px;background:var(--bg)}
-.scan-card .sc-engine .e-name{font-size:13px;font-weight:500}
-.scan-card .sc-engine .e-status{font-size:12px;font-weight:600;padding:2px 10px;border-radius:100px}
-.scan-card .sc-engine .e-status.found{background:var(--accent-light);color:var(--accent)}
-.scan-card .sc-engine .e-status.miss{background:#fef2f2;color:var(--red)}
-.scan-card .sc-engine .e-status.lock{background:#f5f5f5;color:#aaa}
-.scan-card .sc-footer{padding:14px 20px;background:#fafafa;border-top:1px solid var(--border);font-size:12px;color:var(--muted);text-align:center}
-.scan-card .sc-footer a{color:var(--accent);font-weight:600;text-decoration:none}
+  /* MANIFEST — signature element */
+  .manifest{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:3px;
+    padding:26px 26px 20px;
+    position:relative;
+    box-shadow:0 0 0 1px rgba(0,0,0,0.25), 0 30px 60px -20px rgba(0,0,0,0.55);
+  }
+  .manifest::before{
+    content:'';
+    position:absolute; inset:8px;
+    border:1px dashed rgba(28,36,48,0.28);
+    pointer-events:none;
+  }
+  .manifest-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid rgba(28,36,48,0.2);
+  }
+  .manifest-head .title{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);}
+  .manifest-head .sub{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+  .checkpoint{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 4px;
+    border-bottom:1px solid rgba(28,36,48,0.12);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+  }
+  .checkpoint:last-of-type{border-bottom:none;}
+  .checkpoint .engine{color:var(--ink);font-weight:500;}
+  .checkpoint .region{color:var(--ink-soft);font-size:11px;margin-left:8px;}
+  .stamp{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;font-weight:600;letter-spacing:0.08em;
+    padding:3px 9px;border:1.5px solid; border-radius:2px;
+    transform:rotate(-4deg) scale(0.8);
+    opacity:0;
+    transition:transform .45s cubic-bezier(.2,1.4,.4,1), opacity .3s ease;
+  }
+  .checkpoint.stamped .stamp{opacity:1;transform:rotate(-4deg) scale(1);}
+  .stamp.cleared{color:var(--green-deep);border-color:var(--green-deep);}
+  .stamp.rejected{color:var(--red-deep);border-color:var(--red-deep);}
+  .manifest-foot{
+    margin-top:14px;padding-top:12px;border-top:1px solid rgba(28,36,48,0.2);
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);
+    display:flex;justify-content:space-between;
+  }
+  .manifest-foot b{color:var(--ink);}
 
-/* HOOK */
-.hook{padding:80px 0;text-align:center;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.hook h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:8px}
-.hook p{font-size:15px;color:var(--muted);max-width:560px;margin:0 auto}
+  /* SECTION generic */
+  section{padding:88px 0;}
+  .section-alt{background:var(--bg-alt);}
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head h2{font-size:clamp(26px,3vw,36px);margin-top:16px;line-height:1.15;}
+  .section-head p{color:var(--text-dim);font-size:16px;margin-top:14px;max-width:56ch;}
 
-/* WHY CONTINUOUS */
-.why-cont{padding:80px 0}
-.why-cont .section-label{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
-.why-cont h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:12px}
-.why-cont .sub{font-size:15px;color:var(--muted);max-width:580px;margin-bottom:40px}
-.why-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
-@media(max-width:768px){.why-grid{grid-template-columns:1fr}}
-.why-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px}
-.why-card .wc-icon{font-size:24px;margin-bottom:14px}
-.why-card h3{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px}
-.why-card p{font-size:13px;color:var(--muted);line-height:1.55}
+  /* checkpoint compare (google vs AI) */
+  .desk{
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--line-strong);border:1px solid var(--line-strong);
+  }
+  @media (max-width:760px){ .desk{grid-template-columns:1fr;} }
+  .desk > div{background:var(--bg);padding:34px;}
+  .desk .lane-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mute);margin-bottom:14px;}
+  .desk h3{font-size:21px;margin-bottom:10px;}
+  .desk p{color:var(--text-dim);font-size:15px;}
+  .desk .status{display:inline-block;margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:5px 10px;border:1px solid;}
+  .status.pass{color:var(--green);border-color:var(--green-deep);}
+  .status.fail{color:var(--red);border-color:var(--red-deep);}
 
-/* STEPS */
-.steps{padding:80px 0;background:var(--surface);border-top:1px solid var(--border)}
-.steps .section-label{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
-.steps h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:40px}
-.steps-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
-@media(max-width:768px){.steps-grid{grid-template-columns:1fr}}
-.step-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:32px}
-.step-card .step-num{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:12px}
-.step-card h3{font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px}
-.step-card p{font-size:13px;color:var(--muted);line-height:1.5}
-.step-card.highlight{background:var(--accent-light);border-color:var(--accent)}
+  /* three cards */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media (max-width:820px){ .cards3{grid-template-columns:1fr;} }
+  .cards3 > div{background:var(--bg-alt);padding:32px 28px;}
+  .cards3 .num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--brass);margin-bottom:16px;}
+  .cards3 h3{font-size:18px;margin-bottom:10px;font-weight:600;}
+  .cards3 p{color:var(--text-dim);font-size:14.5px;}
 
-/* PRICING */
-.decision{padding:80px 0;border-top:1px solid var(--border)}
-.decision .section-label{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
-.decision .hrow{display:flex;align-items:baseline;gap:16px;margin-bottom:40px;flex-wrap:wrap}
-.decision h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em}
-.billing-toggle{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
-.billing-toggle .pill{display:flex;background:var(--border);border-radius:100px;padding:3px}
-.billing-toggle .pill button{border:none;background:transparent;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;color:var(--muted);transition:all .2s}
-.billing-toggle .pill button.active{background:#fff;color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.1)}
-.save-tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:100px;background:var(--amber-light);color:var(--amber)}
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;counter-reset:step;}
+  @media (max-width:820px){ .steps{grid-template-columns:1fr;} }
+  .step{position:relative;padding-left:0;}
+  .step .stepnum{
+    font-family:'Fraunces',serif;font-size:44px;font-weight:400;font-style:italic;
+    color:transparent; -webkit-text-stroke:1px var(--brass); margin-bottom:14px;display:block;
+  }
+  .step h3{font-size:18px;margin-bottom:10px;}
+  .step p{color:var(--text-dim);font-size:14.5px;}
 
-.price-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px}
-@media(max-width:1024px){.price-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.price-grid{grid-template-columns:1fr}}
-.price-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;position:relative}
-.price-card.featured{border:2px solid var(--accent);background:var(--accent-light)}
-.price-card .pc-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px;width:fit-content}
-.price-card .pc-badge.free-b{background:var(--accent-light);color:var(--accent)}
-.price-card .pc-badge.pro-b{background:var(--accent);color:#fff;position:absolute;top:-12px;left:50%;transform:translateX(-50%);white-space:nowrap}
-.price-card .pc-badge.agency-b{background:#1e40af;color:#fff}
-.price-card .pc-badge.custom-b{background:#7c3aed;color:#fff}
-.price-card h3{font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px}
-.price-card .pc-price{font-size:32px;font-weight:800;color:var(--accent);margin-bottom:4px;letter-spacing:-.02em}
-.price-card .pc-price sub{font-size:14px;font-weight:400;color:var(--muted)}
-.price-card .pc-period{font-size:12px;color:var(--muted);margin-bottom:16px}
-.price-card .pc-feats{list-style:none;margin-bottom:24px;flex:1}
-.price-card .pc-feats li{font-size:13px;color:var(--muted);padding:5px 0;padding-left:18px;position:relative;line-height:1.4}
-.price-card .pc-feats li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}
-.price-card .pc-feats li.dim{color:#ccc}
-.price-card .pc-feats li.dim::before{color:#ddd}
-.price-card .pc-btn{display:block;text-align:center;padding:11px 0;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s}
-.price-card .pc-btn.green{background:var(--accent);color:#fff}
-.price-card .pc-btn.green:hover{filter:brightness(0.9)}
-.price-card .pc-btn.ghost{border:1px solid var(--border);color:var(--text)}
-.price-card .pc-btn.ghost:hover{background:var(--accent-light)}
-.price-card .pc-note{font-size:11px;color:var(--muted);text-align:center;margin-top:8px}
+  /* china callout */
+  .callout{
+    background:var(--paper);color:var(--ink);
+    padding:48px;border-radius:3px;
+    display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;
+    position:relative;
+  }
+  @media (max-width:760px){ .callout{grid-template-columns:1fr;padding:32px 26px;} }
+  .seal{
+    width:96px;height:96px;border-radius:50%;
+    border:3px solid var(--red-deep);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--red-deep);font-family:'IBM Plex Mono',monospace;
+    font-size:12px;font-weight:600;text-align:center;line-height:1.3;
+    transform:rotate(-8deg);flex-shrink:0;
+  }
+  .callout h3{font-size:22px;color:var(--ink);margin-bottom:10px;}
+  .callout p{color:var(--ink-soft);font-size:15px;}
+  .callout b{color:var(--ink);}
 
-/* UNIQUE BADGE */
-.trust{padding:60px 0;text-align:center}
-.trust .trust-logos{display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap;margin-bottom:24px}
-.trust .trust-item{text-align:center}
-.trust .trust-num{font-size:32px;font-weight:800;color:var(--accent);letter-spacing:-.02em}
-.trust .trust-label{font-size:12px;color:var(--muted);margin-top:2px}
-.trust .trust-note{font-size:13px;color:var(--muted);max-width:480px;margin:0 auto}
-.unique-banner{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 28px;display:flex;align-items:center;gap:16px;max-width:680px;margin:24px auto 0;flex-wrap:wrap}
-.unique-banner .ub-icon{font-size:22px}
-.unique-banner .ub-text{font-size:13px;color:var(--muted);flex:1}
-.unique-banner .ub-text strong{color:var(--text)}
+  /* pricing */
+  .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  @media (max-width:980px){ .pricing-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .pricing-grid{grid-template-columns:1fr;} }
+  .plan{
+    background:var(--bg-alt2);
+    border:1px solid var(--line);
+    padding:28px 24px;
+    display:flex;flex-direction:column;
+    position:relative;
+  }
+  .plan.featured{border-color:var(--brass);}
+  .plan.featured::before{
+    content:'MOST CLEARED';
+    position:absolute;top:-11px;left:24px;
+    background:var(--brass-bright);color:var(--bg);
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;
+    padding:3px 8px;
+  }
+  .plan .tier{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-mute);margin-bottom:10px;}
+  .plan h3{font-size:19px;margin-bottom:6px;}
+  .plan .price{font-family:'Fraunces',serif;font-size:32px;margin:10px 0 4px;}
+  .plan .price span{font-size:13px;font-family:'Inter',sans-serif;color:var(--text-mute);}
+  .plan .price-note{font-size:12px;color:var(--text-mute);margin-bottom:18px;}
+  .plan ul{list-style:none;margin:0 0 24px;flex:1;}
+  .plan li{
+    font-size:13.5px;color:var(--text-dim);
+    padding:7px 0 7px 20px;position:relative;
+    border-top:1px solid var(--line);
+  }
+  .plan li:first-child{border-top:none;}
+  .plan li::before{content:'—';position:absolute;left:0;color:var(--text-mute);}
+  .plan .btn-ghost, .plan .btn-cta{text-align:center;font-size:12.5px;}
 
-/* FAQ */
-.faq{padding:80px 0;background:var(--surface);border-top:1px solid var(--border)}
-.faq h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:32px;text-align:center}
-.faq-grid{max-width:700px;margin:0 auto}
-.faq-item{border-bottom:1px solid var(--border);padding:20px 0}
-.faq-item .q{font-size:15px;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
-.faq-item .q::after{content:'+';font-size:18px;color:var(--muted);transition:color .2s}
-.faq-item.open .q::after{content:'−';color:var(--accent)}
-.faq-item .a{font-size:14px;color:var(--muted);line-height:1.55;margin-top:12px;display:none}
-.faq-item.open .a{display:block}
+  /* stats bar */
+  .stats{display:flex;justify-content:space-around;flex-wrap:wrap;gap:32px;padding:44px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .stat{text-align:center;}
+  .stat .n{font-family:'Fraunces',serif;font-size:38px;color:var(--brass-bright);}
+  .stat .l{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-mute);margin-top:4px;}
 
-/* CTA BOT */
-.cta-bot{padding:100px 0 80px;text-align:center}
-.cta-bot h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;color:var(--text);letter-spacing:-.03em;margin-bottom:12px}
-.cta-bot p{font-size:15px;color:var(--muted);margin-bottom:28px}
-.cta-bot .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;background:var(--accent);color:#fff;transition:all .2s}
-.cta-bot .btn:hover{filter:brightness(0.9);transform:translateY(-1px)}
+  /* faq */
+  .faq{max-width:760px;}
+  details{border-bottom:1px solid var(--line);padding:20px 0;}
+  summary{
+    cursor:pointer;font-size:16px;font-weight:500;color:var(--text);
+    list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:'+';font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--brass);flex-shrink:0;transition:transform .2s ease;}
+  details[open] summary::after{transform:rotate(45deg);}
+  details p{color:var(--text-dim);font-size:14.5px;margin-top:14px;max-width:64ch;}
 
-footer{padding:40px 0;border-top:1px solid var(--border);text-align:center}
-footer p{font-size:12px;color:var(--muted)}
-footer a{color:var(--accent);text-decoration:none}
+  /* final cta */
+  .final{
+    text-align:center;padding:100px 0;
+    background:linear-gradient(var(--bg-alt),var(--bg));
+  }
+  .final h2{font-size:clamp(28px,4vw,42px);max-width:16ch;margin:0 auto 28px;}
+
+  footer{border-top:1px solid var(--line);padding:32px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--text-mute);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;scroll-behavior:auto !important;}
+  }
 </style>
 </head>
 <body>
 
-<nav class="w">
-  <a href="/" class="logo">GEO<span>Audit</span></a>
-  <div class="sp"></div>
-  <a href="/blog/" class="nlink">Blog</a>
-  <a href="/resources/" class="nlink">Resources</a>
-  <a href="#pricing" class="nlink">Pricing</a>
-  <a href="/tool/" class="ncta">Free Scan</a>
-</nav>
+<header>
+  <nav>
+    <a class="logo" href="#top"><span class="mark"></span>GEO&nbsp;AUDIT</a>
+    <div class="navlinks">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn-cta" href="#scan-section">Free scan</a>
+    </div>
+  </nav>
+</header>
 
-<!-- HERO -->
-<section class="hero w">
-  <div class="hero-text">
-    <h1>Your brand is <em>invisible</em> to AI — and it changes every week.</h1>
-    <p class="sub">70% of users now ask ChatGPT, DeepSeek, and Gemini instead of Googling. If AI doesn't mention your brand, you don't exist. And <strong>AI visibility changes constantly</strong> — what's true today may not be true next month.</p>
-    <div class="btns">
-      <a href="/tool/" class="btn primary">Scan My Brand — Free</a>
-      <a href="#how" class="btn secondary">How It Works</a>
+<div id="top"></div>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">AI visibility audit</span>
+      <h1>You cleared Google.<br>Nobody stamped your <em>AI passport.</em></h1>
+      <p class="lede">70% of buyers now ask ChatGPT, DeepSeek and Gemini instead of Googling. Each one runs its own checkpoint, with its own rules — and your brand's status changes every week, whether you're watching or not.</p>
+      <div class="hero-ctas">
+        <a class="btn-cta" href="#scan-section">Scan my brand — free</a>
+        <a class="btn-ghost" href="#how">See how it works</a>
+      </div>
+      <p class="hero-fine">No signup. 30 seconds. 8 checkpoints, including three every other tool skips.</p>
     </div>
-    <p class="subnote">No signup. 30 seconds. 8+ AI engines — including Chinese AI.</p>
+
+    <div class="manifest" id="manifestCard">
+      <div class="manifest-head">
+        <span class="title">Sample manifest</span>
+        <span class="sub">YOURBRAND.COM</span>
+      </div>
+      <div class="checkpoint" data-delay="0"><span><span class="engine">ChatGPT</span><span class="region">US</span></span><span class="stamp rejected">rejected</span></div>
+      <div class="checkpoint" data-delay="90"><span><span class="engine">DeepSeek</span><span class="region">CN</span></span><span class="stamp cleared">cleared</span></div>
+      <div class="checkpoint" data-delay="180"><span><span class="engine">Gemini</span><span class="region">US</span></span><span class="stamp rejected">rejected</span></div>
+      <div class="checkpoint" data-delay="270"><span><span class="engine">豆包 Doubao</span><span class="region">CN</span></span><span class="stamp cleared">cleared</span></div>
+      <div class="checkpoint" data-delay="360"><span><span class="engine">Kimi</span><span class="region">CN</span></span><span class="stamp rejected">rejected</span></div>
+      <div class="checkpoint" data-delay="450"><span><span class="engine">Qwen</span><span class="region">CN</span></span><span class="stamp rejected">rejected</span></div>
+      <div class="checkpoint" data-delay="540"><span><span class="engine">Perplexity</span><span class="region">US</span></span><span class="stamp cleared">cleared</span></div>
+      <div class="checkpoint" data-delay="630"><span><span class="engine">Claude</span><span class="region">US</span></span><span class="stamp rejected">rejected</span></div>
+      <div class="manifest-foot"><span><b>3 of 8</b> checkpoints cleared</span><span>↑ from 2 last week</span></div>
+    </div>
   </div>
-  <div class="scan-card">
-    <div class="sc-header">
-      <div class="sc-dot"></div>
-      <div class="sc-url">trygeoaudit.com/scan</div>
-      <div class="sc-tag">Live Monitoring</div>
+</section>
+
+<!-- ══ SCAN INPUT ══ -->
+<section id="scan-section" style="padding:0 0 64px;">
+  <div class="wrap" style="text-align:center;">
+    <div style="display:inline-flex;gap:12px;align-items:center;background:var(--bg-alt2);border:1px solid var(--line-strong);padding:6px;max-width:520px;width:100%;">
+      <input id="scanInput" type="text" placeholder="Enter your domain or brand name…" style="flex:1;background:transparent;border:none;color:var(--text);font-size:15px;padding:12px 14px;font-family:'Inter',sans-serif;outline:none;" autocomplete="off">
+      <a id="scanBtn" class="btn-cta" href="https://trygeoaudit.com/free-scan/" target="_blank" style="padding:12px 22px;font-size:14px;white-space:nowrap;">Scan now →</a>
     </div>
-    <div class="sc-body">
-      <div class="sc-brand">YourBrand</div>
-      <div class="sc-score low">3 of 8 engines found you ↑ from 2 last week</div>
-      <div class="sc-engines">
-        <div class="sc-engine"><span class="e-name">ChatGPT</span><span class="e-status miss">Not Found</span></div>
-        <div class="sc-engine"><span class="e-name">DeepSeek</span><span class="e-status found">Cited</span></div>
-        <div class="sc-engine"><span class="e-name">Gemini</span><span class="e-status miss">Not Found</span></div>
-        <div class="sc-engine"><span class="e-name">豆包 Doubao</span><span class="e-status found">Cited</span></div>
-        <div class="sc-engine"><span class="e-name">Kimi</span><span class="e-status miss">Not Found</span></div>
-        <div class="sc-engine"><span class="e-name">Competitor A</span><span class="e-status lock">🔒 Pro</span></div>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-mute);font-family:'IBM Plex Mono',monospace;">No signup · 30 seconds · 8 engines</p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Two different borders</span>
+      <h2>Ranking #1 on Google gets you nothing at the AI checkpoint.</h2>
+      <p>ChatGPT browses on Bing's index, not Google's. DeepSeek runs its own crawler. Gemini answers from a different graph entirely. A site that dominates search can be a total stranger to the engines your buyers actually talk to.</p>
+    </div>
+    <div class="desk">
+      <div>
+        <div class="lane-label">Lane 1 — Google search</div>
+        <h3>Your rank: #1</h3>
+        <p>Years of SEO, backlinks and content work paid off. You show up first for your category, every time someone searches.</p>
+        <span class="status pass">passport valid</span>
+      </div>
+      <div>
+        <div class="lane-label">Lane 2 — AI engines</div>
+        <h3>Your rank: unranked</h3>
+        <p>Ask ChatGPT or DeepSeek the same question. If they've never crawled or cited you, you're not "low ranked" — you don't exist in the answer at all.</p>
+        <span class="status fail">entry denied</span>
       </div>
     </div>
-    <div class="sc-footer">Competitor tracking & weekly alerts → <a href="https://gumroad.com/l/qalwgx">Start 7-day free trial</a></div>
   </div>
 </section>
 
-<!-- HOOK -->
-<section class="hook w">
-  <h2>You rank #1 on Google. ChatGPT has never heard of you.</h2>
-  <p>ChatGPT uses Bing's index, not Google's. DeepSeek has its own crawler. AI engines have different rules — and their knowledge of your brand shifts every week. One scan tells you today. Monitoring tells you the trend.</p>
-</section>
-
-<!-- WHY CONTINUOUS -->
-<section class="why-cont w">
-  <div class="section-label">Why Monitor Continuously</div>
-  <h2>AI visibility isn't a snapshot — it's a moving target.</h2>
-  <p class="sub">A one-time scan tells you where you stand today. It can't tell you if you're improving, if a competitor just overtook you, or if an engine suddenly stopped citing you.</p>
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="wc-icon">🔄</div>
-      <h3>AI memory changes weekly</h3>
-      <p>You fix your robots.txt and add schema markup today. Does ChatGPT actually pick you up next month? Only continuous scanning tells you if your optimizations are working.</p>
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Why a snapshot isn't enough</span>
+      <h2>The border moves. A one-time scan only tells you where it was.</h2>
+      <p>A single check tells you today's status. It can't tell you if you're improving, if a competitor just crossed ahead of you, or if an engine quietly stopped citing you last Tuesday.</p>
     </div>
-    <div class="why-card">
-      <div class="wc-icon">📊</div>
-      <h3>Competitors are gaining ground</h3>
-      <p>While you're reading this, a competitor may be getting cited by AI engines that ignore you. Weekly competitor comparison shows you exactly where you're losing AI share.</p>
-    </div>
-    <div class="why-card">
-      <div class="wc-icon">🚨</div>
-      <h3>Get alerted before it costs you</h3>
-      <p>An AI engine suddenly stops citing you — or worse, starts citing you incorrectly. Weekly email alerts catch these problems early, before they quietly cost you customers.</p>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="steps w" id="how">
-  <div class="section-label">How It Works</div>
-  <h2>Three steps. Then it runs itself.</h2>
-  <div class="steps-grid">
-    <div class="step-card"><div class="step-num">01</div><h3>Enter your brand name</h3><p>Any brand, product, or domain. We query all major AI engines in parallel — Western and Chinese.</p></div>
-    <div class="step-card"><div class="step-num">02</div><h3>See your AI visibility score</h3><p>Which engines cite you. Which don't. What they actually say about your brand, with a full snippet.</p></div>
-    <div class="step-card highlight"><div class="step-num">03</div><h3>Monitor weekly, automatically</h3><p>Pro users get weekly auto-scans, trend charts, competitor comparison, and email alerts — so you always know where you stand without lifting a finger.</p></div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="decision w" id="pricing">
-  <div class="section-label">Pricing</div>
-  <div class="hrow">
-    <h2>Start free. Monitor when you're ready.</h2>
-    <div class="billing-toggle">
-      <div class="pill">
-        <button class="active" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
-        <button id="btn-annual" onclick="setBilling('annual')">Annual</button>
+    <div class="cards3">
+      <div>
+        <div class="num mono">01</div>
+        <h3>Rules change weekly</h3>
+        <p>You fix robots.txt and add schema today. Does ChatGPT actually pick it up next month? Only continuous scanning tells you if the fix worked.</p>
       </div>
-      <span class="save-tag" id="save-label">Save 2 months</span>
+      <div>
+        <div class="num mono">02</div>
+        <h3>Competitors cross ahead</h3>
+        <p>While you're reading this, a competitor may be getting cited by an engine that's never heard of you. Weekly comparison shows exactly where you're losing ground.</p>
+      </div>
+      <div>
+        <div class="num mono">03</div>
+        <h3>Flagged before it costs you</h3>
+        <p>An engine stops citing you — or worse, starts citing you wrong. Weekly alerts catch it early, before it quietly costs you customers.</p>
+      </div>
     </div>
-  </div>
-  <div class="price-grid">
-
-    <!-- FREE -->
-    <div class="price-card">
-      <div class="pc-badge free-b">Free</div>
-      <h3>Quick Scan</h3>
-      <div class="pc-price">$0</div>
-      <div class="pc-period">forever free</div>
-      <ul class="pc-feats">
-        <li>3 AI engines (limited)</li>
-        <li>One-time visibility score</li>
-        <li>Basic report</li>
-        <li class="dim">No history saved</li>
-        <li class="dim">No competitor tracking</li>
-        <li class="dim">No weekly alerts</li>
-      </ul>
-      <a href="/tool/" class="pc-btn ghost">Start Free Scan</a>
-      <p class="pc-note">No credit card required</p>
-    </div>
-
-    <!-- PRO -->
-    <div class="price-card featured">
-      <div class="pc-badge pro-b">⭐ Most Popular</div>
-      <h3>Pro Monitor</h3>
-      <div class="pc-price" id="pro-price">$29<sub>/mo</sub></div>
-      <div class="pc-period" id="pro-period">billed monthly · cancel anytime</div>
-      <ul class="pc-feats">
-        <li>All 8+ AI engines</li>
-        <li>Weekly auto-scans</li>
-        <li>Trend charts (12-month history)</li>
-        <li>Competitor tracking (3 brands)</li>
-        <li>Email alerts on changes</li>
-        <li>Fix-it checklist & Schema templates</li>
-      </ul>
-      <a href="https://gumroad.com/l/qalwgx" class="pc-btn green">Start 7-Day Free Trial</a>
-      <p class="pc-note">Then <span id="pro-note-price">$29/mo</span> · cancel anytime</p>
-    </div>
-
-    <!-- AGENCY -->
-    <div class="price-card">
-      <div class="pc-badge agency-b">Agency</div>
-      <h3>Agency Monitor</h3>
-      <div class="pc-price" id="agency-price">$199<sub>/mo</sub></div>
-      <div class="pc-period" id="agency-period">billed monthly · cancel anytime</div>
-      <ul class="pc-feats">
-        <li>Up to 25 brands</li>
-        <li>White-label PDF reports</li>
-        <li>API access</li>
-        <li>Team seats (5 users)</li>
-        <li>Priority support</li>
-        <li>Everything in Pro</li>
-      </ul>
-      <a href="mailto:djh973832@gmail.com?subject=Agency%20Monitor" class="pc-btn ghost">Contact to Start</a>
-      <p class="pc-note">Annual discount available</p>
-    </div>
-
-    <!-- CUSTOM -->
-    <div class="price-card">
-      <div class="pc-badge custom-b">Custom</div>
-      <h3>Custom Audit</h3>
-      <div class="pc-price" style="font-size:22px;">Contact us</div>
-      <div class="pc-period">project-based pricing</div>
-      <ul class="pc-feats">
-        <li>Manual audit & report</li>
-        <li>Custom strategy document</li>
-        <li>1-on-1 consultation</li>
-        <li>Everything in Agency</li>
-      </ul>
-      <a href="mailto:hello@trygeoaudit.com" class="pc-btn ghost">Get in Touch</a>
-      <p class="pc-note">&nbsp;</p>
-    </div>
-
   </div>
 </section>
 
-<!-- TRUST STATS -->
-<section class="trust w">
-  <div class="trust-logos">
-    <div class="trust-item"><div class="trust-num">8+</div><div class="trust-label">AI Engines</div></div>
-    <div class="trust-item"><div class="trust-num">Weekly</div><div class="trust-label">Auto-Scans</div></div>
-    <div class="trust-item"><div class="trust-num">12mo</div><div class="trust-label">Trend History</div></div>
-  </div>
-  <p class="trust-note">Covers ChatGPT, DeepSeek, Gemini, Perplexity, Claude, Doubao, Kimi, Qwen — the only tool covering both Western and Chinese AI engines.</p>
-  <div class="unique-banner">
-    <div class="ub-icon">🇨🇳</div>
-    <div class="ub-text"><strong>Unique: Western + Chinese AI engines in one scan.</strong> Doubao (ByteDance), Kimi (Moonshot), Qwen (Alibaba) — no other GEO tool covers the world's largest AI search market.</div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq w">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-grid">
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">What's the difference between SEO and GEO?</div><div class="a">SEO optimizes for Google rankings. GEO optimizes for AI citations. A site ranking #1 on Google can be completely invisible to ChatGPT — because ChatGPT uses Bing's index, not Google's. Two audiences, two different strategies.</div></div>
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Which AI engines do you check?</div><div class="a">ChatGPT, DeepSeek, Gemini, Perplexity, Claude, Doubao (ByteDance), Kimi (Moonshot), and Qwen (Alibaba). We're the only GEO monitoring tool covering both Western and Chinese AI engines in a single dashboard.</div></div>
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Why do I need monitoring instead of a one-time scan?</div><div class="a">AI engine indexes update continuously. ChatGPT's knowledge base is re-trained periodically; Perplexity and DeepSeek crawl the web in near real-time. A one-time scan tells you your score today — but not whether your optimizations worked, whether a competitor just overtook you, or whether an engine started citing you incorrectly. Weekly monitoring answers all of these.</div></div>
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">How does the 7-day free trial work?</div><div class="a">Sign up for Pro, get full access for 7 days. No charge until the trial ends. Cancel anytime before day 7 and you won't be billed a cent. After the trial, billing starts at the plan rate you selected.</div></div>
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Can I cancel anytime?</div><div class="a">Yes — one click, no questions asked. You keep access until the end of your current billing period. We don't believe in dark patterns or cancel flows designed to frustrate you.</div></div>
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">How long is my scan history saved?</div><div class="a">Pro and above plans retain your full scan history for 12 months, giving you a complete trend chart to show your team or clients. Free scans are not saved — each free scan is a fresh one-time result.</div></div>
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">What are white-label PDF reports (Agency plan)?</div><div class="a">You can export monitoring reports as branded PDFs — with your agency's logo, colors, and domain — and deliver them directly to clients. Clients see your brand, not GEO Audit. It's your service, powered by our infrastructure.</div></div>
-    <div class="faq-item"><div class="q" onclick="this.parentElement.classList.toggle('open')">Do I need to sign up for the free scan?</div><div class="a">No. The free scan requires no signup, no email, no credit card. Enter your brand name and get results in 30 seconds. Signup is only needed for Pro monitoring.</div></div>
+<section class="section-alt" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps. Then it runs itself.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="stepnum">01</span>
+        <h3>Enter your brand name</h3>
+        <p>Any brand, product or domain. We query every major AI engine in parallel — Western and Chinese, at once.</p>
+      </div>
+      <div class="step">
+        <span class="stepnum">02</span>
+        <h3>Get your manifest</h3>
+        <p>Which engines cite you, which don't, and exactly what they say — with the full snippet, not just a score.</p>
+      </div>
+      <div class="step">
+        <span class="stepnum">03</span>
+        <h3>Monitor automatically</h3>
+        <p>Pro accounts get weekly auto-scans, trend charts and email alerts, so nothing changes without you knowing.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- BOTTOM CTA -->
-<section class="cta-bot w">
-  <h2>Is your brand visible to AI — this week?</h2>
-  <p>30-second free scan. No signup. See where you stand right now.</p>
-  <a href="/tool/" class="btn">Start Free Scan →</a>
+<section>
+  <div class="wrap">
+    <div class="callout">
+      <div class="seal">境内<br>境外<br>CN · US</div>
+      <div>
+        <h3>The only manifest that covers both borders</h3>
+        <p>Doubao, Kimi and Qwen dominate the world's largest AI search market — and almost no GEO tool checks them. <b>GEO Audit scans ChatGPT, Gemini, Perplexity and Claude alongside Doubao, Kimi, Qwen and DeepSeek</b> in a single pass, so you're not flying blind on either side of the border.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer class="w">
-  <p>© 2026 GEO Audit · <a href="mailto:hello@trygeoaudit.com">hello@trygeoaudit.com</a></p>
-</footer>
+<div class="wrap"><div class="stats">
+  <div class="stat"><div class="n mono">8+</div><div class="l">Checkpoints</div></div>
+  <div class="stat"><div class="n mono">Weekly</div><div class="l">Patrols</div></div>
+  <div class="stat"><div class="n mono">12mo</div><div class="l">Paper trail</div></div>
+</div></div>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Clearance tiers</span>
+      <h2>Start free. Monitor when you're ready.</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan">
+        <div class="tier">Quick scan</div>
+        <h3>Free</h3>
+        <div class="price">$0</div>
+        <div class="price-note">forever free</div>
+        <ul>
+          <li>3 AI engines (limited)</li>
+          <li>One-time visibility score</li>
+          <li>Basic report</li>
+          <li>No history saved</li>
+        </ul>
+        <a class="btn-ghost" href="#scan-section">Start free scan</a>
+      </div>
+      <div class="plan featured">
+        <div class="tier">Pro monitor</div>
+        <h3>Pro</h3>
+        <div class="price">$29<span>/mo</span></div>
+        <div class="price-note">billed monthly · cancel anytime</div>
+        <ul>
+          <li>All 8+ AI engines</li>
+          <li>Weekly auto-scans</li>
+          <li>12-month trend charts</li>
+          <li>Competitor tracking (3 brands)</li>
+          <li>Email alerts on changes</li>
+        </ul>
+        <a class="btn-cta" href="https://gumroad.com/l/qalwgx">Start 7-day free trial</a>
+      </div>
+      <div class="plan">
+        <div class="tier">Agency monitor</div>
+        <h3>Agency</h3>
+        <div class="price">$199<span>/mo</span></div>
+        <div class="price-note">billed monthly · cancel anytime</div>
+        <ul>
+          <li>Up to 25 brands</li>
+          <li>White-label PDF reports</li>
+          <li>API access</li>
+          <li>5 team seats</li>
+        </ul>
+        <a class="btn-ghost" href="mailto:djh973832@gmail.com?subject=Agency%20Monitor">Contact to start</a>
+      </div>
+      <div class="plan">
+        <div class="tier">Custom audit</div>
+        <h3>Custom</h3>
+        <div class="price">—</div>
+        <div class="price-note">project-based pricing</div>
+        <ul>
+          <li>Manual audit and report</li>
+          <li>Custom strategy document</li>
+          <li>1-on-1 consultation</li>
+        </ul>
+        <a class="btn-ghost" href="mailto:hello@trygeoaudit.com">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Questions</span>
+      <h2>Before you cross over</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>What's the difference between SEO and GEO?</summary>
+        <p>SEO optimizes for Google rankings. GEO optimizes for AI citations. A site ranking #1 on Google can be completely invisible to ChatGPT, because ChatGPT uses Bing's index, not Google's. Two audiences, two different strategies.</p>
+      </details>
+      <details>
+        <summary>Which AI engines do you check?</summary>
+        <p>ChatGPT, DeepSeek, Gemini, Perplexity, Claude, Doubao, Kimi and Qwen — the only monitoring tool covering both Western and Chinese AI engines in one dashboard.</p>
+      </details>
+      <details>
+        <summary>Why do I need monitoring instead of a one-time scan?</summary>
+        <p>AI indexes update continuously — some retrain periodically, others crawl in near real time. A one-time scan shows today's score but not whether your fixes are working or a competitor just overtook you. Weekly monitoring answers both.</p>
+      </details>
+      <details>
+        <summary>How does the 7-day free trial work?</summary>
+        <p>Sign up for Pro and get full access for 7 days. No charge until the trial ends, and you can cancel any time before day 7 without being billed.</p>
+      </details>
+      <details>
+        <summary>Can I cancel anytime?</summary>
+        <p>Yes — one click, no questions asked. You keep access until the end of your current billing period.</p>
+      </details>
+      <details>
+        <summary>Do I need to sign up for the free scan?</summary>
+        <p>No. The free scan needs no signup, email or card. Enter a brand name and get results in 30 seconds. Signup is only needed for Pro monitoring.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow" style="justify-content:center;">Final call</span>
+    <h2>Is your brand cleared for entry — this week?</h2>
+    <a class="btn-cta" href="#scan-section" style="padding:14px 30px;font-size:14px;">Start free scan →</a>
+  </div>
+</section>
+
+<footer>© 2026 GEO Audit · hello@trygeoaudit.com</footer>
 
 <script>
-// FAQ accordion
-document.querySelectorAll('.faq-item .q').forEach(q => {
-  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
-});
+  const manifest = document.getElementById('manifestCard');
+  const checkpoints = manifest.querySelectorAll('.checkpoint');
+  function stampIn(){
+    checkpoints.forEach(function(cp){
+      const delay = parseInt(cp.getAttribute('data-delay'), 10) || 0;
+      setTimeout(function(){ cp.classList.add('stamped'); }, delay);
+    });
+  }
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ stampIn(); io.disconnect(); }
+      });
+    }, {threshold:0.4});
+    io.observe(manifest);
+  } else {
+    stampIn();
+  }
 
-// Billing toggle
-const prices = {
-  monthly: { pro: '$29<sub>/mo</sub>', agency: '$199<sub>/mo</sub>', proPeriod: 'billed monthly · cancel anytime', agencyPeriod: 'billed monthly · cancel anytime', proNote: '$29/mo' },
-  annual:  { pro: '$24<sub>/mo</sub>', agency: '$165<sub>/mo</sub>', proPeriod: 'billed $290/yr · cancel anytime', agencyPeriod: 'billed $1,990/yr · cancel anytime', proNote: '$24/mo' }
-};
-function setBilling(mode) {
-  document.getElementById('btn-monthly').classList.toggle('active', mode === 'monthly');
-  document.getElementById('btn-annual').classList.toggle('active', mode === 'annual');
-  document.getElementById('save-label').style.opacity = mode === 'annual' ? '1' : '0.3';
-  document.getElementById('pro-price').innerHTML = prices[mode].pro;
-  document.getElementById('agency-price').innerHTML = prices[mode].agency;
-  document.getElementById('pro-period').textContent = prices[mode].proPeriod;
-  document.getElementById('agency-period').textContent = prices[mode].agencyPeriod;
-  document.getElementById('pro-note-price').textContent = prices[mode].proNote;
-}
-setBilling('monthly');
+  // Scan input → redirect to free-scan with domain param
+  document.getElementById('scanBtn').addEventListener('click', function(e){
+    var val = document.getElementById('scanInput').value.trim();
+    if (val) {
+      e.preventDefault();
+      window.open('/free-scan/?domain=' + encodeURIComponent(val), '_blank');
+    }
+  });
+  document.getElementById('scanInput').addEventListener('keydown', function(e){
+    if (e.key === 'Enter') {
+      document.getElementById('scanBtn').click();
+    }
+  });
 </script>
+
 </body>
 </html>
