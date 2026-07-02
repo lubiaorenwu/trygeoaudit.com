@@ -327,7 +327,7 @@
   <div class="wrap" style="text-align:center;">
     <div style="display:inline-flex;gap:12px;align-items:center;background:var(--bg-alt2);border:1px solid var(--line-strong);padding:6px;max-width:520px;width:100%;">
       <input id="scanInput" type="text" placeholder="输入域名或品牌名…" style="flex:1;background:transparent;border:none;color:var(--text);font-size:15px;padding:12px 14px;font-family:'Inter',sans-serif;outline:none;" autocomplete="off">
-      <a id="scanBtn" class="btn-cta" href="https://trygeoaudit.com/free-scan/" target="_blank" style="padding:12px 22px;font-size:14px;white-space:nowrap;">开始扫描 →</a>
+      <a id="scanBtn" class="btn-cta" href="/free-scan/" style="padding:12px 22px;font-size:14px;white-space:nowrap;">开始扫描 →</a>
     </div>
     <p style="margin-top:12px;font-size:13px;color:var(--text-mute);font-family:'IBM Plex Mono',monospace;">无需注册 · 30 秒 · 8 个引擎</p>
   </div>
@@ -561,7 +561,7 @@
     var val = document.getElementById('scanInput').value.trim();
     if (val) {
       e.preventDefault();
-      window.open('/free-scan/?domain=' + encodeURIComponent(val), '_blank');
+      window.location.href = '/free-scan/?domain=' + encodeURIComponent(val);
     }
   });
   document.getElementById('scanInput').addEventListener('keydown', function(e){
