@@ -1,574 +1,178 @@
 <!DOCTYPE html>
+<!-- ==========================================================
+  STORE NAME (working name, pending final decision):
+  "Whole Way Kits" — to rename the store, find and replace
+  "Whole Way Kits" in index.html, skillfire-kit.html and
+  wedding-planner.html (plus the <title> tags). See README.md.
+  ========================================================== -->
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEO Audit — Your brand's passport control for AI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#12151c;
-    --bg-alt:#191e28;
-    --bg-alt2:#1f2530;
-    --paper:#ede6d6;
-    --paper2:#e2d8c0;
-    --ink:#1c2430;
-    --ink-soft:#565f6e;
-    --text:#ede9df;
-    --text-dim:#a9b0bd;
-    --text-mute:#727c8c;
-    --green:#3f8f68;
-    --green-deep:#2b5a41;
-    --red:#c14a3c;
-    --red-deep:#8a2f24;
-    --brass:#c9a24a;
-    --brass-bright:#e0bc63;
-    --line:rgba(237,233,223,0.13);
-    --line-strong:rgba(237,233,223,0.22);
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit;text-decoration:none;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
-  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;color:var(--text);}
-  .mono{font-family:'IBM Plex Mono',monospace;}
-  .eyebrow{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--brass);
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-  }
-  .eyebrow::before{content:'';width:20px;height:1px;background:var(--brass);display:inline-block;}
-  :focus-visible{outline:2px solid var(--brass-bright);outline-offset:3px;}
-
-  /* NAV */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:rgba(18,21,28,0.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1120px;margin:0 auto;}
-  .logo{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;letter-spacing:0.04em;display:flex;align-items:center;gap:8px;}
-  .logo .mark{width:9px;height:9px;border:1.5px solid var(--brass);transform:rotate(45deg);display:inline-block;}
-  .navlinks{display:flex;align-items:center;gap:32px;font-size:14px;color:var(--text-dim);}
-  .navlinks a:hover{color:var(--text);}
-  .btn-cta{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:13px;font-weight:500;
-    color:var(--bg);
-    background:var(--brass-bright);
-    padding:9px 18px;
-    border:1px solid var(--brass-bright);
-    letter-spacing:0.02em;
-    transition:transform .15s ease, background .15s ease;
-    display:inline-block;
-  }
-  .btn-cta:hover{background:var(--brass);transform:translateY(-1px);}
-  .btn-ghost{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:13px;color:var(--text-dim);
-    border:1px solid var(--line-strong);
-    padding:9px 18px;
-    display:inline-block;
-    transition:border-color .15s ease, color .15s ease;
-  }
-  .btn-ghost:hover{border-color:var(--text-dim);color:var(--text);}
-  @media (max-width:760px){ .navlinks a:not(.btn-cta){display:none;} }
-
-  /* HERO */
-  .hero{padding:88px 0 64px;position:relative;overflow:hidden;}
-  .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center;}
-  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;gap:48px;} .hero{padding:56px 0 48px;} }
-  .hero h1{font-size:clamp(34px,4.6vw,54px);line-height:1.06;margin:20px 0 22px;}
-  .hero h1 em{font-style:italic;font-weight:500;color:var(--brass-bright);}
-  .hero p.lede{font-size:18px;color:var(--text-dim);max-width:46ch;margin-bottom:32px;}
-  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px;}
-  .hero-fine{font-size:13px;color:var(--text-mute);font-family:'IBM Plex Mono',monospace;}
-
-  /* MANIFEST — signature element */
-  .manifest{
-    background:var(--paper);
-    color:var(--ink);
-    border-radius:3px;
-    padding:26px 26px 20px;
-    position:relative;
-    box-shadow:0 0 0 1px rgba(0,0,0,0.25), 0 30px 60px -20px rgba(0,0,0,0.55);
-  }
-  .manifest::before{
-    content:'';
-    position:absolute; inset:8px;
-    border:1px dashed rgba(28,36,48,0.28);
-    pointer-events:none;
-  }
-  .manifest-head{
-    display:flex;justify-content:space-between;align-items:baseline;
-    padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid rgba(28,36,48,0.2);
-  }
-  .manifest-head .title{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);}
-  .manifest-head .sub{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
-  .checkpoint{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:10px 4px;
-    border-bottom:1px solid rgba(28,36,48,0.12);
-    font-family:'IBM Plex Mono',monospace;
-    font-size:13px;
-  }
-  .checkpoint:last-of-type{border-bottom:none;}
-  .checkpoint .engine{color:var(--ink);font-weight:500;}
-  .checkpoint .region{color:var(--ink-soft);font-size:11px;margin-left:8px;}
-  .stamp{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;font-weight:600;letter-spacing:0.08em;
-    padding:3px 9px;border:1.5px solid; border-radius:2px;
-    transform:rotate(-4deg) scale(0.8);
-    opacity:0;
-    transition:transform .45s cubic-bezier(.2,1.4,.4,1), opacity .3s ease;
-  }
-  .checkpoint.stamped .stamp{opacity:1;transform:rotate(-4deg) scale(1);}
-  .stamp.cleared{color:var(--green-deep);border-color:var(--green-deep);}
-  .stamp.rejected{color:var(--red-deep);border-color:var(--red-deep);}
-  .manifest-foot{
-    margin-top:14px;padding-top:12px;border-top:1px solid rgba(28,36,48,0.2);
-    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);
-    display:flex;justify-content:space-between;
-  }
-  .manifest-foot b{color:var(--ink);}
-
-  /* SECTION generic */
-  section{padding:88px 0;}
-  .section-alt{background:var(--bg-alt);}
-  .section-head{max-width:640px;margin-bottom:48px;}
-  .section-head h2{font-size:clamp(26px,3vw,36px);margin-top:16px;line-height:1.15;}
-  .section-head p{color:var(--text-dim);font-size:16px;margin-top:14px;max-width:56ch;}
-
-  /* checkpoint compare (google vs AI) */
-  .desk{
-    display:grid;grid-template-columns:1fr 1fr;gap:1px;
-    background:var(--line-strong);border:1px solid var(--line-strong);
-  }
-  @media (max-width:760px){ .desk{grid-template-columns:1fr;} }
-  .desk > div{background:var(--bg);padding:34px;}
-  .desk .lane-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mute);margin-bottom:14px;}
-  .desk h3{font-size:21px;margin-bottom:10px;}
-  .desk p{color:var(--text-dim);font-size:15px;}
-  .desk .status{display:inline-block;margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:5px 10px;border:1px solid;}
-  .status.pass{color:var(--green);border-color:var(--green-deep);}
-  .status.fail{color:var(--red);border-color:var(--red-deep);}
-
-  /* three cards */
-  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  @media (max-width:820px){ .cards3{grid-template-columns:1fr;} }
-  .cards3 > div{background:var(--bg-alt);padding:32px 28px;}
-  .cards3 .num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--brass);margin-bottom:16px;}
-  .cards3 h3{font-size:18px;margin-bottom:10px;font-weight:600;}
-  .cards3 p{color:var(--text-dim);font-size:14.5px;}
-
-  /* how it works */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;counter-reset:step;}
-  @media (max-width:820px){ .steps{grid-template-columns:1fr;} }
-  .step{position:relative;padding-left:0;}
-  .step .stepnum{
-    font-family:'Fraunces',serif;font-size:44px;font-weight:400;font-style:italic;
-    color:transparent; -webkit-text-stroke:1px var(--brass); margin-bottom:14px;display:block;
-  }
-  .step h3{font-size:18px;margin-bottom:10px;}
-  .step p{color:var(--text-dim);font-size:14.5px;}
-
-  /* china callout */
-  .callout{
-    background:var(--paper);color:var(--ink);
-    padding:48px;border-radius:3px;
-    display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;
-    position:relative;
-  }
-  @media (max-width:760px){ .callout{grid-template-columns:1fr;padding:32px 26px;} }
-  .seal{
-    width:96px;height:96px;border-radius:50%;
-    border:3px solid var(--red-deep);
-    display:flex;align-items:center;justify-content:center;
-    color:var(--red-deep);font-family:'IBM Plex Mono',monospace;
-    font-size:12px;font-weight:600;text-align:center;line-height:1.3;
-    transform:rotate(-8deg);flex-shrink:0;
-  }
-  .callout h3{font-size:22px;color:var(--ink);margin-bottom:10px;}
-  .callout p{color:var(--ink-soft);font-size:15px;}
-  .callout b{color:var(--ink);}
-
-  /* pricing */
-  .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-  @media (max-width:980px){ .pricing-grid{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:560px){ .pricing-grid{grid-template-columns:1fr;} }
-  .plan{
-    background:var(--bg-alt2);
-    border:1px solid var(--line);
-    padding:28px 24px;
-    display:flex;flex-direction:column;
-    position:relative;
-  }
-  .plan.featured{border-color:var(--brass);}
-  .plan.featured::before{
-    content:'MOST CLEARED';
-    position:absolute;top:-11px;left:24px;
-    background:var(--brass-bright);color:var(--bg);
-    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;
-    padding:3px 8px;
-  }
-  .plan .tier{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-mute);margin-bottom:10px;}
-  .plan h3{font-size:19px;margin-bottom:6px;}
-  .plan .price{font-family:'Fraunces',serif;font-size:32px;margin:10px 0 4px;}
-  .plan .price span{font-size:13px;font-family:'Inter',sans-serif;color:var(--text-mute);}
-  .plan .price-note{font-size:12px;color:var(--text-mute);margin-bottom:18px;}
-  .plan ul{list-style:none;margin:0 0 24px;flex:1;}
-  .plan li{
-    font-size:13.5px;color:var(--text-dim);
-    padding:7px 0 7px 20px;position:relative;
-    border-top:1px solid var(--line);
-  }
-  .plan li:first-child{border-top:none;}
-  .plan li::before{content:'—';position:absolute;left:0;color:var(--text-mute);}
-  .plan .btn-ghost, .plan .btn-cta{text-align:center;font-size:12.5px;}
-
-  /* stats bar */
-  .stats{display:flex;justify-content:space-around;flex-wrap:wrap;gap:32px;padding:44px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .stat{text-align:center;}
-  .stat .n{font-family:'Fraunces',serif;font-size:38px;color:var(--brass-bright);}
-  .stat .l{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-mute);margin-top:4px;}
-
-  /* faq */
-  .faq{max-width:760px;}
-  details{border-bottom:1px solid var(--line);padding:20px 0;}
-  summary{
-    cursor:pointer;font-size:16px;font-weight:500;color:var(--text);
-    list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;
-  }
-  summary::-webkit-details-marker{display:none;}
-  summary::after{content:'+';font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--brass);flex-shrink:0;transition:transform .2s ease;}
-  details[open] summary::after{transform:rotate(45deg);}
-  details p{color:var(--text-dim);font-size:14.5px;margin-top:14px;max-width:64ch;}
-
-  /* final cta */
-  .final{
-    text-align:center;padding:100px 0;
-    background:linear-gradient(var(--bg-alt),var(--bg));
-  }
-  .final h2{font-size:clamp(28px,4vw,42px);max-width:16ch;margin:0 auto 28px;}
-
-  footer{border-top:1px solid var(--line);padding:32px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--text-mute);}
-
-  @media (prefers-reduced-motion: reduce){
-    *{transition:none !important;animation:none !important;scroll-behavior:auto !important;}
-  }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whole Way Kits — Practical digital kits, made to be used</title>
+<meta name="description" content="Whole Way Kits sells small, practical digital kits: working files, checklists and planners that solve one problem completely. $9 each, one-time payment, instant download.">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header>
-  <nav>
-    <a class="logo" href="#top"><span class="mark"></span>GEO&nbsp;AUDIT</a>
-    <div class="navlinks">
-      <a href="#how">How it works</a>
-      <a href="#pricing">Pricing</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Whole Way <span class="brand-mark">Kits</span></a>
+    <nav class="site-nav">
+      <a href="skillfire-kit.html">SkillFire Kit</a>
+      <a href="wedding-planner.html">Wedding Planner</a>
       <a href="#faq">FAQ</a>
-      <a href="/zh/" style="font-size:12px;">中文</a>
-      <a class="btn-cta" href="#scan-section">Free scan</a>
-    </div>
-  </nav>
+      <a href="mailto:djh973832@gmail.com">Support</a>
+    </nav>
+  </div>
 </header>
 
-<div id="top"></div>
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">AI visibility audit</span>
-      <h1>You cleared Google.<br>Nobody stamped your <em>AI passport.</em></h1>
-      <p class="lede">70% of buyers now ask ChatGPT, DeepSeek and Gemini instead of Googling. Each one runs its own checkpoint, with its own rules — and your brand's status changes every week, whether you're watching or not.</p>
-      <div class="hero-ctas">
-        <a class="btn-cta" href="#scan-section">Scan my brand — free</a>
-        <a class="btn-ghost" href="#how">See how it works</a>
-      </div>
-      <p class="hero-fine">No signup. 30 seconds. 8 checkpoints, including three every other tool skips.</p>
-    </div>
+<main class="wrap">
 
-    <div class="manifest" id="manifestCard">
-      <div class="manifest-head">
-        <span class="title">Sample manifest</span>
-        <span class="sub">YOUR-BRAND-HERE</span>
-      </div>
-      <div class="checkpoint" data-delay="0"><span><span class="engine">ChatGPT</span><span class="region">US</span></span><span class="stamp cleared">cleared</span></div>
-      <div class="checkpoint" data-delay="90"><span><span class="engine">DeepSeek</span><span class="region">CN</span></span><span class="stamp rejected">rejected</span></div>
-      <div class="checkpoint" data-delay="180"><span><span class="engine">Gemini</span><span class="region">US</span></span><span class="stamp cleared">cleared</span></div>
-      <div class="checkpoint" data-delay="270"><span><span class="engine">豆包 Doubao</span><span class="region">CN</span></span><span class="stamp rejected">rejected</span></div>
-      <div class="checkpoint" data-delay="360"><span><span class="engine">Kimi</span><span class="region">CN</span></span><span class="stamp rejected">rejected</span></div>
-      <div class="checkpoint" data-delay="450"><span><span class="engine">Qwen</span><span class="region">CN</span></span><span class="stamp cleared">cleared</span></div>
-      <div class="checkpoint" data-delay="540"><span><span class="engine">Perplexity</span><span class="region">US</span></span><span class="stamp cleared">cleared</span></div>
-      <div class="checkpoint" data-delay="630"><span><span class="engine">Claude</span><span class="region">US</span></span><span class="stamp rejected">rejected</span></div>
-      <div class="manifest-foot"><span>This is an illustration —<br>scan your brand to see the real thing</span></div>
-    </div>
+  <div class="hero">
+    <h1>Practical digital kits that cover the whole job.</h1>
+    <p class="lede">Whole Way Kits is a small independent shop. Every kit is a
+    complete, working system — handbook, checklists and ready-to-use files —
+    built to solve one problem end to end, not a pile of inspiration pages.</p>
+    <p class="support-line">Questions before you buy? Email us at
+    <a href="mailto:djh973832@gmail.com">djh973832@gmail.com</a> — a human reads it.</p>
   </div>
-</section>
 
-<!-- ══ SCAN INPUT ══ -->
-<section id="scan-section" style="padding:0 0 64px;">
-  <div class="wrap" style="text-align:center;">
-    <div style="display:inline-flex;gap:12px;align-items:center;background:var(--bg-alt2);border:1px solid var(--line-strong);padding:6px;max-width:520px;width:100%;">
-      <input id="scanInput" type="text" placeholder="Enter your domain or brand name…" style="flex:1;background:transparent;border:none;color:var(--text);font-size:15px;padding:12px 14px;font-family:'Inter',sans-serif;outline:none;" autocomplete="off">
-      <a id="scanBtn" class="btn-cta" href="/free-scan/" style="padding:12px 22px;font-size:14px;white-space:nowrap;">Scan now →</a>
-    </div>
-    <p style="margin-top:12px;font-size:13px;color:var(--text-mute);font-family:'IBM Plex Mono',monospace;">No signup · 30 seconds · 8 engines</p>
+  <div class="product-grid">
+
+    <article class="product-card">
+      <div class="card-media card-media--text" aria-hidden="true">
+        <div>
+          <div class="mock-title">SKILL.md ✓ &nbsp;CLAUDE.md ✓</div>
+          <div class="mock-sub">skills installed: 12 · skills firing: 0</div>
+          <div class="mock-sub">run the 15 checks → find out why</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <h2>SkillFire Kit — The Claude Code Skills Workflow Pack</h2>
+        <p class="tagline">Your Claude Code skills are installed — this kit finds
+        out why they never fire, and fixes your setup in one sitting.</p>
+        <p class="price">$9 <span class="per">one-time payment</span></p>
+        <div class="card-actions">
+          <a class="btn" href="https://www.creem.io/payment/prod_7UKimu8ExN6i7ZNg9oyGiu">Buy now</a>
+          <a class="btn btn--ghost" href="skillfire-kit.html">What's inside</a>
+        </div>
+        <p class="checkout-note">Secure checkout by Creem — taxes are handled by Creem at checkout.</p>
+      </div>
+    </article>
+
+    <article class="product-card">
+      <div class="card-media">
+        <img src="assets/wedding-main.png" alt="The Whole Way Wedding Planner — binder cover and preview pages">
+      </div>
+      <div class="card-body">
+        <h2>The Whole Way Wedding Planner</h2>
+        <p class="tagline">From "Yes" to the honeymoon: a 171-page printable binder
+        plus matching spreadsheets that starts at the engagement and doesn't stop
+        until the thank-you cards are sent.</p>
+        <p class="price">$9 <span class="per">one-time payment</span></p>
+        <div class="card-actions">
+          <!-- TODO (payment link): The Whole Way Wedding Planner does not have a
+               Creem product yet, so there is no real payment link. When the Creem
+               product is created, replace the "Available soon" button below with
+               the real Creem payment link (same pattern as the SkillFire card). -->
+          <a class="btn btn--soon" href="wedding-planner.html#buy">Available soon</a>
+          <a class="btn btn--ghost" href="wedding-planner.html">What's inside</a>
+        </div>
+        <p class="checkout-note">Checkout will be handled by Creem when sales open.</p>
+      </div>
+    </article>
+
   </div>
-</section>
 
-<section class="section-alt">
+  <section class="block">
+    <h2>Why buy from this shop</h2>
+    <div class="two-col">
+      <div class="panel">
+        <h3>Complete systems, not fragments</h3>
+        <p>Each kit covers its job from start to finish — including the parts
+        free downloads leave out. You get the handbook, the checklists and the
+        working files together, designed to be used the day you download them.</p>
+      </div>
+      <div class="panel">
+        <h3>Instant delivery, yours to keep</h3>
+        <p>Every product is a digital download delivered in full at purchase.
+        No subscriptions, no accounts to maintain, no expiring access — and
+        edition updates are free for buyers.</p>
+      </div>
+      <div class="panel">
+        <h3>Honest about how it's made</h3>
+        <p>Our products are produced with AI assistance and human editorial
+        review, and we say so on every product page and inside every product.
+        No invented sales figures, no fake reviews, no countdown timers.</p>
+      </div>
+      <div class="panel">
+        <h3>A fair refund stance</h3>
+        <p>These are digital products delivered in full at purchase, so refunds
+        follow the selling platform's policy for delivered digital goods — we
+        don't promise unconditional refunds. But if your files arrive broken or
+        incomplete, contact us and we will fix the delivery or refund you.
+        A defective download is on us, always.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block faq" id="faq">
+    <h2>Frequently asked questions</h2>
+
+    <details>
+      <summary>How do I get my files after buying?</summary>
+      <p>Instant download right after checkout — one zip file with everything
+      in it. A download link is also sent to your email.</p>
+    </details>
+
+    <details>
+      <summary>Is the price really one-time?</summary>
+      <p>Yes. $9 once, no subscription. Taxes are handled by Creem, our
+      payment provider, at checkout. Updates to the edition you bought are
+      free.</p>
+    </details>
+
+    <details>
+      <summary>What's your refund policy?</summary>
+      <p>Refunds follow the selling platform's policy for delivered digital
+      goods; we don't promise unconditional refunds. If the files arrive
+      broken or incomplete, we will fix the delivery or refund you — contact
+      <a href="mailto:djh973832@gmail.com">djh973832@gmail.com</a>.</p>
+    </details>
+
+    <details>
+      <summary>Was AI used to make these products?</summary>
+      <p>Yes. They were produced with AI assistance and human editorial
+      review, disclosed here and inside each product rather than hidden.</p>
+    </details>
+
+    <details>
+      <summary>How do I reach a human?</summary>
+      <p>Email <a href="mailto:djh973832@gmail.com">djh973832@gmail.com</a>.
+      The shop is run by an independent solo creator based in China, and
+      support mail goes to the same inbox the store was set up with.</p>
+    </details>
+  </section>
+
+</main>
+
+<footer class="site-footer">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Two different borders</span>
-      <h2>Ranking #1 on Google gets you nothing at the AI checkpoint.</h2>
-      <p>ChatGPT browses on Bing's index, not Google's. DeepSeek runs its own crawler. Gemini answers from a different graph entirely. A site that dominates search can be a total stranger to the engines your buyers actually talk to.</p>
-    </div>
-    <div class="desk">
-      <div>
-        <div class="lane-label">Lane 1 — Google search</div>
-        <h3>Your rank: #1</h3>
-        <p>Years of SEO, backlinks and content work paid off. You show up first for your category, every time someone searches.</p>
-        <span class="status pass">passport valid</span>
-      </div>
-      <div>
-        <div class="lane-label">Lane 2 — AI engines</div>
-        <h3>Your rank: unranked</h3>
-        <p>Ask ChatGPT or DeepSeek the same question. If they've never crawled or cited you, you're not "low ranked" — you don't exist in the answer at all.</p>
-        <span class="status fail">entry denied</span>
-      </div>
-    </div>
+    <p><strong>Whole Way Kits</strong> — independent digital products.
+    Support: <a href="mailto:djh973832@gmail.com">djh973832@gmail.com</a></p>
+    <p class="fineprint">SkillFire Kit is an independent companion guide to Claude Code.
+    Not affiliated with or endorsed by Anthropic.</p>
+    <p class="fineprint">The Whole Way Wedding Planner is an independent planning tool.
+    Marriage license and name-change requirements vary by location — always confirm
+    with your local authorities. Not affiliated with any venue, vendor, or wedding platform.</p>
+    <p class="fineprint">© <span id="year">2026</span> Whole Way Kits. Products on this site were
+    produced with AI assistance and human editorial review.</p>
   </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Why a snapshot isn't enough</span>
-      <h2>The border moves. A one-time scan only tells you where it was.</h2>
-      <p>A single check tells you today's status. It can't tell you if you're improving, if a competitor just crossed ahead of you, or if an engine quietly stopped citing you last Tuesday.</p>
-    </div>
-    <div class="cards3">
-      <div>
-        <div class="num mono">01</div>
-        <h3>Rules change weekly</h3>
-        <p>You fix robots.txt and add schema today. Does ChatGPT actually pick it up next month? Only continuous scanning tells you if the fix worked.</p>
-      </div>
-      <div>
-        <div class="num mono">02</div>
-        <h3>Competitors cross ahead</h3>
-        <p>While you're reading this, a competitor may be getting cited by an engine that's never heard of you. Weekly comparison shows exactly where you're losing ground.</p>
-      </div>
-      <div>
-        <div class="num mono">03</div>
-        <h3>Flagged before it costs you</h3>
-        <p>An engine stops citing you — or worse, starts citing you wrong. Weekly alerts catch it early, before it quietly costs you customers.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section-alt" id="how">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">How it works</span>
-      <h2>Three steps. Then it runs itself.</h2>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <span class="stepnum">01</span>
-        <h3>Enter your brand name</h3>
-        <p>Any brand, product or domain. We query every major AI engine in parallel — Western and Chinese, at once.</p>
-      </div>
-      <div class="step">
-        <span class="stepnum">02</span>
-        <h3>Get your manifest</h3>
-        <p>Which engines cite you, which don't, and exactly what they say — with the full snippet, not just a score.</p>
-      </div>
-      <div class="step">
-        <span class="stepnum">03</span>
-        <h3>Monitor automatically</h3>
-        <p>Pro accounts get weekly auto-scans, trend charts and email alerts, so nothing changes without you knowing.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="callout">
-      <div class="seal">境内<br>境外<br>CN · US</div>
-      <div>
-        <h3>The only manifest that covers both borders</h3>
-        <p>Doubao, Kimi and Qwen dominate the world's largest AI search market — and almost no GEO tool checks them. <b>GEO Audit scans ChatGPT, Gemini, Perplexity and Claude alongside Doubao, Kimi, Qwen and DeepSeek</b> in a single pass, so you're not flying blind on either side of the border.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="wrap"><div class="stats">
-  <div class="stat"><div class="n mono">8+</div><div class="l">Checkpoints</div></div>
-  <div class="stat"><div class="n mono">Weekly</div><div class="l">Patrols</div></div>
-  <div class="stat"><div class="n mono">12mo</div><div class="l">Paper trail</div></div>
-</div></div>
-
-<section id="pricing">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Clearance tiers</span>
-      <h2>Start free. Monitor when you're ready.</h2>
-    </div>
-    <div class="pricing-grid">
-      <div class="plan">
-        <div class="tier">Quick scan</div>
-        <h3>Free</h3>
-        <div class="price">$0</div>
-        <div class="price-note">forever free</div>
-        <ul>
-          <li>ChatGPT · DeepSeek · Gemini (3 engines)</li>
-          <li>One-time visibility score</li>
-          <li>Basic report</li>
-          <li>No history saved</li>
-        </ul>
-        <a class="btn-ghost" href="#scan-section">Start free scan</a>
-      </div>
-      <div class="plan featured">
-        <div class="tier">Pro monitor</div>
-        <h3>Pro</h3>
-        <div class="price">$29<span>/mo</span></div>
-        <div class="price-note">billed monthly · cancel anytime</div>
-        <ul>
-          <li>All 8+ AI engines</li>
-          <li>Weekly auto-scans</li>
-          <li>12-month trend charts</li>
-          <li>Competitor tracking (3 brands)</li>
-          <li>Email alerts on changes</li>
-        </ul>
-        <a class="btn-cta" href="https://gumroad.com/l/qalwgx">Start 7-day free trial</a>
-      </div>
-      <div class="plan">
-        <div class="tier">Agency monitor</div>
-        <h3>Agency</h3>
-        <div class="price">$199<span>/mo</span></div>
-        <div class="price-note">billed monthly · cancel anytime</div>
-        <ul>
-          <li>Up to 25 brands</li>
-          <li>White-label PDF reports</li>
-          <li>API access</li>
-          <li>5 team seats</li>
-        </ul>
-        <a class="btn-ghost" href="mailto:djh973832@gmail.com?subject=Agency%20Monitor">Contact to start</a>
-      </div>
-      <div class="plan">
-        <div class="tier">Custom audit</div>
-        <h3>Custom</h3>
-        <div class="price">—</div>
-        <div class="price-note">project-based pricing</div>
-        <ul>
-          <li>Manual audit and report</li>
-          <li>Custom strategy document</li>
-          <li>1-on-1 consultation</li>
-        </ul>
-        <a class="btn-ghost" href="mailto:hello@trygeoaudit.com">Get in touch</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section-alt" id="faq">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Questions</span>
-      <h2>Before you cross over</h2>
-    </div>
-    <div class="faq">
-      <details open>
-        <summary>What's the difference between SEO and GEO?</summary>
-        <p>SEO optimizes for Google rankings. GEO optimizes for AI citations. A site ranking #1 on Google can be completely invisible to ChatGPT, because ChatGPT uses Bing's index, not Google's. Two audiences, two different strategies.</p>
-      </details>
-      <details>
-        <summary>Which AI engines do you check?</summary>
-        <p>ChatGPT, DeepSeek, Gemini, Perplexity, Claude, Doubao, Kimi and Qwen — the only monitoring tool covering both Western and Chinese AI engines in one dashboard.</p>
-      </details>
-      <details>
-        <summary>Why do I need monitoring instead of a one-time scan?</summary>
-        <p>AI indexes update continuously — some retrain periodically, others crawl in near real time. A one-time scan shows today's score but not whether your fixes are working or a competitor just overtook you. Weekly monitoring answers both.</p>
-      </details>
-      <details>
-        <summary>How does the 7-day free trial work?</summary>
-        <p>Sign up for Pro and get full access for 7 days. No charge until the trial ends, and you can cancel any time before day 7 without being billed.</p>
-      </details>
-      <details>
-        <summary>Can I cancel anytime?</summary>
-        <p>Yes — one click, no questions asked. You keep access until the end of your current billing period.</p>
-      </details>
-      <details>
-        <summary>Do I need to sign up for the free scan?</summary>
-        <p>No. The free scan needs no signup, email or card. Enter a brand name and get results in 30 seconds. Signup is only needed for Pro monitoring.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section class="final">
-  <div class="wrap">
-    <span class="eyebrow" style="justify-content:center;">Final call</span>
-    <h2>Is your brand cleared for entry — this week?</h2>
-    <a class="btn-cta" href="#scan-section" style="padding:14px 30px;font-size:14px;">Start free scan →</a>
-  </div>
-</section>
-
-<footer>© 2026 GEO Audit · hello@trygeoaudit.com</footer>
+</footer>
 
 <script>
-  const manifest = document.getElementById('manifestCard');
-  const checkpoints = manifest.querySelectorAll('.checkpoint');
-  function stampIn(){
-    checkpoints.forEach(function(cp){
-      const delay = parseInt(cp.getAttribute('data-delay'), 10) || 0;
-      setTimeout(function(){ cp.classList.add('stamped'); }, delay);
-    });
-  }
-  if('IntersectionObserver' in window){
-    const io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ stampIn(); io.disconnect(); }
-      });
-    }, {threshold:0.4});
-    io.observe(manifest);
-  } else {
-    stampIn();
-  }
-
-  // Scan input → redirect to free-scan with domain param
-  document.getElementById('scanBtn').addEventListener('click', function(e){
-    var val = document.getElementById('scanInput').value.trim();
-    if (val) {
-      e.preventDefault();
-      window.location.href = '/free-scan/?domain=' + encodeURIComponent(val);
-    }
-  });
-  document.getElementById('scanInput').addEventListener('keydown', function(e){
-    if (e.key === 'Enter') {
-      document.getElementById('scanBtn').click();
-    }
-  });
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
 </body>
