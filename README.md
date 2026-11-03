@@ -1,85 +1,77 @@
-# trygeoaudit.com
+# Whole Way Kits — Store Site v1 (static, not yet published)
 
-GEO (Generative Engine Optimization) — check if AI engines cite your brand.
+Built 2026-11-03. Pure static HTML/CSS with a tiny inline script for the
+footer year. No build tools, no frameworks, no external requests — fonts
+and images are all local.
 
-**Live:** [trygeoaudit.com](https://trygeoaudit.com)  
-**Deploy:** GitHub Pages (`lubiaorenwu/trygeoaudit.com`)  
-**Repo:** [github.com/lubiaorenwu/trygeoaudit.com](https://github.com/lubiaorenwu/trygeoaudit.com)
+## Local preview
 
----
-
-## What this is
-
-A single-page product site + free scan tool for AI visibility checking.
-
-The core idea: traditional SEO checks are obsolete. AI search engines (ChatGPT, DeepSeek, Gemini, etc.) don't rank pages — they cite sources. If AI doesn't know your brand exists, you're invisible to a growing audience.
-
-## Structure
+Double-click `index.html`, or serve the folder:
 
 ```
-trygeoaudit-redesign/
-├─ index.html              Landing page (passport/passage metaphor design)
-├─ free-scan/              Free scan page (3 engines, browser-side API calls)
-│   └─ index.html
-├─ scanner/                Python technical audit tool (local use)
-│   ├─ scanner.py          CLI: SSL, robots.txt, Schema.org, Bing index
-│   ├─ server.py           Local API server wrapping scanner.py
-│   └─ README.md
-├─ blog/                   GEO content marketing (8 posts, EN/ZH)
-├─ zh/blog/                Chinese blog posts
-├─ outreach/               Outreach ammunition list
-├─ toolkit/                GEO Optimization Toolkit sales page
-├─ huorengan/              活人感 project (separate concern)
-├─ about/                  About page
-├─ resources/              Resource pages
-├─ privacy-policy/         Privacy policy
-├─ terms-of-service/       Terms of service
-├─ plugins/                Plugin directory
-├─ .deprecated/            Old workers & tools (see .deprecated/README.md)
-│   ├─ free-scan-worker/   CF Worker (Tavily — misleading)
-│   ├─ worker/             CF Worker (Tavily + KV)
-│   ├─ worker-mcp/         CF Worker (Tavily via MCP)
-│   ├─ tool/               Duplicate scan page
-│   └─ geo-audit/          Claude plugin (unpublished)
-├─ robots.txt
-├─ llms.txt
-├─ sitemap.xml
-├─ CNAME                   → trygeoaudit.com
-└─ README.md               This file
+cd ~/workspace/virtual-products/store-site
+python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
-## How the free scan works
+To publish later: push the whole folder (including `assets/` and
+`styles.css`) to the GitHub Pages repo as-is.
 
-The `/free-scan/` page runs entirely in the browser:
+## Files
 
-| Engine | Actually calls | Honest? |
-|--------|---------------|---------|
-| ChatGPT | OpenRouter (llama-4-maverick) | ❌ Not ChatGPT |
-| DeepSeek | DeepSeek API (deepseek-chat) | ✅ Real DeepSeek |
-| Gemini | OpenRouter (qwen-2.5-72b) | ❌ Not Gemini |
-| Perplexity/Claude/Grok/Copilot/Meta AI | Locked (Pro only) | ✅ Honest about being locked |
+| File | Contents |
+|---|---|
+| `index.html` | Store home: hero, both product cards, "why buy from this shop", FAQ summary, footer with both disclaimers |
+| `skillfire-kit.html` | Product 1 detail: pain points, what's inside, who for / not for, full FAQ, two buy boxes → real Creem payment link |
+| `wedding-planner.html` | Product 2 detail: same structure using the real listing images; buy button is a placeholder (see below) |
+| `styles.css` | All styling. Light, clean theme; sage green accent (wedding planner's colour), amber tint for the SkillFire card |
+| `assets/wedding-main.png` | Copied from product-02 `listing-images/listing-01-main.png` |
+| `assets/wedding-contents.png` | Copied from product-02 `listing-images/listing-02-contents.png` |
 
-**Known issue:** The free scan asks LLMs "do you know this brand?" — this is an LLM hallucination test, not real AI engine citation checking. A real citation check would require querying each AI engine's actual search/index pipeline, which needs a backend.
+## ⚠️ Product 2 payment link — placeholder, action needed before launch
 
-## Pricing model
+The Whole Way Wedding Planner has **no Creem product yet**, so there is
+no real payment link. Nothing was invented. Two placeholder spots:
 
-- **Free:** 3-engine quick scan (technical audit + LLM knowledge check)
-- **Pro ($29/mo):** Weekly auto-scans, 8 engines, competitor comparison, trend tracking
-- **Enterprise ($199/mo):** Custom reports, API access, white-label
+1. `wedding-planner.html` — the buy box (marked with a large
+   `PAYMENT LINK PLACEHOLDER` HTML comment): an "Available soon" button
+   that links to `#buy` on the same page, plus a note inviting email
+   contact.
+2. `index.html` — the wedding card's "Available soon" button (marked
+   with a `TODO (payment link)` HTML comment).
 
-Sold via [Gumroad](https://gumroad.com/l/qalwgx).
+**To fix after the Creem product is created:** get the real payment URL
+(`https://www.creem.io/payment/<product_id>`) and replace both buttons
+with `<a class="btn" href="REAL_LINK">Buy …</a>`, following the
+SkillFire card/buy-box pattern, then update the checkout notes.
 
-## Deployment
+## Store name — working name "Whole Way Kits" (pending user's final call)
 
-```bash
-# Push to main → GitHub Pages auto-deploys
-git add -A && git commit -m "..." && git push
+The name is a placeholder brand for the shop. Every occurrence is the
+literal text `Whole Way Kits`, so renaming = find & replace that string
+in these files:
 
-# The scanner (local only, not deployed)
-cd scanner && python3 server.py 8777
-```
+- `index.html` — comment at top, `<title>`, header brand, hero paragraph,
+  footer (2×)
+- `skillfire-kit.html` — `<title>`, header brand, footer (2×)
+- `wedding-planner.html` — `<title>`, header brand, footer (2×)
+- `styles.css` — top comment only
+- This README — headings/mentions
 
-## Related projects
+## Copy rules followed (from the two sales-page.md files)
 
-- `geo-optimizer-skill/` — Open source GEO Optimizer toolkit (MIT, not ours)
-- `/mnt/d/备份/大龙猫/大龙猫工作区/输出/GEO*/` — Content output, marketing materials
+- $9 one-time for both products; taxes handled by Creem at checkout.
+- Refund policy wording copied: platform policy for delivered digital
+  goods, no unconditional refunds promised; broken/incomplete files →
+  fix or refund.
+- AI-assistance disclosure present on home, both product pages, footers.
+- SkillFire: "Not affiliated with or endorsed by Anthropic."
+- Wedding: marriage license / name-change rules vary — confirm with
+  local authorities; not affiliated with any venue/vendor/platform.
+- Support email shown in nav, FAQ and footers: djh973832@gmail.com.
+- No sales figures, reviews, testimonials, countdowns or guarantees
+  anywhere on the site.
+
+## Links verified 2026-11-03
+
+- SkillFire payment: https://www.creem.io/payment/prod_7UKimu8ExN6i7ZNg9oyGiu
+- SkillFire product page: https://www.creem.io/product/prod_7UKimu8ExN6i7ZNg9oyGiu
