@@ -22,27 +22,21 @@ To publish later: push the whole folder (including `assets/` and
 |---|---|
 | `index.html` | Store home: hero, both product cards, "why buy from this shop", FAQ summary, footer with both disclaimers |
 | `skillfire-kit.html` | Product 1 detail: pain points, what's inside, who for / not for, full FAQ, two buy boxes → real Creem payment link |
-| `wedding-planner.html` | Product 2 detail: same structure using the real listing images; buy button is a placeholder (see below) |
+| `wedding-planner.html` | Product 2 detail: same structure using the real listing images; buy button links to the live Creem checkout |
 | `styles.css` | All styling. Light, clean theme; sage green accent (wedding planner's colour), amber tint for the SkillFire card |
 | `assets/wedding-main.png` | Copied from product-02 `listing-images/listing-01-main.png` |
 | `assets/wedding-contents.png` | Copied from product-02 `listing-images/listing-02-contents.png` |
 
-## ⚠️ Product 2 payment link — placeholder, action needed before launch
+## ✅ Product 2 payment link — live (updated 2026-11-03)
 
-The Whole Way Wedding Planner has **no Creem product yet**, so there is
-no real payment link. Nothing was invented. Two placeholder spots:
-
-1. `wedding-planner.html` — the buy box (marked with a large
-   `PAYMENT LINK PLACEHOLDER` HTML comment): an "Available soon" button
-   that links to `#buy` on the same page, plus a note inviting email
-   contact.
-2. `index.html` — the wedding card's "Available soon" button (marked
-   with a `TODO (payment link)` HTML comment).
-
-**To fix after the Creem product is created:** get the real payment URL
-(`https://www.creem.io/payment/<product_id>`) and replace both buttons
-with `<a class="btn" href="REAL_LINK">Buy …</a>`, following the
-SkillFire card/buy-box pattern, then update the checkout notes.
+The Whole Way Wedding Planner was created on Creem on 2026-11-03:
+product `prod_4u5uNApBaZhALPSx7bqheB`, $9 one-time, status active.
+Both former "Available soon" placeholders (the `wedding-planner.html`
+buy box and the `index.html` wedding card) now link to the real
+checkout: `https://www.creem.io/payment/prod_4u5uNApBaZhALPSx7bqheB`.
+Note: checkout still shows "Account Verification Required" until the
+Creem KYC review passes — that is an account-level gate, not a site
+problem.
 
 ## Store name — working name "Whole Way Kits" (pending user's final call)
 
