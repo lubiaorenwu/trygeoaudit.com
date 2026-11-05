@@ -451,3 +451,48 @@ ul.tick li, ul.cross li, ul.plain li { margin: 6px 0; }
   .stat-bar { grid-template-columns: 1fr 1fr; }
   .gallery { grid-template-columns: 1fr; }
 }
+
+/* ---------- wedding scene imagery (decorative mood pictures) ---------- */
+
+.scene-banner { margin: 26px 0 4px; }
+
+.scene-banner img {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  display: block;
+}
+
+.scene-banner figcaption,
+.scene-band figcaption {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.scene-band {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding: 6px 0 10px;
+}
+
+.scene-band figure { margin: 0; }
+
+.scene-band img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  display: block;
+}
+
+@media (max-width: 760px) {
+  .scene-band { grid-template-columns: 1fr; }
+  .scene-banner img { aspect-ratio: 16 / 10; }
+}
