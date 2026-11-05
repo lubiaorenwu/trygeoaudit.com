@@ -38,11 +38,15 @@
       </div>
     </div>
     <figure>
-      <div class="card-media card-media--text" style="background: var(--amber-tint); border-radius: var(--radius); padding: 36px 24px; text-align: center;">
-        <div class="mock-title" style="font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: 700;">$ claude<br>&gt; why won't my skill fire?</div>
-        <div class="mock-sub" style="font-family: ui-monospace, Menlo, Consolas, monospace; color: var(--ink-soft); margin-top: 8px;">15 checks · in the order a practitioner runs them</div>
-      </div>
+      <img src="assets/skillfire-handbook-page.png" alt="SkillFire Kit handbook cover — a practitioner's field manual for Claude Code skills">
     </figure>
+  </div>
+
+  <div class="stat-bar" aria-label="SkillFire Kit facts">
+    <div class="stat"><span class="num">15</span><span class="lbl">diagnostic checks, in run order</span></div>
+    <div class="stat"><span class="num">6</span><span class="lbl">handbook chapters (11 pages)</span></div>
+    <div class="stat"><span class="num">4</span><span class="lbl">ready-to-use working files</span></div>
+    <div class="stat"><span class="num">$9</span><span class="lbl">one-time — free v1.x updates</span></div>
   </div>
 
   <section class="block">
@@ -67,6 +71,67 @@
         <li><strong>An example SKILL.md</strong> — a structurally correct, real skill (changelog-writer) to copy the shape from.</li>
         <li><strong>Free v1.x updates</strong> — when Claude Code changes a command or menu, the checklist gets updated and you get the new version.</li>
       </ul>
+    </div>
+
+    <div class="gallery">
+      <figure>
+        <img src="assets/skillfire-handbook-page.png" alt="SkillFire Kit handbook, page 1 — cover">
+        <figcaption>The handbook cover — six chapters, starting with how triggering actually works.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/skillfire-cheatsheet-page.png" alt="SkillFire Kit troubleshooting cheatsheet, page 1 — the 15 checks">
+        <figcaption>The cheatsheet — the 15 checks on one spread, made to be printed and pinned up.</figcaption>
+      </figure>
+      <figure>
+        <div class="file-tree" role="img" aria-label="File listing of the SkillFire Kit download">SkillFire-Kit.zip<br>
+          <span class="dim">├─</span> README-first.txt<br>
+          <span class="dim">├─</span> SkillFire-Kit-Handbook.pdf<br>
+          <span class="dim">├─</span> troubleshooting-cheatsheet.pdf<br>
+          <span class="dim">└─</span> files/<br>
+          &nbsp;&nbsp;&nbsp;<span class="dim">├─</span> CLAUDE-template.md<br>
+          &nbsp;&nbsp;&nbsp;<span class="dim">├─</span> settings-template.json<br>
+          &nbsp;&nbsp;&nbsp;<span class="dim">├─</span> troubleshooting-cheatsheet.md<br>
+          &nbsp;&nbsp;&nbsp;<span class="dim">└─</span> example-skill/SKILL.md</div>
+        <figcaption>Everything in the download — 7 files, nothing else to install.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" aria-label="The 15 checks">
+    <p class="ticker-label">The 15 checks — what the cheatsheet walks you through</p>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span><b>Part A — skill doesn't fire:</b> not in /skills at all ·</span>
+        <span>listed, but never fires automatically ·</span>
+        <span>fires only when called by hand ·</span>
+        <span>manual call works, metadata looks empty ·</span>
+        <span>stopped firing after you installed more ·</span>
+        <span><b>Part B — CLAUDE.md / settings:</b> subdirectory CLAUDE.md ignored ·</span>
+        <span>a setting you changed "won't stick" ·</span>
+        <span>permissions and hooks do nothing ·</span>
+        <span>loaded in /context, but not followed ·</span>
+        <span><b>Part C — MCP:</b> the project server never appears ·</span>
+        <span>.mcp.json in place, still nothing ·</span>
+        <span>defined in settings.json, never shows ·</span>
+        <span>server disabled or never approved ·</span>
+        <span>"connected" but 0 tools ·</span>
+        <span><b>Part D — the fallback:</b> everything passes, still misbehaves ·</span>
+        <span><b>Part A — skill doesn't fire:</b> not in /skills at all ·</span>
+        <span>listed, but never fires automatically ·</span>
+        <span>fires only when called by hand ·</span>
+        <span>manual call works, metadata looks empty ·</span>
+        <span>stopped firing after you installed more ·</span>
+        <span><b>Part B — CLAUDE.md / settings:</b> subdirectory CLAUDE.md ignored ·</span>
+        <span>a setting you changed "won't stick" ·</span>
+        <span>permissions and hooks do nothing ·</span>
+        <span>loaded in /context, but not followed ·</span>
+        <span><b>Part C — MCP:</b> the project server never appears ·</span>
+        <span>.mcp.json in place, still nothing ·</span>
+        <span>defined in settings.json, never shows ·</span>
+        <span>server disabled or never approved ·</span>
+        <span>"connected" but 0 tools ·</span>
+        <span><b>Part D — the fallback:</b> everything passes, still misbehaves ·</span>
+      </div>
     </div>
   </section>
 
@@ -124,6 +189,21 @@
       <summary>What if Claude Code changes and the kit goes stale?</summary>
       <p>Commands and menus do change between versions. Your purchase includes
       free updates to this kit's checklist for the whole v1.x line.</p>
+    </details>
+
+    <details>
+      <summary>How is it delivered, and in what formats?</summary>
+      <p>Instant download after checkout: one zip with 7 files — the handbook
+      and cheatsheet as PDFs, and the templates as plain Markdown and JSON
+      you copy into your project. No installer, no account, and the reading
+      files work offline.</p>
+    </details>
+
+    <details>
+      <summary>How do I get the free v1.x updates?</summary>
+      <p>Re-download the kit from your purchase library on Creem — when the
+      checklist is updated for a Claude Code change, the new files replace
+      the old ones there at no extra charge.</p>
     </details>
 
     <details>
