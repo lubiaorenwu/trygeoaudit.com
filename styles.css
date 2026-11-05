@@ -321,3 +321,133 @@ ul.tick li, ul.cross li, ul.plain li { margin: 6px 0; }
   .site-nav a { margin-left: 14px; }
   body { font-size: 16px; }
 }
+
+/* ---------- stat bar (verifiable product facts only) ---------- */
+
+.stat-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 4px 0 28px;
+}
+
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  text-align: center;
+}
+
+.stat .num { display: block; font-size: 1.45rem; font-weight: 700; line-height: 1.25; }
+.stat .lbl { color: var(--ink-soft); font-size: 0.9rem; }
+
+/* ---------- content ticker (real contents, not testimonials) ---------- */
+
+.ticker-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+}
+
+.marquee {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 55s linear infinite;
+}
+
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+.marquee-track span {
+  white-space: nowrap;
+  padding: 0 6px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.marquee-track span b { color: var(--ink); font-weight: 600; }
+
+@keyframes marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
+}
+
+/* ---------- image gallery ---------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding-top: 18px;
+}
+
+.gallery figure { margin: 0; }
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  display: block;
+  background: var(--surface);
+}
+
+.gallery figcaption {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin-top: 8px;
+}
+
+/* ---------- fact chips on cards ---------- */
+
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.chip {
+  background: var(--sage-tint);
+  color: var(--sage-dark);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.chip--amber { background: var(--amber-tint); color: var(--amber); }
+
+/* ---------- file listing block (SkillFire) ---------- */
+
+.file-tree {
+  background: #24231f;
+  color: #e8e4d8;
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.file-tree .dim { color: #a49e8c; }
+
+@media (max-width: 760px) {
+  .stat-bar { grid-template-columns: 1fr 1fr; }
+  .gallery { grid-template-columns: 1fr; }
+}
