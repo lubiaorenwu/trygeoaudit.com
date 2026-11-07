@@ -514,3 +514,32 @@ ul.tick li, ul.cross li, ul.plain li { margin: 6px 0; }
   .scene-band { grid-template-columns: 1fr; }
   .scene-banner img { aspect-ratio: 16 / 10; }
 }
+
+/* ---------- inline sample videos (homepage, SkillFire area) ---------- */
+
+.card-video { margin-top: 4px; }
+
+.video-note {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  margin: 0 0 8px;
+}
+
+.card-video video,
+.skill-explainer video {
+  width: 66%;
+  max-width: 560px;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 4px);
+  background: #000;
+}
+
+.skill-explainer { padding: 4px 2px 26px; }
+
+.skill-explainer h3 { font-size: 1.12rem; margin: 8px 0 6px; }
+
+@media (max-width: 640px) {
+  .card-video video,
+  .skill-explainer video { width: 100%; }
+}
