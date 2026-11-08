@@ -30,7 +30,7 @@ To publish later: push the whole folder (including `assets/` and
 ## ✅ Product 2 payment link — live (updated 2026-11-03)
 
 The Whole Way Wedding Planner was created on Creem on 2026-11-03:
-product `prod_4u5uNApBaZhALPSx7bqheB`, $9 one-time, status active.
+product `prod_4u5uNApBaZhALPSx7bqheB`, $9.90 one-time, status active.
 Both former "Available soon" placeholders (the `wedding-planner.html`
 buy box and the `index.html` wedding card) now link to the real
 checkout: `https://www.creem.io/payment/prod_4u5uNApBaZhALPSx7bqheB`.
@@ -53,7 +53,7 @@ in these files:
 
 ## Copy rules followed (from the two sales-page.md files)
 
-- $9 one-time for both products; taxes handled by Creem at checkout.
+- $9.90 one-time for both products; taxes handled by Creem at checkout.
 - Refund policy wording copied: platform policy for delivered digital
   goods, no unconditional refunds promised; broken/incomplete files →
   fix or refund.
